@@ -1,18 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
-import { ProfileCardCollection, NavBar } from './ui-components';
-import { withAuthenticator } from '@aws-amplify/ui-react';
+import Explore from './pages/Explore';
 
 
 function App() {
+  
   return (
     <div className="App">
       <header className="App-header">
-        <NavBar />
-        <ProfileCardCollection />
+        <Explore />
       </header>
     </div>
   );
 }
 
-export default withAuthenticator(App);
+export default App;

@@ -6,17 +6,14 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import {
-  Button,
-  Flex,
-  Icon,
-  Image,
-  SearchField,
-  Text,
-} from "@aws-amplify/ui-react";
+  getOverrideProps,
+  useNavigateAction,
+} from "@aws-amplify/ui-react/internal";
+import { Button, Flex, Icon, Image, Text } from "@aws-amplify/ui-react";
 export default function NavBar(props) {
   const { overrides, ...rest } = props;
+  const buttonOnClick = useNavigateAction({ type: "reload" });
   return (
     <Flex
       gap="20px"
@@ -100,21 +97,15 @@ export default function NavBar(props) {
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 321")}
       >
-        <SearchField
-          shrink="0"
-          placeholder="Placeholder"
-          size="default"
-          isDisabled={false}
-          labelHidden={true}
-          variation="default"
-          {...getOverrideProps(overrides, "SearchField")}
-        ></SearchField>
         <Button
           shrink="0"
           size="small"
           isDisabled={false}
           variation="primary"
           children="Sign In"
+          onClick={() => {
+            buttonOnClick();
+          }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>
         <Image
