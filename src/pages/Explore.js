@@ -1,21 +1,29 @@
-import { withAuthenticator } from "@aws-amplify/ui-react";
+import { Authenticator } from "@aws-amplify/ui-react";
 // import App from "../App";
 import { ProfileCardCollection } from "../ui-components";
 import NavBar from "../ui-components/NavBar";
 
-function Explore({user, signOut}) {
-    const navbarOverrides = {
-        "Button": {
-            onClick: signOut
-        }
+function Explore() {
+    const navbarOverrides = (signOut) => {
+        return (
+            {
+                "Button": {
+                    onClick: signOut
+                }
+            }
+        )
     }
 
     return (
-        <main>
-            <NavBar width="100%" overrides={navbarOverrides}/>
-            <ProfileCardCollection />
-        </main>
+        <Authenticator>
+            {({ signOut, user }) => (
+                <main>
+                    <NavBar width="100%" overrides={navbarOverrides(signOut)}/>
+                    <ProfileCardCollection />
+                </main>
+            )}
+        </Authenticator>
     )
 }
 
-export default withAuthenticator(Explore);
+export default Explore;
