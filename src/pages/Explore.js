@@ -1,13 +1,16 @@
 import { Authenticator } from "@aws-amplify/ui-react";
+import { Auth } from "aws-amplify";
 // import App from "../App";
 import { ProfileCardCollection } from "../ui-components";
 import NavBar from "../ui-components/NavBar";
 
-function Explore() {
-    const navbarOverrides = (signOut) => {
+function Explore(props) {
+
+    var navbarOverrides = (signOut) => {
         return (
             {
                 "Button": {
+                    children: "Log Out",
                     onClick: signOut
                 }
             }
