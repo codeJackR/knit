@@ -4,7 +4,7 @@ import NavBar from '../ui-components/NavBar';
 
 function Home() {
     const navigate = useNavigate();
-    
+
     const explorePage = () => {
         navigate("/explore")
     }
@@ -21,7 +21,7 @@ function Home() {
 
     return (
         <main>
-            <NavBar width="100%" overrides={NavbarOverrides()}/>
+            <NavBar width="100%" overrides={NavbarOverrides()} />
             <ProfileCardCollection />
         </main>
     );
