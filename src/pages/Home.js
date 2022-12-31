@@ -12,17 +12,17 @@ function Home() {
     const NavbarOverrides = () => {
         return (
             {
-            "Button": {
-                onClick: explorePage
-            }
+                "Button": {
+                    onClick: explorePage
+                }
             }
         )
     }
 
     return (
         <main>
-        <NavBar width="100%" overrides={NavbarOverrides()}/>
-        <ProfileCardCollection />
+            <NavBar width="100%" overrides={NavbarOverrides()}/>
+            <ProfileCardCollection />
         </main>
     );
 }
