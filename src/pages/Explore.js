@@ -6,7 +6,7 @@ import NavBar from "../ui-components/NavBar";
 function Explore(props) {
   const navigate = useNavigate();
 
-  var navbarOverrides = (signOut) => {
+  const navbarOverrides = (signOut) => {
     return {
       Button: {
         children: "Sign Out",
@@ -18,12 +18,22 @@ function Explore(props) {
     };
   };
 
+  const profileCardCollectionOverrides = () => {
+    return {
+      Button: {
+        onClick: () => {
+          navigate(props.username);
+        },
+      },
+    };
+  };
+
   return (
     <Authenticator>
       {({ signOut, user }) => (
         <main>
           <NavBar width="100%" overrides={navbarOverrides(signOut)} />
-          <ProfileCardCollection />
+          <ProfileCardCollection overrides={profileCardCollectionOverrides} />
         </main>
       )}
     </Authenticator>
