@@ -6,18 +6,11 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  getOverrideProps,
-  useNavigateAction,
-} from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
 import MyIcon from "./MyIcon";
 export default function ProfileCard(props) {
   const { creator, overrides, ...rest } = props;
-  const buttonOnClick = useNavigateAction({
-    type: "url",
-    url: `${"https://www.exonetz.com/"}${creator?.username}`,
-  });
   return (
     <Flex
       gap="24px"
@@ -158,9 +151,6 @@ export default function ProfileCard(props) {
         isDisabled={false}
         variation="primary"
         children="View Profile"
-        onClick={() => {
-          buttonOnClick();
-        }}
         {...getOverrideProps(overrides, "Button")}
       ></Button>
     </Flex>

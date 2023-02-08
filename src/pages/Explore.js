@@ -18,14 +18,16 @@ function Explore(props) {
     };
   };
 
-  const profileCardCollectionOverrides = () => {
-    return {
+  const profileCardCollectionOverrideItems = (item, index) => {
+    return ({
+      overrides: {
       Button: {
         onClick: () => {
-          navigate(props.username);
-        },
-      },
-    };
+            navigate("/" + item.item.username);
+          }
+        }
+      }
+    })
   };
 
   return (
@@ -33,7 +35,7 @@ function Explore(props) {
       {({ signOut, user }) => (
         <main>
           <NavBar width="100%" overrides={navbarOverrides(signOut)} />
-          <ProfileCardCollection overrides={profileCardCollectionOverrides} />
+          <ProfileCardCollection overrideItems={profileCardCollectionOverrideItems} />
         </main>
       )}
     </Authenticator>
