@@ -2,27 +2,50 @@ import { useNavigate } from 'react-router-dom';
 import { ProfileCardCollection } from '../ui-components';
 import NavBar from '../ui-components/NavBar';
 
-function Home() {
+function Home({ signOut, user }) {
     const navigate = useNavigate();
 
-    const explorePage = () => {
-        navigate("/explore")
-    }
+    const navbarOverrides = (signOut) => {
+        if (signOut != null) {
+            return {
+                Button: {
+                    children: "Sign Out",
+                    onClick: () => {
+                        signOut();
+                        navigate("/");
+                    },
+                },
+            };
+        } else {
+            const explorePage = () => {
+                navigate("/signin")
+            }
+            return (
+                {
+                    "Button": {
+                        onClick: explorePage
+                    }
+                }
+            )
+        }
+    };
 
-    const NavbarOverrides = () => {
-        return (
-            {
-                "Button": {
-                    onClick: explorePage
+    const profileCardCollectionOverrideItems = (item, index) => {
+        return ({
+            overrides: {
+                Button: {
+                    onClick: () => {
+                        navigate("/" + item.item.username);
+                    }
                 }
             }
-        )
-    }
+        })
+    };
 
     return (
         <main>
-            <NavBar width="100%" overrides={NavbarOverrides()} />
-            <ProfileCardCollection />
+            <NavBar width="100%" overrides={navbarOverrides(signOut)} />
+            <ProfileCardCollection overrideItems={profileCardCollectionOverrideItems} />
         </main>
     );
 }
