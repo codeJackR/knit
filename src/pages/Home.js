@@ -7,18 +7,24 @@ function Home({ signOut, user }) {
 
     const navbarOverrides = (signOut) => {
         if (signOut != null) {
-            return {
-                Button: {
-                    children: "Sign Out",
-                    onClick: () => {
-                        signOut();
-                        navigate("/");
+            return (
+                {
+                    Button: {
+                        children: "Sign Out",
+                        onClick: () => {
+                            signOut();
+                            navigate("/");
+                        },
                     },
-                },
-            };
+                }
+            )
         } else {
             const explorePage = () => {
-                navigate("/signin")
+                navigate("/", {
+                    state: {
+                        source: "signIn",
+                    }
+                })
             }
             return (
                 {
