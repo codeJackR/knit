@@ -5,9 +5,9 @@
  **************************************************************************/
 
 import * as React from "react";
-import { Creator } from "../models";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
+import { Creator } from "../models";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -21,11 +21,11 @@ export declare type CreatorUpdateFormValidationValues = {
     username?: ValidationFunction<string>;
     email_id?: ValidationFunction<string>;
 };
-export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CreatorUpdateFormOverridesProps = {
-    CreatorUpdateFormGrid?: FormProps<GridProps>;
-    username?: FormProps<TextFieldProps>;
-    email_id?: FormProps<TextFieldProps>;
+    CreatorUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    username?: PrimitiveOverrideProps<TextFieldProps>;
+    email_id?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CreatorUpdateFormProps = React.PropsWithChildren<{
     overrides?: CreatorUpdateFormOverridesProps | undefined | null;
@@ -35,7 +35,6 @@ export declare type CreatorUpdateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: CreatorUpdateFormInputValues) => CreatorUpdateFormInputValues;
     onSuccess?: (fields: CreatorUpdateFormInputValues) => void;
     onError?: (fields: CreatorUpdateFormInputValues, errorMessage: string) => void;
-    onCancel?: () => void;
     onChange?: (fields: CreatorUpdateFormInputValues) => CreatorUpdateFormInputValues;
     onValidate?: CreatorUpdateFormValidationValues;
 } & React.CSSProperties>;

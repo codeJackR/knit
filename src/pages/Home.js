@@ -1,12 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { ProfileCardCollection } from '../ui-components';
 import NavBar from '../ui-components/NavBar';
+import { SaveNewUser } from "../datastore/user";
 
 function Home({ signOut, user }) {
     const navigate = useNavigate();
 
     const navbarOverrides = (signOut) => {
         if (signOut != null) {
+            SaveNewUser()
             return (
                 {
                     Button: {

@@ -8,6 +8,11 @@ import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { ProfileCardProps } from "./ProfileCard";
 import { CollectionProps } from "@aws-amplify/ui-react";
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type ProfileCardCollectionOverridesProps = {
+    ProfileCardCollection?: PrimitiveOverrideProps<CollectionProps>;
+    ProfileCard?: ProfileCardProps;
+} & EscapeHatchProps;
 export declare type ProfileCardCollectionProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
     items?: any[];
     overrideItems?: (collectionItem: {
@@ -15,6 +20,6 @@ export declare type ProfileCardCollectionProps = React.PropsWithChildren<Partial
         index: number;
     }) => ProfileCardProps;
 } & {
-    overrides?: EscapeHatchProps | undefined | null;
+    overrides?: ProfileCardCollectionOverridesProps | undefined | null;
 }>;
 export default function ProfileCardCollection(props: ProfileCardCollectionProps): React.ReactElement;

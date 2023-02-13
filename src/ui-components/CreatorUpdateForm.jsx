@@ -6,33 +6,34 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { fetchByPath, validateField } from "./utils";
-import { Creator } from "../models";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { Creator } from "../models";
+import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
 export default function CreatorUpdateForm(props) {
   const {
-    id,
+    id: idProp,
     creator,
     onSuccess,
     onError,
     onSubmit,
-    onCancel,
     onValidate,
     onChange,
     overrides,
     ...rest
   } = props;
   const initialValues = {
-    username: undefined,
-    email_id: undefined,
+    username: "",
+    email_id: "",
   };
   const [username, setUsername] = React.useState(initialValues.username);
   const [email_id, setEmail_id] = React.useState(initialValues.email_id);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = { ...initialValues, ...creatorRecord };
+    const cleanValues = creatorRecord
+      ? { ...initialValues, ...creatorRecord }
+      : initialValues;
     setUsername(cleanValues.username);
     setEmail_id(cleanValues.email_id);
     setErrors({});
@@ -40,17 +41,24 @@ export default function CreatorUpdateForm(props) {
   const [creatorRecord, setCreatorRecord] = React.useState(creator);
   React.useEffect(() => {
     const queryData = async () => {
-      const record = id ? await DataStore.query(Creator, id) : creator;
+      const record = idProp ? await DataStore.query(Creator, idProp) : creator;
       setCreatorRecord(record);
     };
     queryData();
-  }, [id, creator]);
+  }, [idProp, creator]);
   React.useEffect(resetStateValues, [creatorRecord]);
   const validations = {
     username: [],
     email_id: [{ type: "Email" }],
   };
-  const runValidationTasks = async (fieldName, value) => {
+  const runValidationTasks = async (
+    fieldName,
+    currentValue,
+    getDisplayValue
+  ) => {
+    const value = getDisplayValue
+      ? getDisplayValue(currentValue)
+      : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -94,6 +102,11 @@ export default function CreatorUpdateForm(props) {
           modelFields = onSubmit(modelFields);
         }
         try {
+          Object.entries(modelFields).forEach(([key, value]) => {
+            if (typeof value === "string" && value.trim() === "") {
+              modelFields[key] = undefined;
+            }
+          });
           await DataStore.save(
             Creator.copyOf(creatorRecord, (updated) => {
               Object.assign(updated, modelFields);
@@ -108,14 +121,14 @@ export default function CreatorUpdateForm(props) {
           }
         }
       }}
-      {...rest}
       {...getOverrideProps(overrides, "CreatorUpdateForm")}
+      {...rest}
     >
       <TextField
         label="Username"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={username}
+        value={username}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -140,7 +153,7 @@ export default function CreatorUpdateForm(props) {
         label="Email id"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={email_id}
+        value={email_id}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -168,7 +181,11 @@ export default function CreatorUpdateForm(props) {
         <Button
           children="Reset"
           type="reset"
-          onClick={resetStateValues}
+          onClick={(event) => {
+            event.preventDefault();
+            resetStateValues();
+          }}
+          isDisabled={!(idProp || creator)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -176,18 +193,13 @@ export default function CreatorUpdateForm(props) {
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
           <Button
-            children="Cancel"
-            type="button"
-            onClick={() => {
-              onCancel && onCancel();
-            }}
-            {...getOverrideProps(overrides, "CancelButton")}
-          ></Button>
-          <Button
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={Object.values(errors).some((e) => e?.hasError)}
+            isDisabled={
+              !(idProp || creator) ||
+              Object.values(errors).some((e) => e?.hasError)
+            }
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>

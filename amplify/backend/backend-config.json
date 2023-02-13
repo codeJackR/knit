@@ -11,7 +11,8 @@
           ],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 30,
+              "apiKeyExpirationDate": "2024-02-13T05:13:34.197Z",
+              "apiKeyExpirationDays": 365,
               "description": "api key description"
             },
             "authenticationType": "API_KEY"
@@ -32,11 +33,7 @@
           "SMS"
         ],
         "passwordProtectionSettings": {
-          "passwordPolicyCharacters": [
-            "REQUIRES_LOWERCASE",
-            "REQUIRES_NUMBERS",
-            "REQUIRES_UPPERCASE"
-          ],
+          "passwordPolicyCharacters": [],
           "passwordPolicyMinLength": 8
         },
         "signupAttributes": [

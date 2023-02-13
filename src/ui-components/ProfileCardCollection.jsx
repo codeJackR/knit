@@ -15,11 +15,18 @@ import ProfileCard from "./ProfileCard";
 import { Collection } from "@aws-amplify/ui-react";
 export default function ProfileCardCollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
+  const [items, setItems] = React.useState(undefined);
   const itemsDataStore = useDataStoreBinding({
     type: "collection",
     model: Creator,
   }).items;
-  const items = itemsProp !== undefined ? itemsProp : itemsDataStore;
+  React.useEffect(() => {
+    if (itemsProp !== undefined) {
+      setItems(itemsProp);
+      return;
+    }
+    setItems(itemsDataStore);
+  }, [itemsProp, itemsDataStore]);
   return (
     <Collection
       type="grid"
@@ -32,8 +39,8 @@ export default function ProfileCardCollection(props) {
       alignItems="stretch"
       justifyContent="stretch"
       items={items || []}
-      {...rest}
       {...getOverrideProps(overrides, "ProfileCardCollection")}
+      {...rest}
     >
       {(item, index) => (
         <ProfileCard

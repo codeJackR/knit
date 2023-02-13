@@ -6,8 +6,18 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps } from "@aws-amplify/ui-react";
+import { ButtonProps, FlexProps, IconProps, ImageProps, TextProps } from "@aws-amplify/ui-react";
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type NavBarOverridesProps = {
+    NavBar?: PrimitiveOverrideProps<FlexProps>;
+    Logo?: PrimitiveOverrideProps<FlexProps>;
+    "Star 1"?: PrimitiveOverrideProps<IconProps>;
+    Exonetz?: PrimitiveOverrideProps<TextProps>;
+    "Frame 321"?: PrimitiveOverrideProps<FlexProps>;
+    Button?: PrimitiveOverrideProps<ButtonProps>;
+    image?: PrimitiveOverrideProps<ImageProps>;
+} & EscapeHatchProps;
 export declare type NavBarProps = React.PropsWithChildren<Partial<FlexProps> & {
-    overrides?: EscapeHatchProps | undefined | null;
+    overrides?: NavBarOverridesProps | undefined | null;
 }>;
 export default function NavBar(props: NavBarProps): React.ReactElement;

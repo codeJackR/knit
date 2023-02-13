@@ -5,8 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -20,11 +20,11 @@ export declare type CreatorCreateFormValidationValues = {
     username?: ValidationFunction<string>;
     email_id?: ValidationFunction<string>;
 };
-export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CreatorCreateFormOverridesProps = {
-    CreatorCreateFormGrid?: FormProps<GridProps>;
-    username?: FormProps<TextFieldProps>;
-    email_id?: FormProps<TextFieldProps>;
+    CreatorCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    username?: PrimitiveOverrideProps<TextFieldProps>;
+    email_id?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CreatorCreateFormProps = React.PropsWithChildren<{
     overrides?: CreatorCreateFormOverridesProps | undefined | null;
@@ -33,7 +33,6 @@ export declare type CreatorCreateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: CreatorCreateFormInputValues) => CreatorCreateFormInputValues;
     onSuccess?: (fields: CreatorCreateFormInputValues) => void;
     onError?: (fields: CreatorCreateFormInputValues, errorMessage: string) => void;
-    onCancel?: () => void;
     onChange?: (fields: CreatorCreateFormInputValues) => CreatorCreateFormInputValues;
     onValidate?: CreatorCreateFormValidationValues;
 } & React.CSSProperties>;

@@ -1,4 +1,5 @@
 import { Auth } from 'aws-amplify';
+import { useState, useEffect } from 'react';
 
 async function IsUserSignedIn() {
     try {
@@ -8,5 +9,4 @@ async function IsUserSignedIn() {
         return false;
     }
 }
-
-export default IsUserSignedIn;
+export { IsUserSignedIn };

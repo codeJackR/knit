@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import GetUserByUsername from './../datastore/user'
+import { GetUserByUsername } from './../datastore/user'
 
 export const UserProfile = (props) => {
 

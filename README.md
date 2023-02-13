@@ -68,3 +68,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### Try this if Datastore does not connect locally
+
+1. Restart local run. Close the previous one and do `npm start`
+2. amplify update api
+3. npx amplify-app@latest
+4. npm run amplify-modelgen
+5. npm run amplify-push
