@@ -1,5 +1,5 @@
-type Creator @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  username: String
-  email_id: AWSEmail
+type Creator @model @auth(rules: [{ allow: public }, { allow: private }]) {
+	id: ID!
+	username: String
+	email_id: AWSEmail
 }

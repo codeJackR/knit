@@ -38,7 +38,9 @@
     ],
     "useDefault": "default",
     "userPoolGroups": false,
-    "userPoolGroupList": [],
+    "userPoolGroupList": [
+      "founder"
+    ],
     "adminQueries": false,
     "usernameCaseSensitive": false,
     "useEnabledMfas": true,
