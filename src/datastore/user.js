@@ -1,4 +1,4 @@
-import { DataStore, Predicates } from 'aws-amplify';
+import { DataStore } from 'aws-amplify';
 import { Creator } from '../models';
 import { useState, useEffect } from 'react';
 import { Auth } from 'aws-amplify';
