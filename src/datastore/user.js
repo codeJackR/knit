@@ -1,4 +1,4 @@
-import { DataStore } from 'aws-amplify';
+import { DataStore, Predicates } from 'aws-amplify';
 import { Creator } from '../models';
 import { useState, useEffect } from 'react';
 import { Auth } from 'aws-amplify';
@@ -13,7 +13,6 @@ function SaveNewUser() {
             const currentUser = await Auth.currentAuthenticatedUser();
             setUser(currentUser);
         };
-        console.log("In First useEffect!!!")
 
         getUser();
     }, []);
@@ -22,12 +21,21 @@ function SaveNewUser() {
         if (user && signInStatus !== 'signedIn') {
             const creatorInfo = {
                 id: user.attributes.sub,
-                username: user.username,
+                username: user.attributes.preferred_username,
                 email_id: user.attributes.email,
             };
-            DataStore.save(new Creator(creatorInfo));
-
-            console.log("User Saved Successfully!")
+            // TODO: Validate creatorInfo
+            DataStore.query(Creator, (c) => c.email_id.eq(creatorInfo.email_id))
+                .then((results) => {
+                    if (results.length > 0) {
+                        console.log('Creator with email already exists');
+                    } else {
+                        DataStore.save(new Creator(creatorInfo))
+                            .then(() => console.log('Creator saved successfully'))
+                            .catch((error) => console.error('Error saving Creator:', error));
+                    }
+                })
+                .catch((error) => console.error('Error querying for creator:', error));
         }
     }, [user, signInStatus]);
 

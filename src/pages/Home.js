@@ -8,7 +8,7 @@ function Home({ signOut, user }) {
 
     const navbarOverrides = (signOut) => {
         if (signOut != null) {
-            SaveNewUser()
+            SaveNewUser(user)
             return (
                 {
                     Button: {
