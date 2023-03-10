@@ -1,0 +1,90 @@
+/***************************************************************************
+ * The contents of this file were generated with Amplify Studio.           *
+ * Please refrain from making any modifications to this file.              *
+ * Any changes to this file will be overwritten when running amplify pull. *
+ **************************************************************************/
+
+import * as React from "react";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
+import { FlexProps, IconProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type ProfilePageMobileOverridesProps = {
+    ProfilePageMobile?: PrimitiveOverrideProps<ViewProps>;
+    header?: PrimitiveOverrideProps<FlexProps>;
+    logo?: PrimitiveOverrideProps<TextProps>;
+    "Frame 40"?: PrimitiveOverrideProps<FlexProps>;
+    Messaging?: PrimitiveOverrideProps<TextProps>;
+    Connections?: PrimitiveOverrideProps<TextProps>;
+    "Frame 4"?: PrimitiveOverrideProps<FlexProps>;
+    "Sign in"?: PrimitiveOverrideProps<TextProps>;
+    "Frame 26"?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 17"?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 12"?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 5"?: PrimitiveOverrideProps<ViewProps>;
+    "julian-wan-WNoLnJo7tS8-unsplash 1"?: PrimitiveOverrideProps<ImageProps>;
+    "Frame 11"?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 10"?: PrimitiveOverrideProps<FlexProps>;
+    "Full Name"?: PrimitiveOverrideProps<TextProps>;
+    "Frame 9"?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 6"?: PrimitiveOverrideProps<FlexProps>;
+    Vector35833026?: PrimitiveOverrideProps<IconProps>;
+    Location?: PrimitiveOverrideProps<TextProps>;
+    Username?: PrimitiveOverrideProps<TextProps>;
+    "Frame 835833029"?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 7"?: PrimitiveOverrideProps<FlexProps>;
+    Follow?: PrimitiveOverrideProps<TextProps>;
+    "Frame 835833032"?: PrimitiveOverrideProps<FlexProps>;
+    Message?: PrimitiveOverrideProps<TextProps>;
+    "Frame 15"?: PrimitiveOverrideProps<FlexProps>;
+    website?: PrimitiveOverrideProps<TextProps>;
+    "Frame 16"?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 1335833037"?: PrimitiveOverrideProps<FlexProps>;
+    "image 235833038"?: PrimitiveOverrideProps<ImageProps>;
+    insta_id35833039?: PrimitiveOverrideProps<TextProps>;
+    "Frame 1435833040"?: PrimitiveOverrideProps<FlexProps>;
+    "image 335833041"?: PrimitiveOverrideProps<ImageProps>;
+    youtube_id35833042?: PrimitiveOverrideProps<TextProps>;
+    "Frame 25"?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 23"?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 18"?: PrimitiveOverrideProps<FlexProps>;
+    Keyword35833046?: PrimitiveOverrideProps<TextProps>;
+    "Frame 2135833047"?: PrimitiveOverrideProps<FlexProps>;
+    Keyword35833048?: PrimitiveOverrideProps<TextProps>;
+    "Frame 2235833049"?: PrimitiveOverrideProps<FlexProps>;
+    Keyword35833050?: PrimitiveOverrideProps<TextProps>;
+    "Frame 24"?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 2135833052"?: PrimitiveOverrideProps<FlexProps>;
+    Keyword35833053?: PrimitiveOverrideProps<TextProps>;
+    "Frame 2235833054"?: PrimitiveOverrideProps<FlexProps>;
+    Keyword35833055?: PrimitiveOverrideProps<TextProps>;
+    "Frame 42"?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 41"?: PrimitiveOverrideProps<ViewProps>;
+    "pexels-frans-van-heerden-624015 (1) 1"?: PrimitiveOverrideProps<ImageProps>;
+    "Frame 33"?: PrimitiveOverrideProps<FlexProps>;
+    "Line 2"?: PrimitiveOverrideProps<IconProps>;
+    "Frame 32"?: PrimitiveOverrideProps<FlexProps>;
+    "Line 18"?: PrimitiveOverrideProps<IconProps>;
+    "Meet FirstName"?: PrimitiveOverrideProps<TextProps>;
+    "Line 15"?: PrimitiveOverrideProps<IconProps>;
+    "Frame 1335833065"?: PrimitiveOverrideProps<FlexProps>;
+    "image 235833066"?: PrimitiveOverrideProps<ImageProps>;
+    insta_id35833067?: PrimitiveOverrideProps<TextProps>;
+    "Line 16"?: PrimitiveOverrideProps<IconProps>;
+    "Frame 1435833069"?: PrimitiveOverrideProps<FlexProps>;
+    "image 335833070"?: PrimitiveOverrideProps<ImageProps>;
+    youtube_id35833071?: PrimitiveOverrideProps<TextProps>;
+    "Line 17"?: PrimitiveOverrideProps<IconProps>;
+    "Line 3"?: PrimitiveOverrideProps<IconProps>;
+    "Frame 39"?: PrimitiveOverrideProps<FlexProps>;
+    "Identity 1"?: PrimitiveOverrideProps<TextProps>;
+    "Identity 2"?: PrimitiveOverrideProps<TextProps>;
+    "Identity 3"?: PrimitiveOverrideProps<TextProps>;
+    "Identity 4"?: PrimitiveOverrideProps<TextProps>;
+    "Identity 5"?: PrimitiveOverrideProps<TextProps>;
+    "Frame 28"?: PrimitiveOverrideProps<FlexProps>;
+    Vector35833081?: PrimitiveOverrideProps<IconProps>;
+} & EscapeHatchProps;
+export declare type ProfilePageMobileProps = React.PropsWithChildren<Partial<ViewProps> & {
+    overrides?: ProfilePageMobileOverridesProps | undefined | null;
+}>;
+export default function ProfilePageMobile(props: ProfilePageMobileProps): React.ReactElement;

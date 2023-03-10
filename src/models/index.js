@@ -4,8 +4,9 @@ import { schema } from './schema';
 
 
 
-const { Creator } = initSchema(schema);
+const { CreatorDetails, Creator } = initSchema(schema);
 
 export {
+  CreatorDetails,
   Creator
 };

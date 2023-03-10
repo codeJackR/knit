@@ -25,18 +25,30 @@ export default function CreatorCreateForm(props) {
   const initialValues = {
     username: "",
     email_id: "",
+    first_name: "",
+    last_name: "",
+    location: "",
   };
   const [username, setUsername] = React.useState(initialValues.username);
   const [email_id, setEmail_id] = React.useState(initialValues.email_id);
+  const [first_name, setFirst_name] = React.useState(initialValues.first_name);
+  const [last_name, setLast_name] = React.useState(initialValues.last_name);
+  const [location, setLocation] = React.useState(initialValues.location);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setUsername(initialValues.username);
     setEmail_id(initialValues.email_id);
+    setFirst_name(initialValues.first_name);
+    setLast_name(initialValues.last_name);
+    setLocation(initialValues.location);
     setErrors({});
   };
   const validations = {
     username: [],
     email_id: [{ type: "Email" }],
+    first_name: [],
+    last_name: [],
+    location: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -65,6 +77,9 @@ export default function CreatorCreateForm(props) {
         let modelFields = {
           username,
           email_id,
+          first_name,
+          last_name,
+          location,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -121,6 +136,9 @@ export default function CreatorCreateForm(props) {
             const modelFields = {
               username: value,
               email_id,
+              first_name,
+              last_name,
+              location,
             };
             const result = onChange(modelFields);
             value = result?.username ?? value;
@@ -146,6 +164,9 @@ export default function CreatorCreateForm(props) {
             const modelFields = {
               username,
               email_id: value,
+              first_name,
+              last_name,
+              location,
             };
             const result = onChange(modelFields);
             value = result?.email_id ?? value;
@@ -159,6 +180,90 @@ export default function CreatorCreateForm(props) {
         errorMessage={errors.email_id?.errorMessage}
         hasError={errors.email_id?.hasError}
         {...getOverrideProps(overrides, "email_id")}
+      ></TextField>
+      <TextField
+        label="First name"
+        isRequired={false}
+        isReadOnly={false}
+        value={first_name}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              username,
+              email_id,
+              first_name: value,
+              last_name,
+              location,
+            };
+            const result = onChange(modelFields);
+            value = result?.first_name ?? value;
+          }
+          if (errors.first_name?.hasError) {
+            runValidationTasks("first_name", value);
+          }
+          setFirst_name(value);
+        }}
+        onBlur={() => runValidationTasks("first_name", first_name)}
+        errorMessage={errors.first_name?.errorMessage}
+        hasError={errors.first_name?.hasError}
+        {...getOverrideProps(overrides, "first_name")}
+      ></TextField>
+      <TextField
+        label="Last name"
+        isRequired={false}
+        isReadOnly={false}
+        value={last_name}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              username,
+              email_id,
+              first_name,
+              last_name: value,
+              location,
+            };
+            const result = onChange(modelFields);
+            value = result?.last_name ?? value;
+          }
+          if (errors.last_name?.hasError) {
+            runValidationTasks("last_name", value);
+          }
+          setLast_name(value);
+        }}
+        onBlur={() => runValidationTasks("last_name", last_name)}
+        errorMessage={errors.last_name?.errorMessage}
+        hasError={errors.last_name?.hasError}
+        {...getOverrideProps(overrides, "last_name")}
+      ></TextField>
+      <TextField
+        label="Location"
+        isRequired={false}
+        isReadOnly={false}
+        value={location}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              username,
+              email_id,
+              first_name,
+              last_name,
+              location: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.location ?? value;
+          }
+          if (errors.location?.hasError) {
+            runValidationTasks("location", value);
+          }
+          setLocation(value);
+        }}
+        onBlur={() => runValidationTasks("location", location)}
+        errorMessage={errors.location?.errorMessage}
+        hasError={errors.location?.hasError}
+        {...getOverrideProps(overrides, "location")}
       ></TextField>
       <Flex
         justifyContent="space-between"

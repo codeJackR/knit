@@ -1,5 +1,27 @@
-type Creator @model @auth(rules: [{ allow: public }, { allow: private }]) {
-	id: ID!
-	username: String
-	email_id: AWSEmail
+type CreatorDetails @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  creator_id: ID
+  identity1: String
+  identity2: String
+  identity3: String
+  identity4: String
+  identity5: String
+  keyword1: String
+  keyword2: String
+  keyword3: String
+  keyword4: String
+  keyword5: String
+  instagram_id: String
+  youtube_id: String
+  Creator: Creator @hasOne
 }
+
+type Creator @model @auth(rules: [{allow: public}, {allow: private}]) {
+  id: ID!
+  username: String
+  email_id: AWSEmail
+  first_name: String
+  last_name: String
+  location: String
+}
+ 

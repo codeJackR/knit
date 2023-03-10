@@ -9,7 +9,7 @@ function App() {
       <header className="App-header">
         <Routes>
           <Route path="/" element={<PostSignIn />} />
-          <Route path="signin" element={<PostSignIn />} />
+          {/* <Route path="signin" element={<PostSignIn />} /> */}
           <Route path=":username" element={<UserProfile />} />
         </Routes>
       </header>

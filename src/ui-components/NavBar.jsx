@@ -98,6 +98,8 @@ export default function NavBar(props) {
         {...getOverrideProps(overrides, "Frame 321")}
       >
         <Button
+          width="unset"
+          height="unset"
           shrink="0"
           size="small"
           isDisabled={false}

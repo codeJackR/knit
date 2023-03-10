@@ -6,7 +6,7 @@ import { SaveNewUser } from "../datastore/user";
 function Home({ signOut, user }) {
     const navigate = useNavigate();
 
-    const navbarOverrides = (signOut) => {
+    const navbarOverrides = (signOut, user) => {
         if (signOut != null) {
             SaveNewUser(user)
             return (
@@ -52,7 +52,7 @@ function Home({ signOut, user }) {
 
     return (
         <main>
-            <NavBar width="100%" overrides={navbarOverrides(signOut)} />
+            <NavBar width="100%" overrides={navbarOverrides(signOut, user)} />
             <ProfileCardCollection overrideItems={profileCardCollectionOverrideItems} />
         </main>
     );

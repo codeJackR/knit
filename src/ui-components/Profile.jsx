@@ -133,6 +133,8 @@ export default function Profile(props) {
           {...getOverrideProps(overrides, "$99 USD")}
         ></Text>
         <Button
+          width="unset"
+          height="unset"
           shrink="0"
           alignSelf="stretch"
           size="large"

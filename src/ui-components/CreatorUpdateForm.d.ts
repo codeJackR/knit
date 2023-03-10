@@ -16,16 +16,25 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type CreatorUpdateFormInputValues = {
     username?: string;
     email_id?: string;
+    first_name?: string;
+    last_name?: string;
+    location?: string;
 };
 export declare type CreatorUpdateFormValidationValues = {
     username?: ValidationFunction<string>;
     email_id?: ValidationFunction<string>;
+    first_name?: ValidationFunction<string>;
+    last_name?: ValidationFunction<string>;
+    location?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CreatorUpdateFormOverridesProps = {
     CreatorUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     username?: PrimitiveOverrideProps<TextFieldProps>;
     email_id?: PrimitiveOverrideProps<TextFieldProps>;
+    first_name?: PrimitiveOverrideProps<TextFieldProps>;
+    last_name?: PrimitiveOverrideProps<TextFieldProps>;
+    location?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CreatorUpdateFormProps = React.PropsWithChildren<{
     overrides?: CreatorUpdateFormOverridesProps | undefined | null;
