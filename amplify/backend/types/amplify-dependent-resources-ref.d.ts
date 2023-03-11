@@ -19,5 +19,11 @@ export type AmplifyDependentResourcesAttributes = {
     "userPoolGroups": {
       "founderGroupRole": "string"
     }
+  },
+  "storage": {
+    "CreatorStorage": {
+      "BucketName": "string",
+      "Region": "string"
+    }
   }
 }

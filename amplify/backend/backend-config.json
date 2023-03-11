@@ -79,5 +79,12 @@
       "providerPlugin": "awscloudformation",
       "service": "Cognito-UserPool-Groups"
     }
+  },
+  "storage": {
+    "CreatorStorage": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
   }
 }

@@ -5,6 +5,7 @@
  **************************************************************************/
 
 export { default as MyIcon } from "./MyIcon";
+export { default as ProfilePageV1 } from "./ProfilePageV1";
 export { default as HeroLayout1 } from "./HeroLayout1";
 export { default as MarketingFooter } from "./MarketingFooter";
 export { default as ItemCard } from "./ItemCard";
@@ -21,13 +22,13 @@ export { default as ProductDetail } from "./ProductDetail";
 export { default as FAQItem } from "./FAQItem";
 export { default as HeroLayout3 } from "./HeroLayout3";
 export { default as CommentCard } from "./CommentCard";
-export { default as ProfilePage } from "./ProfilePage";
 export { default as EditProfile } from "./EditProfile";
 export { default as StandardCard } from "./StandardCard";
 export { default as Features2x3 } from "./Features2x3";
 export { default as Features2x2 } from "./Features2x2";
 export { default as ProfileCard } from "./ProfileCard";
 export { default as Features4x1 } from "./Features4x1";
+export { default as ProfilePage } from "./ProfilePage";
 export { default as MarketingPricing } from "./MarketingPricing";
 export { default as SideBar } from "./SideBar";
 export { default as ProductCard } from "./ProductCard";

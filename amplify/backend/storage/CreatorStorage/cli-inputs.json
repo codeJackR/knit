@@ -1,0 +1,15 @@
+{
+  "resourceName": "CreatorStorage",
+  "policyUUID": "2d3b8bb7",
+  "bucketName": "creator-storage",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ",
+    "CREATE_AND_UPDATE"
+  ],
+  "authAccess": [
+    "READ",
+    "CREATE_AND_UPDATE"
+  ],
+  "triggerFunction": "NONE"
+}

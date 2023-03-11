@@ -3,6 +3,7 @@ import { Creator, CreatorDetails } from '../models';
 import { useEffect } from 'react';
 import { Auth } from 'aws-amplify';
 import { useAuthenticator } from '@aws-amplify/ui-react';
+import { Storage } from "@aws-amplify/storage"
 
 function SaveNewUser(hooks) {
 
@@ -87,4 +88,30 @@ function GetCreatorDetailsByID(hooks, id) {
     }, [hooks, id]);
 }
 
-export { GetCreatorDetailsByID, GetCreatorByUsername, SaveNewUser };
+async function getCreatorMediaByID(id) {
+    const backgroundImage = await Storage.get('CreatorMedia/' + id + '/backgroundImage', {
+        level: 'public',
+        expires: 60
+    });
+    return {
+        BackgroundImage: backgroundImage,
+    };
+}
+
+function GetCreatorMediaByID(hooks, id) {
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const result = await getCreatorMediaByID(id);
+                hooks.setCreatorMedia(result);
+                hooks.setLoading(false);
+            } catch (err) {
+                hooks.setError(err);
+                hooks.setLoading(false);
+            }
+        }
+        fetchData();
+    }, [hooks, id]);
+}
+
+export { GetCreatorMediaByID, GetCreatorDetailsByID, GetCreatorByUsername, SaveNewUser };
