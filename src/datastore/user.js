@@ -114,4 +114,63 @@ function GetCreatorMediaByID(hooks, id) {
     }, [hooks, id]);
 }
 
-export { GetCreatorMediaByID, GetCreatorDetailsByID, GetCreatorByUsername, SaveNewUser };
+async function getSocialMediaIconKeys(hooks) {
+    const result = await Storage.list('SocialMediaIcons', {
+        level: 'public',
+    });
+    return result
+}
+
+async function getSocialMediaIcons(hooks) {
+    var result = {}
+    for (let index = 0; index < hooks.socialMediaIconKeys.results.length; index++) {
+        const element = hooks.socialMediaIconKeys.results[index].key;
+        const socialMediaPlatform = element.substring(element.lastIndexOf("/") + 1);
+        if (socialMediaPlatform !== "") {
+            try {
+                const socialMediaIconURL = await Storage.get(element, {
+                    level: 'public',
+                    expires: 60,
+                });
+                result[socialMediaPlatform] = socialMediaIconURL
+            } catch (err) {
+                hooks.setError(err);
+                hooks.setLoading(false);
+            }
+        }
+    }
+    return result;
+}
+
+function GetSocialMediaIcons(hooks) {
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const result = await getSocialMediaIconKeys(hooks);
+                hooks.setSocialMediaIconKeys(result);
+                hooks.setLoading(false);
+            } catch (err) {
+                hooks.setError(err);
+                hooks.setLoading(false);
+            }
+        }
+        fetchData();
+    }, [hooks]);
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const result = await getSocialMediaIcons(hooks);
+                hooks.setSocialMediaIcons(result);
+                hooks.setLoading(false);
+            } catch (err) {
+                hooks.setError(err);
+                hooks.setLoading(false);
+            }
+        }
+        if (hooks.socialMediaIconKeys) {
+            fetchData();
+        }
+    }, [hooks]);
+}
+
+export { GetSocialMediaIcons, GetCreatorMediaByID, GetCreatorDetailsByID, GetCreatorByUsername, SaveNewUser };

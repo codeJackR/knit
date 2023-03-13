@@ -18,7 +18,6 @@ export default function ProfilePage(props) {
       gap="unset"
       alignItems="unset"
       justifyContent="unset"
-      overflow="hidden"
       position="relative"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
@@ -113,8 +112,8 @@ export default function ProfilePage(props) {
             shrink="0"
             position="relative"
             padding="0px 0px 0px 0px"
-            objectFit="cover"
-            {...getOverrideProps(overrides, "InstagramIconImageLarge")}
+            objectFit="contain"
+            {...getOverrideProps(overrides, "InstagramIcon")}
           ></Image>
           <Text
             fontFamily="Open Sans"
@@ -160,8 +159,8 @@ export default function ProfilePage(props) {
             shrink="0"
             position="relative"
             padding="0px 0px 0px 0px"
-            objectFit="cover"
-            {...getOverrideProps(overrides, "YoutubeIconImageLarge")}
+            objectFit="contain"
+            {...getOverrideProps(overrides, "YoutubeIcon")}
           ></Image>
           <Text
             fontFamily="Open Sans"

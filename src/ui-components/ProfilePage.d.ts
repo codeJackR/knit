@@ -16,10 +16,10 @@ export declare type ProfilePageOverridesProps = {
     "Meet Tab"?: PrimitiveOverrideProps<FlexProps>;
     "Meet FirstName"?: PrimitiveOverrideProps<TextProps>;
     "Instagram Tab"?: PrimitiveOverrideProps<FlexProps>;
-    InstagramIconImageLarge?: PrimitiveOverrideProps<ImageProps>;
+    InstagramIcon?: PrimitiveOverrideProps<ImageProps>;
     insta_id?: PrimitiveOverrideProps<TextProps>;
     "Youtube Tab"?: PrimitiveOverrideProps<FlexProps>;
-    YoutubeIconImageLarge?: PrimitiveOverrideProps<ImageProps>;
+    YoutubeIcon?: PrimitiveOverrideProps<ImageProps>;
     youtube_id?: PrimitiveOverrideProps<TextProps>;
     Identities?: PrimitiveOverrideProps<FlexProps>;
     "Identity 1"?: PrimitiveOverrideProps<TextProps>;

@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { ProfilePage } from '../ui-components';
 import { useState } from 'react';
-import { GetCreatorByUsername, GetCreatorDetailsByID, GetCreatorMediaByID } from './../datastore/user'
+import { GetCreatorByUsername, GetCreatorDetailsByID, GetCreatorMediaByID, GetSocialMediaIcons } from './../datastore/user'
+import { ConvertToPascalCase } from './../utils/text'
 
 export const UserProfile = (props) => {
 
@@ -11,6 +12,8 @@ export const UserProfile = (props) => {
     const [creatorProfile, setCreatorProfile] = useState({});
     const [creatorDetails, setCreatorDetails] = useState({});
     const [creatorMedia, setCreatorMedia] = useState({});
+    const [socialMediaIconKeys, setSocialMediaIconKeys] = useState({});
+    const [socialMediaIcons, setSocialMediaIcons] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -23,6 +26,10 @@ export const UserProfile = (props) => {
         setCreatorDetails: setCreatorDetails,
         creatorMedia: creatorMedia,
         setCreatorMedia: setCreatorMedia,
+        socialMediaIconKeys: socialMediaIconKeys,
+        setSocialMediaIconKeys: setSocialMediaIconKeys,
+        socialMediaIcons: socialMediaIcons,
+        setSocialMediaIcons: setSocialMediaIcons,
         loading: loading,
         setLoading: setLoading,
         error: error,
@@ -54,14 +61,26 @@ export const UserProfile = (props) => {
         return <div>Error...</div>;
     }
 
+    GetSocialMediaIcons(hooks)
+    if (socialMediaIconKeys === "loading" || socialMediaIcons === "loading") {
+        return <div>Loading...</div>;
+    }
+    if (socialMediaIconKeys === "error" || socialMediaIcons === "error") {
+        return <div>Error...</div>;
+    }
+
     const profilePageOverrides = (creatorMedia) => {
-        return (
-            {
-                "Creator Backgroud Image": {
-                    src: creatorMedia.BackgroundImage
-                }
+        var result = {
+            "Creator Backgroud Image": {
+                src: creatorMedia.BackgroundImage
+            },
+        }
+        for (const [socialMediaPlatform, iconURL] of Object.entries(socialMediaIcons)) {
+            result[ConvertToPascalCase(socialMediaPlatform) + 'Icon'] = {
+                src: iconURL
             }
-        )
+        }
+        return result
     }
 
     return (
