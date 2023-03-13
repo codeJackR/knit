@@ -157,7 +157,7 @@ function GetSocialMediaIcons(hooks, id) {
             }
         }
         fetchData();
-    }, [id]); // Using id as a change effect as without it the data doesn't load as some variables might not be defined properly on page load
+    }, []);
     useEffect(() => {
         async function fetchData() {
             try {
@@ -172,7 +172,7 @@ function GetSocialMediaIcons(hooks, id) {
         if (hooks.socialMediaIconKeys) {
             fetchData();
         }
-    }, [id]); // Using id as a change effect as without it the data doesn't load as some variables might not be defined properly on page load
+    }, [hooks.socialMediaIconKeys]);
 }
 
 export { GetSocialMediaIcons, GetCreatorMediaByID, GetCreatorDetailsByID, GetCreatorByUsername, SaveNewUser };
