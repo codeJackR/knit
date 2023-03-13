@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { ProfilePage } from '../ui-components';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { GetCreatorByUsername, GetCreatorDetailsByID, GetCreatorMediaByID, GetSocialMediaIcons } from './../datastore/user'
 import { ConvertToPascalCase } from './../utils/text'
 
-export const UserProfile = (props) => {
+export const UserProfile = React.memo(({ props }) => {
 
     let { username } = useParams();
 
@@ -61,7 +61,7 @@ export const UserProfile = (props) => {
         return <div>Error...</div>;
     }
 
-    GetSocialMediaIcons(hooks)
+    GetSocialMediaIcons(hooks, creatorProfile.id)
     if (socialMediaIconKeys === "loading" || socialMediaIcons === "loading") {
         return <div>Loading...</div>;
     }
@@ -89,6 +89,6 @@ export const UserProfile = (props) => {
             <ProfilePage overrides={profilePageOverrides(creatorMedia)} creator={creatorProfile} creatorDetails={creatorDetails} ></ProfilePage>
         </div>
     )
-}
+});
 
 export default UserProfile;

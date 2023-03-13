@@ -5,6 +5,13 @@ import { Auth } from 'aws-amplify';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Storage } from "@aws-amplify/storage"
 
+// Set the pageSize property to 100
+Storage.configure({
+    AWSS3: {
+        pageSize: 100,
+    }
+});
+
 function SaveNewUser(hooks) {
 
     const { signInStatus } = useAuthenticator(context => [context.route]);
@@ -16,7 +23,7 @@ function SaveNewUser(hooks) {
         };
 
         getUser();
-    }, [hooks]);
+    }, []);
 
     useEffect(() => {
         if (hooks.user && signInStatus !== 'signedIn') {
@@ -38,7 +45,7 @@ function SaveNewUser(hooks) {
                 })
                 .catch((error) => console.error('Error querying for creator:', error));
         }
-    }, [hooks, signInStatus]);
+    }, [signInStatus]);
 
 }
 
@@ -62,7 +69,7 @@ function GetCreatorByUsername(hooks, username) {
             }
         }
         fetchData();
-    }, [hooks, username]);
+    }, [username]);
 }
 
 async function getCreatorDetailsByID(id) {
@@ -85,7 +92,7 @@ function GetCreatorDetailsByID(hooks, id) {
             }
         }
         fetchData();
-    }, [hooks, id]);
+    }, [id]);
 }
 
 async function getCreatorMediaByID(id) {
@@ -111,7 +118,7 @@ function GetCreatorMediaByID(hooks, id) {
             }
         }
         fetchData();
-    }, [hooks, id]);
+    }, [id]);
 }
 
 async function getSocialMediaIconKeys(hooks) {
@@ -127,22 +134,17 @@ async function getSocialMediaIcons(hooks) {
         const element = hooks.socialMediaIconKeys.results[index].key;
         const socialMediaPlatform = element.substring(element.lastIndexOf("/") + 1);
         if (socialMediaPlatform !== "") {
-            try {
-                const socialMediaIconURL = await Storage.get(element, {
-                    level: 'public',
-                    expires: 60,
-                });
-                result[socialMediaPlatform] = socialMediaIconURL
-            } catch (err) {
-                hooks.setError(err);
-                hooks.setLoading(false);
-            }
+            const socialMediaIconURL = await Storage.get(element, {
+                level: 'public',
+                expires: 60,
+            });
+            result[socialMediaPlatform] = socialMediaIconURL
         }
     }
     return result;
 }
 
-function GetSocialMediaIcons(hooks) {
+function GetSocialMediaIcons(hooks, id) {
     useEffect(() => {
         async function fetchData() {
             try {
@@ -155,7 +157,7 @@ function GetSocialMediaIcons(hooks) {
             }
         }
         fetchData();
-    }, [hooks]);
+    }, [id]); // Using id as a change effect as without it the data doesn't load as some variables might not be defined properly on page load
     useEffect(() => {
         async function fetchData() {
             try {
@@ -170,7 +172,7 @@ function GetSocialMediaIcons(hooks) {
         if (hooks.socialMediaIconKeys) {
             fetchData();
         }
-    }, [hooks]);
+    }, [id]); // Using id as a change effect as without it the data doesn't load as some variables might not be defined properly on page load
 }
 
 export { GetSocialMediaIcons, GetCreatorMediaByID, GetCreatorDetailsByID, GetCreatorByUsername, SaveNewUser };
