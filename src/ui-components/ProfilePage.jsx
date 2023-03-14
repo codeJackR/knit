@@ -44,7 +44,7 @@ export default function ProfilePage(props) {
       <Flex
         gap="25px"
         direction="row"
-        width="1728px"
+        width="unset"
         height="111px"
         justifyContent="flex-start"
         alignItems="center"
@@ -52,13 +52,12 @@ export default function ProfilePage(props) {
         position="absolute"
         top="0px"
         left="0px"
-        right="0px"
         padding="0px 10px 0px 10px"
         {...getOverrideProps(overrides, "Creator Navigation Bar")}
       >
         <Flex
           gap="10px"
-          direction="row"
+          direction="column"
           width="unset"
           height="88px"
           justifyContent="center"

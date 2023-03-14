@@ -86,7 +86,8 @@ export const UserProfile = React.memo(({ props }) => {
     return (
         <div>
             <div> Welcome {creatorProfile.email_id}! </div>
-            <ProfilePage overrides={profilePageOverrides(creatorMedia)} creator={creatorProfile} creatorDetails={creatorDetails} ></ProfilePage>
+            <ProfilePage width="100%" height="100%" position="fixed" top="0" left="0"
+                overrides={profilePageOverrides(creatorMedia)} creator={creatorProfile} creatorDetails={creatorDetails} ></ProfilePage>
         </div>
     )
 });
