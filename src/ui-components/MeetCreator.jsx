@@ -19,21 +19,19 @@ export default function MeetCreator(props) {
       justifyContent="center"
       alignItems="flex-start"
       position="relative"
-      padding="78px 50px 67px 50px"
+      padding="78px 75px 78px 100px"
       backgroundColor="rgba(226,207,195,1)"
       {...getOverrideProps(overrides, "MeetCreator")}
       {...rest}
     >
       <Image
-        width="unset"
-        height="938px"
+        width="502px"
+        height="631px"
         display="block"
         gap="unset"
         alignItems="unset"
         justifyContent="unset"
-        grow="1"
-        shrink="1"
-        basis="0"
+        shrink="0"
         position="relative"
         padding="0px 0px 0px 0px"
         objectFit="cover"

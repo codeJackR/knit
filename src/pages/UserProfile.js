@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { ProfilePage, MeetCreator } from '../ui-components';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { GetCreatorByUsername, GetCreatorDetailsByID, GetCreatorMediaByID, GetSocialMediaIcons } from './../datastore/user'
 import { ConvertToPascalCase } from './../utils/text'
 
@@ -36,6 +36,8 @@ export const UserProfile = React.memo(({ props }) => {
         setError: setError,
     }
 
+    const meetCreatorRef = useRef(null);
+
     GetCreatorByUsername(hooks, username)
     if (creatorProfile === "loading") {
         return <div>Loading...</div>;
@@ -69,12 +71,24 @@ export const UserProfile = React.memo(({ props }) => {
         return <div>Error...</div>;
     }
 
+    // OnClick of MeetTab scroll to MeetCreator section
+    const handleMeetCreatorClick = () => {
+        meetCreatorRef.current.scrollIntoView({ behavior: "smooth" });
+    };
+
     const profilePageOverrides = (creatorMedia) => {
         var result = {
             "Creator Backgroud Image": {
                 src: creatorMedia.BackgroundImage
             },
+            "Meet Tab": {
+                onClick: handleMeetCreatorClick,
+                style: {
+                    cursor: "pointer"
+                }
+            }
         }
+
         for (const [socialMediaPlatform, iconURL] of Object.entries(socialMediaIcons)) {
             result[ConvertToPascalCase(socialMediaPlatform) + 'Icon'] = {
                 src: iconURL
@@ -86,12 +100,12 @@ export const UserProfile = React.memo(({ props }) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div> Welcome {creatorProfile.email_id}! </div>
-            <div style={{ height: 'calc(100vh - 0px)', overflowY: 'auto' }}>
+            <div style={{ height: 'calc(100vh)', overflowY: 'auto' }}>
                 <ProfilePage width="100%" height="100%" position="fixed" top="0" left="0"
                     overrides={profilePageOverrides(creatorMedia)} creator={creatorProfile} creatorDetails={creatorDetails}></ProfilePage>
             </div>
-            <div>
-                <MeetCreator></MeetCreator>
+            <div ref={meetCreatorRef}>
+                <MeetCreator width="100%"></MeetCreator>
             </div>
         </div>
     )

@@ -8,6 +8,7 @@ import * as React from "react";
 import { Creator, CreatorDetails } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { FlexProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { SyntheticEvent } from "react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ProfilePageOverridesProps = {
     ProfilePage?: PrimitiveOverrideProps<FlexProps>;
@@ -32,6 +33,7 @@ export declare type ProfilePageOverridesProps = {
 export declare type ProfilePageProps = React.PropsWithChildren<Partial<FlexProps> & {
     creator?: Creator;
     creatorDetails?: CreatorDetails;
+    scrollToMeetCreator?: (event: SyntheticEvent) => void;
 } & {
     overrides?: ProfilePageOverridesProps | undefined | null;
 }>;

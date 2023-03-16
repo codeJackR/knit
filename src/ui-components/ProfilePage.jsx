@@ -9,7 +9,8 @@ import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Flex, Image, Text, View } from "@aws-amplify/ui-react";
 export default function ProfilePage(props) {
-  const { creator, creatorDetails, overrides, ...rest } = props;
+  const { creator, creatorDetails, scrollToMeetCreator, overrides, ...rest } =
+    props;
   return (
     <Flex
       gap="0"
@@ -80,6 +81,7 @@ export default function ProfilePage(props) {
             shrink="0"
             position="relative"
             padding="10px 10px 10px 10px"
+            onClick={scrollToMeetCreator}
             {...getOverrideProps(overrides, "Meet Tab")}
           >
             <Text
