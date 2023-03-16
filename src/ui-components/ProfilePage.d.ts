@@ -10,7 +10,8 @@ import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { FlexProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ProfilePageOverridesProps = {
-    ProfilePage?: PrimitiveOverrideProps<ViewProps>;
+    ProfilePage?: PrimitiveOverrideProps<FlexProps>;
+    Overview?: PrimitiveOverrideProps<ViewProps>;
     "Creator Backgroud Image"?: PrimitiveOverrideProps<ImageProps>;
     "Creator Navigation Bar"?: PrimitiveOverrideProps<FlexProps>;
     "Meet Tab"?: PrimitiveOverrideProps<FlexProps>;
@@ -28,7 +29,7 @@ export declare type ProfilePageOverridesProps = {
     "Identity 4"?: PrimitiveOverrideProps<TextProps>;
     "Identity 5"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
-export declare type ProfilePageProps = React.PropsWithChildren<Partial<ViewProps> & {
+export declare type ProfilePageProps = React.PropsWithChildren<Partial<FlexProps> & {
     creator?: Creator;
     creatorDetails?: CreatorDetails;
 } & {

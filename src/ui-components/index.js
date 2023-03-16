@@ -9,6 +9,7 @@ export { default as ProfilePageV1 } from "./ProfilePageV1";
 export { default as HeroLayout1 } from "./HeroLayout1";
 export { default as MarketingFooter } from "./MarketingFooter";
 export { default as ItemCard } from "./ItemCard";
+export { default as MeetCreator } from "./MeetCreator";
 export { default as NavBar } from "./NavBar";
 export { default as ProfilePageMobile } from "./ProfilePageMobile";
 export { default as ProfileCardCollection } from "./ProfileCardCollection";
