@@ -99,10 +99,8 @@ export const UserProfile = React.memo(({ props }) => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div> Welcome {creatorProfile.email_id}! </div>
-            <div style={{ height: 'calc(100vh)', overflowY: 'auto' }}>
-                <ProfilePage width="100%" height="100%" position="fixed" top="0" left="0"
-                    overrides={profilePageOverrides(creatorMedia)} creator={creatorProfile} creatorDetails={creatorDetails}></ProfilePage>
+            <div style={{ height: 'calc(100vh)', overflowY: 'visible' }}>
+                <ProfilePage width="100%" height="100%" creator={creatorProfile} creatorDetails={creatorDetails} overrides={profilePageOverrides(creatorMedia)}></ProfilePage>
             </div>
             <div ref={meetCreatorRef}>
                 <MeetCreator width="100%"></MeetCreator>
