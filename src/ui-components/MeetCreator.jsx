@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Flex, Image, Text } from "@aws-amplify/ui-react";
 export default function MeetCreator(props) {
-  const { overrides, ...rest } = props;
+  const { creator, overrides, ...rest } = props;
   return (
     <Flex
       gap="50px"
@@ -20,7 +20,7 @@ export default function MeetCreator(props) {
       alignItems="flex-start"
       position="relative"
       padding="78px 75px 78px 100px"
-      backgroundColor="rgba(226,207,195,1)"
+      backgroundColor="rgba(3,3,3,0.93)"
       {...getOverrideProps(overrides, "MeetCreator")}
       {...rest}
     >
@@ -55,7 +55,7 @@ export default function MeetCreator(props) {
           fontFamily="Crete Round"
           fontSize="64px"
           fontWeight="400"
-          color="rgba(0,0,0,1)"
+          color="rgba(255,253,244,1)"
           lineHeight="81.66400146484375px"
           textAlign="left"
           display="block"
@@ -70,14 +70,14 @@ export default function MeetCreator(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Meet FirstName"
+          children={`${"Meet "}${creator?.first_name}`}
           {...getOverrideProps(overrides, "Meet Creator Text")}
         ></Text>
         <Text
           fontFamily="Open Sans"
           fontSize="25px"
           fontWeight="600"
-          color="rgba(0,0,0,1)"
+          color="rgba(255,253,244,1)"
           lineHeight="34.04541015625px"
           textAlign="left"
           display="block"

@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
-import { ProfilePage, MeetCreator } from '../ui-components';
+import { ProfilePage, MeetCreator, TopPosts } from '../ui-components';
+import { TopPostsWrapper } from './../ui-components-wrapper/TopPostsWrapper';
 import React, { useState, useRef } from 'react';
 import { GetCreatorByUsername, GetCreatorDetailsByID, GetCreatorMediaByID, GetSocialMediaIcons } from './../datastore/user'
 import { ConvertToPascalCase } from './../utils/text'
+import InstagramPosts from './../sections/InstagramPosts';
 
-export const UserProfile = React.memo(({ props }) => {
+export const UserProfile = React.memo((props) => {
 
     let { username } = useParams();
 
@@ -97,6 +99,16 @@ export const UserProfile = React.memo(({ props }) => {
         return result
     }
 
+    const topPostsOverrides = () => {
+        return (
+            {
+                Post1: {
+                    dangerouslySetInnerHTML: { __html: '<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?controls=0&amp;list=PLc3VQSe45A9f7LNzF3rfHimIHdBVPrrxv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>' }
+                },
+            }
+        )
+    }
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ height: 'calc(100vh)', overflowY: 'visible' }}>
@@ -104,6 +116,9 @@ export const UserProfile = React.memo(({ props }) => {
             </div>
             <div ref={meetCreatorRef}>
                 <MeetCreator width="100%"></MeetCreator>
+            </div>
+            <div>
+                <TopPosts width="100%" overrides={topPostsOverrides()} />
             </div>
         </div>
     )

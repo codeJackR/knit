@@ -13,6 +13,7 @@ export { default as MeetCreator } from "./MeetCreator";
 export { default as NavBar } from "./NavBar";
 export { default as ProfilePageMobile } from "./ProfilePageMobile";
 export { default as ProfileCardCollection } from "./ProfileCardCollection";
+export { default as TopPosts } from "./TopPosts";
 export { default as TallCard } from "./TallCard";
 export { default as FormCheckout } from "./FormCheckout";
 export { default as ContactUs } from "./ContactUs";

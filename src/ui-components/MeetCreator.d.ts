@@ -5,6 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
+import { Creator } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { FlexProps, ImageProps, TextProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
@@ -16,6 +17,8 @@ export declare type MeetCreatorOverridesProps = {
     "Meet Creator Description"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type MeetCreatorProps = React.PropsWithChildren<Partial<FlexProps> & {
+    creator?: Creator;
+} & {
     overrides?: MeetCreatorOverridesProps | undefined | null;
 }>;
 export default function MeetCreator(props: MeetCreatorProps): React.ReactElement;
