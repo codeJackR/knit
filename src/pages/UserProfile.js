@@ -130,6 +130,26 @@ export const UserProfile = React.memo((props) => {
         return topPostsOverrides(embedHtml, post1, post2, post3)
     }
 
+    const topTwitterPostsOverrides = () => {
+        let post1 = EmbeddedTweets("mayuri_1606")
+        let post2 = EmbeddedTweets("mayuri_1606")
+        let post3 = EmbeddedTweets("mayuri_1606")
+        // let embedHtml = '<iframe width="100%" height="540" src="{post_url}" frameborder="0" allowfullscreen="false" title="Embedded post"></iframe>'
+        return (
+            {
+                Post1: {
+                    dangerouslySetInnerHTML: { __html: post1 }
+                },
+                Post2: {
+                    dangerouslySetInnerHTML: { __html: post2 }
+                },
+                Post3: {
+                    dangerouslySetInnerHTML: { __html: post3 }
+                },
+            }
+        )
+    }
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ height: 'calc(100vh)', overflowY: 'visible' }}>
@@ -141,7 +161,7 @@ export const UserProfile = React.memo((props) => {
             <div>
                 <TopPosts width="100%" overrides={topYoutubePostsOverrides()} />
                 <TopPosts width="100%" overrides={topLinkedinPostsOverrides()} />
-                <EmbeddedTweets username="mayuri_1606" />
+                <TopPosts width="100%" overrides={topTwitterPostsOverrides()} />
             </div>
         </div>
     )

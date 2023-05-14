@@ -1,7 +1,7 @@
 // EmbeddedTweets.js
 import React, { useEffect, useState } from 'react';
 
-const EmbeddedTweets = ({ username }) => {
+function EmbeddedTweets(username) {
     const [embedHtmls, setEmbedHtmls] = useState([]);
 
     const fetchOembedHtml = async (tweetId) => {
@@ -33,16 +33,7 @@ const EmbeddedTweets = ({ username }) => {
     }, [username]);
 
     return (
-        <div>
-            {embedHtmls.map((html, index) => (
-                <div
-                    key={index}
-                    dangerouslySetInnerHTML={{
-                        __html: html,
-                    }}
-                />
-            ))}
-        </div>
+        embedHtmls
     );
 };
 
