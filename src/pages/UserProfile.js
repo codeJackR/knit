@@ -161,7 +161,7 @@ export const UserProfile = React.memo((props) => {
             <div>
                 <TopPosts width="100%" overrides={topYoutubePostsOverrides()} />
                 <TopPosts width="100%" overrides={topLinkedinPostsOverrides()} />
-                <TopPosts width="100%" overrides={topTwitterPostsOverrides()} />
+                {/* <TopPosts width="100%" overrides={topTwitterPostsOverrides()} /> */}
             </div>
         </div>
     )
