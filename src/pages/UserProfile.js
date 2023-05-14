@@ -1,9 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { ProfilePage, MeetCreator, TopPosts } from '../ui-components';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { GetCreatorByUsername, GetCreatorDetailsByID, GetCreatorMediaByID, GetSocialMediaIcons } from './../datastore/user'
 import { ConvertToPascalCase } from './../utils/text'
-import EmbeddedTweets from './../api/twitter/EmbeddedTweets';
 
 export const UserProfile = React.memo((props) => {
 
@@ -38,6 +37,12 @@ export const UserProfile = React.memo((props) => {
     }
 
     const meetCreatorRef = useRef(null);
+
+    useEffect(() => { // Needed to load twitter with proper formatting
+        if (window.twttr && typeof window.twttr.widgets !== 'undefined') {
+            window.twttr.widgets.load();
+        }
+    }, []);
 
     GetCreatorByUsername(hooks, username)
     if (creatorProfile === "loading") {
