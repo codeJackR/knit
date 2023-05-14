@@ -131,10 +131,9 @@ export const UserProfile = React.memo((props) => {
     }
 
     const topTwitterPostsOverrides = () => {
-        let post1 = EmbeddedTweets("mayuri_1606")
-        let post2 = EmbeddedTweets("mayuri_1606")
-        let post3 = EmbeddedTweets("mayuri_1606")
-        // let embedHtml = '<iframe width="100%" height="540" src="{post_url}" frameborder="0" allowfullscreen="false" title="Embedded post"></iframe>'
+        let post1 = '<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Did you know you can secure upto 10 Million worth of Scholarship for studying abroad?<br><br>The applications have opened RIGHT NOW, for Inlak Shivdasani Foundation Scholarship 2023. <br><br>Find more information and the link to the application form, click here: <a href="https://t.co/3RG1aGsfBC">https://t.co/3RG1aGsfBC</a></p>&mdash; Mayuri Rajput (@mayuri_1606) <a href="https://twitter.com/mayuri_1606/status/1625704252453814272?ref_src=twsrc%5Etfw">February 15, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
+        let post2 = '<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Social Media careers are going to be one of the most trending careers!<br><br>Check out these 8 jobs that you can apply today! <a href="https://t.co/D2kEY1VMJ6">https://t.co/D2kEY1VMJ6</a></p>&mdash; Mayuri Rajput (@mayuri_1606) <a href="https://twitter.com/mayuri_1606/status/1616037346528595969?ref_src=twsrc%5Etfw">January 19, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
+        let post3 = '<blockquote class="twitter-tweet"><p lang="en" dir="ltr">A week of binge shoots! <br>YouTube, here I come. Again ✨ <a href="https://t.co/qZNp46zMPo">pic.twitter.com/qZNp46zMPo</a></p>&mdash; Mayuri Rajput (@mayuri_1606) <a href="https://twitter.com/mayuri_1606/status/1611638029621563392?ref_src=twsrc%5Etfw">January 7, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
         return (
             {
                 Post1: {
@@ -161,7 +160,7 @@ export const UserProfile = React.memo((props) => {
             <div>
                 <TopPosts width="100%" overrides={topYoutubePostsOverrides()} />
                 <TopPosts width="100%" overrides={topLinkedinPostsOverrides()} />
-                {/* <TopPosts width="100%" overrides={topTwitterPostsOverrides()} /> */}
+                <TopPosts width="100%" overrides={topTwitterPostsOverrides()} />
             </div>
         </div>
     )
