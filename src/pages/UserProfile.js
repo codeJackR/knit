@@ -1,10 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { ProfilePage, MeetCreator, TopPosts } from '../ui-components';
-import { TopPostsWrapper } from './../ui-components-wrapper/TopPostsWrapper';
 import React, { useState, useRef } from 'react';
 import { GetCreatorByUsername, GetCreatorDetailsByID, GetCreatorMediaByID, GetSocialMediaIcons } from './../datastore/user'
 import { ConvertToPascalCase } from './../utils/text'
-import InstagramPosts from './../sections/InstagramPosts';
+import EmbeddedTweets from './../api/twitter/EmbeddedTweets';
 
 export const UserProfile = React.memo((props) => {
 
@@ -99,14 +98,36 @@ export const UserProfile = React.memo((props) => {
         return result
     }
 
-    const topPostsOverrides = () => {
+    const topPostsOverrides = (embedHtml, post1, post2, post3) => {
         return (
             {
                 Post1: {
-                    dangerouslySetInnerHTML: { __html: '<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?controls=0&amp;list=PLc3VQSe45A9f7LNzF3rfHimIHdBVPrrxv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>' }
+                    dangerouslySetInnerHTML: { __html: embedHtml.replace("{post_url}", post1) }
+                },
+                Post2: {
+                    dangerouslySetInnerHTML: { __html: embedHtml.replace("{post_url}", post2) }
+                },
+                Post3: {
+                    dangerouslySetInnerHTML: { __html: embedHtml.replace("{post_url}", post3) }
                 },
             }
         )
+    }
+
+    const topYoutubePostsOverrides = () => {
+        let post1 = "https://www.youtube.com/embed/8j_oqFcVN-s"
+        let post2 = "https://www.youtube.com/embed/7Wp1qRFTX-E"
+        let post3 = "https://www.youtube.com/embed/H3trAKt3Tzg"
+        let embedHtml = '<iframe width="100%" height="315" src="{post_url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+        return topPostsOverrides(embedHtml, post1, post2, post3)
+    }
+
+    const topLinkedinPostsOverrides = () => {
+        let post1 = "https://www.linkedin.com/embed/feed/update/urn:li:share:7036032180166283264"
+        let post2 = "https://www.linkedin.com/embed/feed/update/urn:li:share:7035843741663858688"
+        let post3 = "https://www.linkedin.com/embed/feed/update/urn:li:share:7036931887877013504"
+        let embedHtml = '<iframe width="100%" height="540" src="{post_url}" frameborder="0" allowfullscreen="false" title="Embedded post"></iframe>'
+        return topPostsOverrides(embedHtml, post1, post2, post3)
     }
 
     return (
@@ -118,7 +139,9 @@ export const UserProfile = React.memo((props) => {
                 <MeetCreator width="100%"></MeetCreator>
             </div>
             <div>
-                <TopPosts width="100%" overrides={topPostsOverrides()} />
+                <TopPosts width="100%" overrides={topYoutubePostsOverrides()} />
+                <TopPosts width="100%" overrides={topLinkedinPostsOverrides()} />
+                <EmbeddedTweets username="mayuri_1606" />
             </div>
         </div>
     )
