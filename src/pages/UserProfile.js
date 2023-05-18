@@ -84,8 +84,8 @@ export const UserProfile = React.memo((props) => {
         meetCreatorRef.current.scrollIntoView({ behavior: "smooth" });
     };
 
-    // OnClick of EditProfileButton pop-up the EditProfile component
-    const handleEditProfileButtonClick = () => {
+    // Toggle whether to show EditProfilePopup or not
+    const toggleEditProfilePopup = () => {
         setShowEditProfile(!showEditProfile);
     }
 
@@ -104,13 +104,29 @@ export const UserProfile = React.memo((props) => {
                 style: {
                     cursor: "pointer"
                 },
-                onClick: handleEditProfileButtonClick,
+                onClick: toggleEditProfilePopup,
             }
         }
 
         for (const [socialMediaPlatform, iconURL] of Object.entries(socialMediaIcons)) {
             result[ConvertToPascalCase(socialMediaPlatform) + 'Icon'] = {
                 src: iconURL
+            }
+        }
+        return result
+    }
+
+    const editProfilePopupOverrides = (creatorMedia) => {
+        var result = {
+            "EditProfileFrame": {
+                overrides: {
+                    "Icon": {
+                        style: {
+                            cursor: "pointer"
+                        },
+                        onClick: toggleEditProfilePopup,
+                    }
+                }
             }
         }
         return result
@@ -184,7 +200,7 @@ export const UserProfile = React.memo((props) => {
                 alignItems: 'center',
                 zIndex: 9999, // ensure the popup appears on top of all other content
             }}>
-                <EditProfilePopup />
+                <EditProfilePopup overrides={editProfilePopupOverrides()} />
             </div>}
 
             <div ref={meetCreatorRef}>
