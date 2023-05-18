@@ -23,5 +23,6 @@ type Creator @model @auth(rules: [{allow: public}, {allow: private}]) {
   first_name: String
   last_name: String
   location: String
+  is_test_account: Boolean
 }
  

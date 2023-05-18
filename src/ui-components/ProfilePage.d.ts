@@ -7,13 +7,15 @@
 import * as React from "react";
 import { Creator, CreatorDetails } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { FlexProps, IconProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 import { SyntheticEvent } from "react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ProfilePageOverridesProps = {
     ProfilePage?: PrimitiveOverrideProps<FlexProps>;
     Overview?: PrimitiveOverrideProps<ViewProps>;
     "Creator Backgroud Image"?: PrimitiveOverrideProps<ImageProps>;
+    "Edit Profile Button"?: PrimitiveOverrideProps<FlexProps>;
+    Vector?: PrimitiveOverrideProps<IconProps>;
     "Creator Navigation Bar"?: PrimitiveOverrideProps<FlexProps>;
     "Meet Tab"?: PrimitiveOverrideProps<FlexProps>;
     "Meet FirstName"?: PrimitiveOverrideProps<TextProps>;
@@ -34,6 +36,7 @@ export declare type ProfilePageProps = React.PropsWithChildren<Partial<FlexProps
     creator?: Creator;
     creatorDetails?: CreatorDetails;
     scrollToMeetCreator?: (event: SyntheticEvent) => void;
+    editUserProfile?: (event: SyntheticEvent) => void;
 } & {
     overrides?: ProfilePageOverridesProps | undefined | null;
 }>;

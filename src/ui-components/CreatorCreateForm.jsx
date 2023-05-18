@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Grid,
+  SwitchField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Creator } from "../models";
 import { fetchByPath, validateField } from "./utils";
@@ -28,12 +34,16 @@ export default function CreatorCreateForm(props) {
     first_name: "",
     last_name: "",
     location: "",
+    is_test_account: false,
   };
   const [username, setUsername] = React.useState(initialValues.username);
   const [email_id, setEmail_id] = React.useState(initialValues.email_id);
   const [first_name, setFirst_name] = React.useState(initialValues.first_name);
   const [last_name, setLast_name] = React.useState(initialValues.last_name);
   const [location, setLocation] = React.useState(initialValues.location);
+  const [is_test_account, setIs_test_account] = React.useState(
+    initialValues.is_test_account
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setUsername(initialValues.username);
@@ -41,6 +51,7 @@ export default function CreatorCreateForm(props) {
     setFirst_name(initialValues.first_name);
     setLast_name(initialValues.last_name);
     setLocation(initialValues.location);
+    setIs_test_account(initialValues.is_test_account);
     setErrors({});
   };
   const validations = {
@@ -49,6 +60,7 @@ export default function CreatorCreateForm(props) {
     first_name: [],
     last_name: [],
     location: [],
+    is_test_account: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -80,6 +92,7 @@ export default function CreatorCreateForm(props) {
           first_name,
           last_name,
           location,
+          is_test_account,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -139,6 +152,7 @@ export default function CreatorCreateForm(props) {
               first_name,
               last_name,
               location,
+              is_test_account,
             };
             const result = onChange(modelFields);
             value = result?.username ?? value;
@@ -167,6 +181,7 @@ export default function CreatorCreateForm(props) {
               first_name,
               last_name,
               location,
+              is_test_account,
             };
             const result = onChange(modelFields);
             value = result?.email_id ?? value;
@@ -195,6 +210,7 @@ export default function CreatorCreateForm(props) {
               first_name: value,
               last_name,
               location,
+              is_test_account,
             };
             const result = onChange(modelFields);
             value = result?.first_name ?? value;
@@ -223,6 +239,7 @@ export default function CreatorCreateForm(props) {
               first_name,
               last_name: value,
               location,
+              is_test_account,
             };
             const result = onChange(modelFields);
             value = result?.last_name ?? value;
@@ -251,6 +268,7 @@ export default function CreatorCreateForm(props) {
               first_name,
               last_name,
               location: value,
+              is_test_account,
             };
             const result = onChange(modelFields);
             value = result?.location ?? value;
@@ -265,6 +283,35 @@ export default function CreatorCreateForm(props) {
         hasError={errors.location?.hasError}
         {...getOverrideProps(overrides, "location")}
       ></TextField>
+      <SwitchField
+        label="Is test account"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={is_test_account}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              username,
+              email_id,
+              first_name,
+              last_name,
+              location,
+              is_test_account: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.is_test_account ?? value;
+          }
+          if (errors.is_test_account?.hasError) {
+            runValidationTasks("is_test_account", value);
+          }
+          setIs_test_account(value);
+        }}
+        onBlur={() => runValidationTasks("is_test_account", is_test_account)}
+        errorMessage={errors.is_test_account?.errorMessage}
+        hasError={errors.is_test_account?.hasError}
+        {...getOverrideProps(overrides, "is_test_account")}
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

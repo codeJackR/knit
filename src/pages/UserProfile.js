@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { ProfilePage, MeetCreator, TopPosts } from '../ui-components';
+import { ProfilePage, MeetCreator, TopPosts, EditProfilePopup } from '../ui-components';
 import React, { useState, useRef, useEffect } from 'react';
+import { FileUploader } from '@aws-amplify/ui-react';
 import { GetCreatorByUsername, GetCreatorDetailsByID, GetCreatorMediaByID, GetSocialMediaIcons } from './../datastore/user'
 import { ConvertToPascalCase } from './../utils/text'
 
@@ -14,6 +15,7 @@ export const UserProfile = React.memo((props) => {
     const [creatorMedia, setCreatorMedia] = useState({});
     const [socialMediaIconKeys, setSocialMediaIconKeys] = useState({});
     const [socialMediaIcons, setSocialMediaIcons] = useState({});
+    const [showEditProfile, setShowEditProfile] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -82,6 +84,11 @@ export const UserProfile = React.memo((props) => {
         meetCreatorRef.current.scrollIntoView({ behavior: "smooth" });
     };
 
+    // OnClick of EditProfileButton pop-up the EditProfile component
+    const handleEditProfileButtonClick = () => {
+        setShowEditProfile(!showEditProfile);
+    }
+
     const profilePageOverrides = (creatorMedia) => {
         var result = {
             "Creator Backgroud Image": {
@@ -92,6 +99,12 @@ export const UserProfile = React.memo((props) => {
                 style: {
                     cursor: "pointer"
                 }
+            },
+            "Edit Profile Button": {
+                style: {
+                    cursor: "pointer"
+                },
+                onClick: handleEditProfileButtonClick,
             }
         }
 
@@ -159,6 +172,21 @@ export const UserProfile = React.memo((props) => {
             <div style={{ height: 'calc(100vh)', overflowY: 'visible' }}>
                 <ProfilePage width="100%" height="100%" creator={creatorProfile} creatorDetails={creatorDetails} overrides={profilePageOverrides(creatorMedia)}></ProfilePage>
             </div>
+            {showEditProfile && <div style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100vh',
+                backgroundColor: 'rgba(0,0,0,0.7)',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                zIndex: 9999, // ensure the popup appears on top of all other content
+            }}>
+                <EditProfilePopup />
+            </div>}
+
             <div ref={meetCreatorRef}>
                 <MeetCreator width="100%"></MeetCreator>
             </div>
@@ -166,6 +194,7 @@ export const UserProfile = React.memo((props) => {
                 <TopPosts width="100%" overrides={topYoutubePostsOverrides()} />
                 <TopPosts width="100%" overrides={topLinkedinPostsOverrides()} />
                 <TopPosts width="100%" overrides={topTwitterPostsOverrides()} />
+                {showEditProfile && <FileUploader accessLevel='public' acceptedFileTypes={["image/*", "image/x-canon-cr2"]} variation="drop"></FileUploader>}
             </div>
         </div>
     )

@@ -73,6 +73,7 @@ type EagerCreator = {
   readonly first_name?: string | null;
   readonly last_name?: string | null;
   readonly location?: string | null;
+  readonly is_test_account?: boolean | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -88,6 +89,7 @@ type LazyCreator = {
   readonly first_name?: string | null;
   readonly last_name?: string | null;
   readonly location?: string | null;
+  readonly is_test_account?: boolean | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
