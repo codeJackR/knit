@@ -1,9 +1,61 @@
 import { useParams } from 'react-router-dom';
 import { ProfilePage, MeetCreator, TopPosts, EditProfilePopup } from '../ui-components';
 import React, { useState, useRef, useEffect } from 'react';
-import { FileUploader } from '@aws-amplify/ui-react';
 import { GetCreatorByUsername, GetCreatorDetailsByID, GetCreatorMediaByID, GetSocialMediaIcons } from './../datastore/user'
 import { ConvertToPascalCase } from './../utils/text'
+import { EditProfileOverlay } from '../sections/EditProfileOverlay';
+
+function resizeIframe(iframeString, newWidth) {
+    const widthRegex = /width="(\d+)"/;
+    const heightRegex = /height="(\d+)"/;
+
+    const widthMatch = iframeString.match(widthRegex);
+    const heightMatch = iframeString.match(heightRegex);
+
+    if (!widthMatch || !heightMatch) {
+        return iframeString;
+    }
+
+    const originalWidth = parseInt(widthMatch[1]);
+    const originalHeight = parseInt(heightMatch[1]);
+
+    const aspectRatio = originalHeight / originalWidth;
+    const newHeight = Math.round(newWidth * aspectRatio);
+
+    let resizedIframeString = iframeString
+
+    if (originalWidth > newWidth) {
+        resizedIframeString = iframeString.replace(
+            widthRegex,
+            `width="100%"`
+        )
+    }
+
+    if (originalWidth < newWidth) {
+        resizedIframeString = resizedIframeString.replace(
+            heightRegex,
+            `height="${newHeight}"`
+        );
+    }
+
+    return resizedIframeString;
+}
+
+// Define addFBScript outside of component
+const addFBScript = () => {
+    const script = document.createElement('script');
+    script.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v16.0&appId=736922408128647&autoLogAppEvents=1';
+    script.crossOrigin = 'anonymous';
+    script.defer = true;
+    script.async = true;
+    script.nonce = 'eL4fF7kM';
+    script.onload = () => {
+        if (window.FB) {
+            window.FB.XFBML.parse();
+        }
+    };
+    document.body.appendChild(script);
+}
 
 export const UserProfile = React.memo((props) => {
 
@@ -16,8 +68,10 @@ export const UserProfile = React.memo((props) => {
     const [socialMediaIconKeys, setSocialMediaIconKeys] = useState({});
     const [socialMediaIcons, setSocialMediaIcons] = useState({});
     const [showEditProfile, setShowEditProfile] = useState(false);
+    const [width, setWidth] = useState(500); // Initialize with your old fixed width
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const hooks = {
         user: user,
@@ -39,6 +93,27 @@ export const UserProfile = React.memo((props) => {
     }
 
     const meetCreatorRef = useRef(null);
+    const ref = useRef(null);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup on unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
+
+
+    useEffect(() => {
+        if (ref.current) {
+            setWidth(ref.current.offsetWidth);
+        }
+    }, []);
 
     useEffect(() => { // Needed to load twitter with proper formatting
         if (window.twttr && typeof window.twttr.widgets !== 'undefined') {
@@ -116,22 +191,6 @@ export const UserProfile = React.memo((props) => {
         return result
     }
 
-    const editProfilePopupOverrides = (creatorMedia) => {
-        var result = {
-            "EditProfileFrame": {
-                overrides: {
-                    "Icon": {
-                        style: {
-                            cursor: "pointer"
-                        },
-                        onClick: toggleEditProfilePopup,
-                    }
-                }
-            }
-        }
-        return result
-    }
-
     const topPostsOverrides = (embedHtml, post1, post2, post3) => {
         return (
             {
@@ -183,34 +242,43 @@ export const UserProfile = React.memo((props) => {
         )
     }
 
+    const topFacebookPostsOverrides = () => {
+        let post1 = '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fjaypatelwanted%2Fposts%2Fpfbid0Cq6tifMys3JuzaJ2dDE2bZ7VHNNLc5Jay1aNFx6H5VB2M9Rb19VtS73cmKPuAJTul&show_text=true&width=500" width="500" height="589" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>'
+        let post2 = '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fjaypatelwanted%2Fposts%2Fpfbid0zQXsWEiq3ts6tBXF3qP8qJjR9pU7XzjuciV3XoTdVVCe1Djwov9sbwDA212CpC3Al&show_text=true&width=500" width="500" height="665" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>'
+        let post3 = '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fjaypatelwanted%2Fposts%2F1700213693510519%3A1247500499316954&show_text=true&width=500" width="500" height="534" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>'
+        return (
+            {
+                Post1: {
+                    dangerouslySetInnerHTML: { __html: resizeIframe(post1, 0.3 * windowWidth) }
+                },
+                Post2: {
+                    dangerouslySetInnerHTML: { __html: resizeIframe(post2, 0.3 * windowWidth) }
+                },
+                Post3: {
+                    dangerouslySetInnerHTML: { __html: resizeIframe(post3, 0.3 * windowWidth) }
+                },
+            }
+        )
+    }
+
+    addFBScript();
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ height: 'calc(100vh)', overflowY: 'visible' }}>
                 <ProfilePage width="100%" height="100%" creator={creatorProfile} creatorDetails={creatorDetails} overrides={profilePageOverrides(creatorMedia)}></ProfilePage>
             </div>
-            {showEditProfile && <div style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100vh',
-                backgroundColor: 'rgba(0,0,0,0.7)',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                zIndex: 9999, // ensure the popup appears on top of all other content
-            }}>
-                <EditProfilePopup overrides={editProfilePopupOverrides()} />
-            </div>}
+            {showEditProfile && <EditProfileOverlay toggle={toggleEditProfilePopup} />}
 
             <div ref={meetCreatorRef}>
                 <MeetCreator width="100%"></MeetCreator>
             </div>
             <div>
+                <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script> 
                 <TopPosts width="100%" overrides={topYoutubePostsOverrides()} />
                 <TopPosts width="100%" overrides={topLinkedinPostsOverrides()} />
                 <TopPosts width="100%" overrides={topTwitterPostsOverrides()} />
-                {showEditProfile && <FileUploader accessLevel='public' acceptedFileTypes={["image/*", "image/x-canon-cr2"]} variation="drop"></FileUploader>}
+                <TopPosts width="100%" overrides={topFacebookPostsOverrides()} />
             </div>
         </div>
     )
