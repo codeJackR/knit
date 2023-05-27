@@ -20,7 +20,7 @@ import { DataStore } from "aws-amplify";
 export default function CreatorUpdateForm(props) {
   const {
     id: idProp,
-    creator,
+    creator: creatorModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -58,14 +58,16 @@ export default function CreatorUpdateForm(props) {
     setIs_test_account(cleanValues.is_test_account);
     setErrors({});
   };
-  const [creatorRecord, setCreatorRecord] = React.useState(creator);
+  const [creatorRecord, setCreatorRecord] = React.useState(creatorModelProp);
   React.useEffect(() => {
     const queryData = async () => {
-      const record = idProp ? await DataStore.query(Creator, idProp) : creator;
+      const record = idProp
+        ? await DataStore.query(Creator, idProp)
+        : creatorModelProp;
       setCreatorRecord(record);
     };
     queryData();
-  }, [idProp, creator]);
+  }, [idProp, creatorModelProp]);
   React.useEffect(resetStateValues, [creatorRecord]);
   const validations = {
     username: [],
@@ -80,9 +82,10 @@ export default function CreatorUpdateForm(props) {
     currentValue,
     getDisplayValue
   ) => {
-    const value = getDisplayValue
-      ? getDisplayValue(currentValue)
-      : currentValue;
+    const value =
+      currentValue && getDisplayValue
+        ? getDisplayValue(currentValue)
+        : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -337,7 +340,7 @@ export default function CreatorUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || creator)}
+          isDisabled={!(idProp || creatorModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -349,7 +352,7 @@ export default function CreatorUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || creator) ||
+              !(idProp || creatorModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

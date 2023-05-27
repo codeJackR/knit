@@ -14,7 +14,7 @@ import { DataStore } from "aws-amplify";
 export default function CreatorDetailsUpdateForm(props) {
   const {
     id: idProp,
-    creatorDetails,
+    creatorDetails: creatorDetailsModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -73,17 +73,18 @@ export default function CreatorDetailsUpdateForm(props) {
     setYoutube_id(cleanValues.youtube_id);
     setErrors({});
   };
-  const [creatorDetailsRecord, setCreatorDetailsRecord] =
-    React.useState(creatorDetails);
+  const [creatorDetailsRecord, setCreatorDetailsRecord] = React.useState(
+    creatorDetailsModelProp
+  );
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
         ? await DataStore.query(CreatorDetails, idProp)
-        : creatorDetails;
+        : creatorDetailsModelProp;
       setCreatorDetailsRecord(record);
     };
     queryData();
-  }, [idProp, creatorDetails]);
+  }, [idProp, creatorDetailsModelProp]);
   React.useEffect(resetStateValues, [creatorDetailsRecord]);
   const validations = {
     creator_id: [],
@@ -105,9 +106,10 @@ export default function CreatorDetailsUpdateForm(props) {
     currentValue,
     getDisplayValue
   ) => {
-    const value = getDisplayValue
-      ? getDisplayValue(currentValue)
-      : currentValue;
+    const value =
+      currentValue && getDisplayValue
+        ? getDisplayValue(currentValue)
+        : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -663,7 +665,7 @@ export default function CreatorDetailsUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || creatorDetails)}
+          isDisabled={!(idProp || creatorDetailsModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -675,7 +677,7 @@ export default function CreatorDetailsUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || creatorDetails) ||
+              !(idProp || creatorDetailsModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

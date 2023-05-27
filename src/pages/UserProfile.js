@@ -264,11 +264,11 @@ export const UserProfile = React.memo((props) => {
     addFBScript();
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', width: '100vw', overflowX: 'auto' }}>
             <div style={{ height: 'calc(100vh)', overflowY: 'visible' }}>
                 <ProfilePage width="100%" height="100%" creator={creatorProfile} creatorDetails={creatorDetails} overrides={profilePageOverrides(creatorMedia)}></ProfilePage>
             </div>
-            {showEditProfile && <EditProfileOverlay toggle={toggleEditProfilePopup} />}
+            {showEditProfile && <EditProfileOverlay creator={creatorProfile} creatorDetails={creatorDetails} toggle={toggleEditProfilePopup} />}
 
             <div ref={meetCreatorRef}>
                 <MeetCreator width="100%"></MeetCreator>
