@@ -36,6 +36,21 @@ export default function CreatorDetailsCreateForm(props) {
     keyword5: "",
     instagram_id: "",
     youtube_id: "",
+    linkedin_id: "",
+    twitter_id: "",
+    facebook_id: "",
+    youtube_link1: "",
+    youtube_link2: "",
+    youtube_link3: "",
+    linkedin_link1: "",
+    linkedin_link2: "",
+    linkedin_link3: "",
+    twitter_link1: "",
+    twitter_link2: "",
+    twitter_link3: "",
+    facebook_link1: "",
+    facebook_link2: "",
+    facebook_link3: "",
   };
   const [creator_id, setCreator_id] = React.useState(initialValues.creator_id);
   const [identity1, setIdentity1] = React.useState(initialValues.identity1);
@@ -52,6 +67,49 @@ export default function CreatorDetailsCreateForm(props) {
     initialValues.instagram_id
   );
   const [youtube_id, setYoutube_id] = React.useState(initialValues.youtube_id);
+  const [linkedin_id, setLinkedin_id] = React.useState(
+    initialValues.linkedin_id
+  );
+  const [twitter_id, setTwitter_id] = React.useState(initialValues.twitter_id);
+  const [facebook_id, setFacebook_id] = React.useState(
+    initialValues.facebook_id
+  );
+  const [youtube_link1, setYoutube_link1] = React.useState(
+    initialValues.youtube_link1
+  );
+  const [youtube_link2, setYoutube_link2] = React.useState(
+    initialValues.youtube_link2
+  );
+  const [youtube_link3, setYoutube_link3] = React.useState(
+    initialValues.youtube_link3
+  );
+  const [linkedin_link1, setLinkedin_link1] = React.useState(
+    initialValues.linkedin_link1
+  );
+  const [linkedin_link2, setLinkedin_link2] = React.useState(
+    initialValues.linkedin_link2
+  );
+  const [linkedin_link3, setLinkedin_link3] = React.useState(
+    initialValues.linkedin_link3
+  );
+  const [twitter_link1, setTwitter_link1] = React.useState(
+    initialValues.twitter_link1
+  );
+  const [twitter_link2, setTwitter_link2] = React.useState(
+    initialValues.twitter_link2
+  );
+  const [twitter_link3, setTwitter_link3] = React.useState(
+    initialValues.twitter_link3
+  );
+  const [facebook_link1, setFacebook_link1] = React.useState(
+    initialValues.facebook_link1
+  );
+  const [facebook_link2, setFacebook_link2] = React.useState(
+    initialValues.facebook_link2
+  );
+  const [facebook_link3, setFacebook_link3] = React.useState(
+    initialValues.facebook_link3
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setCreator_id(initialValues.creator_id);
@@ -67,6 +125,21 @@ export default function CreatorDetailsCreateForm(props) {
     setKeyword5(initialValues.keyword5);
     setInstagram_id(initialValues.instagram_id);
     setYoutube_id(initialValues.youtube_id);
+    setLinkedin_id(initialValues.linkedin_id);
+    setTwitter_id(initialValues.twitter_id);
+    setFacebook_id(initialValues.facebook_id);
+    setYoutube_link1(initialValues.youtube_link1);
+    setYoutube_link2(initialValues.youtube_link2);
+    setYoutube_link3(initialValues.youtube_link3);
+    setLinkedin_link1(initialValues.linkedin_link1);
+    setLinkedin_link2(initialValues.linkedin_link2);
+    setLinkedin_link3(initialValues.linkedin_link3);
+    setTwitter_link1(initialValues.twitter_link1);
+    setTwitter_link2(initialValues.twitter_link2);
+    setTwitter_link3(initialValues.twitter_link3);
+    setFacebook_link1(initialValues.facebook_link1);
+    setFacebook_link2(initialValues.facebook_link2);
+    setFacebook_link3(initialValues.facebook_link3);
     setErrors({});
   };
   const validations = {
@@ -83,6 +156,21 @@ export default function CreatorDetailsCreateForm(props) {
     keyword5: [],
     instagram_id: [],
     youtube_id: [],
+    linkedin_id: [],
+    twitter_id: [],
+    facebook_id: [],
+    youtube_link1: [],
+    youtube_link2: [],
+    youtube_link3: [],
+    linkedin_link1: [],
+    linkedin_link2: [],
+    linkedin_link3: [],
+    twitter_link1: [],
+    twitter_link2: [],
+    twitter_link3: [],
+    facebook_link1: [],
+    facebook_link2: [],
+    facebook_link3: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -123,6 +211,21 @@ export default function CreatorDetailsCreateForm(props) {
           keyword5,
           instagram_id,
           youtube_id,
+          linkedin_id,
+          twitter_id,
+          facebook_id,
+          youtube_link1,
+          youtube_link2,
+          youtube_link3,
+          linkedin_link1,
+          linkedin_link2,
+          linkedin_link3,
+          twitter_link1,
+          twitter_link2,
+          twitter_link3,
+          facebook_link1,
+          facebook_link2,
+          facebook_link3,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -190,6 +293,21 @@ export default function CreatorDetailsCreateForm(props) {
               keyword5,
               instagram_id,
               youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
             };
             const result = onChange(modelFields);
             value = result?.creator_id ?? value;
@@ -226,6 +344,21 @@ export default function CreatorDetailsCreateForm(props) {
               keyword5,
               instagram_id,
               youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
             };
             const result = onChange(modelFields);
             value = result?.identity1 ?? value;
@@ -262,6 +395,21 @@ export default function CreatorDetailsCreateForm(props) {
               keyword5,
               instagram_id,
               youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
             };
             const result = onChange(modelFields);
             value = result?.identity2 ?? value;
@@ -298,6 +446,21 @@ export default function CreatorDetailsCreateForm(props) {
               keyword5,
               instagram_id,
               youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
             };
             const result = onChange(modelFields);
             value = result?.identity3 ?? value;
@@ -334,6 +497,21 @@ export default function CreatorDetailsCreateForm(props) {
               keyword5,
               instagram_id,
               youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
             };
             const result = onChange(modelFields);
             value = result?.identity4 ?? value;
@@ -370,6 +548,21 @@ export default function CreatorDetailsCreateForm(props) {
               keyword5,
               instagram_id,
               youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
             };
             const result = onChange(modelFields);
             value = result?.identity5 ?? value;
@@ -406,6 +599,21 @@ export default function CreatorDetailsCreateForm(props) {
               keyword5,
               instagram_id,
               youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
             };
             const result = onChange(modelFields);
             value = result?.keyword1 ?? value;
@@ -442,6 +650,21 @@ export default function CreatorDetailsCreateForm(props) {
               keyword5,
               instagram_id,
               youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
             };
             const result = onChange(modelFields);
             value = result?.keyword2 ?? value;
@@ -478,6 +701,21 @@ export default function CreatorDetailsCreateForm(props) {
               keyword5,
               instagram_id,
               youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
             };
             const result = onChange(modelFields);
             value = result?.keyword3 ?? value;
@@ -514,6 +752,21 @@ export default function CreatorDetailsCreateForm(props) {
               keyword5,
               instagram_id,
               youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
             };
             const result = onChange(modelFields);
             value = result?.keyword4 ?? value;
@@ -550,6 +803,21 @@ export default function CreatorDetailsCreateForm(props) {
               keyword5: value,
               instagram_id,
               youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
             };
             const result = onChange(modelFields);
             value = result?.keyword5 ?? value;
@@ -586,6 +854,21 @@ export default function CreatorDetailsCreateForm(props) {
               keyword5,
               instagram_id: value,
               youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
             };
             const result = onChange(modelFields);
             value = result?.instagram_id ?? value;
@@ -622,6 +905,21 @@ export default function CreatorDetailsCreateForm(props) {
               keyword5,
               instagram_id,
               youtube_id: value,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
             };
             const result = onChange(modelFields);
             value = result?.youtube_id ?? value;
@@ -635,6 +933,771 @@ export default function CreatorDetailsCreateForm(props) {
         errorMessage={errors.youtube_id?.errorMessage}
         hasError={errors.youtube_id?.hasError}
         {...getOverrideProps(overrides, "youtube_id")}
+      ></TextField>
+      <TextField
+        label="Linkedin id"
+        isRequired={false}
+        isReadOnly={false}
+        value={linkedin_id}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id: value,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.linkedin_id ?? value;
+          }
+          if (errors.linkedin_id?.hasError) {
+            runValidationTasks("linkedin_id", value);
+          }
+          setLinkedin_id(value);
+        }}
+        onBlur={() => runValidationTasks("linkedin_id", linkedin_id)}
+        errorMessage={errors.linkedin_id?.errorMessage}
+        hasError={errors.linkedin_id?.hasError}
+        {...getOverrideProps(overrides, "linkedin_id")}
+      ></TextField>
+      <TextField
+        label="Twitter id"
+        isRequired={false}
+        isReadOnly={false}
+        value={twitter_id}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id: value,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.twitter_id ?? value;
+          }
+          if (errors.twitter_id?.hasError) {
+            runValidationTasks("twitter_id", value);
+          }
+          setTwitter_id(value);
+        }}
+        onBlur={() => runValidationTasks("twitter_id", twitter_id)}
+        errorMessage={errors.twitter_id?.errorMessage}
+        hasError={errors.twitter_id?.hasError}
+        {...getOverrideProps(overrides, "twitter_id")}
+      ></TextField>
+      <TextField
+        label="Facebook id"
+        isRequired={false}
+        isReadOnly={false}
+        value={facebook_id}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id: value,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.facebook_id ?? value;
+          }
+          if (errors.facebook_id?.hasError) {
+            runValidationTasks("facebook_id", value);
+          }
+          setFacebook_id(value);
+        }}
+        onBlur={() => runValidationTasks("facebook_id", facebook_id)}
+        errorMessage={errors.facebook_id?.errorMessage}
+        hasError={errors.facebook_id?.hasError}
+        {...getOverrideProps(overrides, "facebook_id")}
+      ></TextField>
+      <TextField
+        label="Youtube link1"
+        isRequired={false}
+        isReadOnly={false}
+        value={youtube_link1}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1: value,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.youtube_link1 ?? value;
+          }
+          if (errors.youtube_link1?.hasError) {
+            runValidationTasks("youtube_link1", value);
+          }
+          setYoutube_link1(value);
+        }}
+        onBlur={() => runValidationTasks("youtube_link1", youtube_link1)}
+        errorMessage={errors.youtube_link1?.errorMessage}
+        hasError={errors.youtube_link1?.hasError}
+        {...getOverrideProps(overrides, "youtube_link1")}
+      ></TextField>
+      <TextField
+        label="Youtube link2"
+        isRequired={false}
+        isReadOnly={false}
+        value={youtube_link2}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2: value,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.youtube_link2 ?? value;
+          }
+          if (errors.youtube_link2?.hasError) {
+            runValidationTasks("youtube_link2", value);
+          }
+          setYoutube_link2(value);
+        }}
+        onBlur={() => runValidationTasks("youtube_link2", youtube_link2)}
+        errorMessage={errors.youtube_link2?.errorMessage}
+        hasError={errors.youtube_link2?.hasError}
+        {...getOverrideProps(overrides, "youtube_link2")}
+      ></TextField>
+      <TextField
+        label="Youtube link3"
+        isRequired={false}
+        isReadOnly={false}
+        value={youtube_link3}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3: value,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.youtube_link3 ?? value;
+          }
+          if (errors.youtube_link3?.hasError) {
+            runValidationTasks("youtube_link3", value);
+          }
+          setYoutube_link3(value);
+        }}
+        onBlur={() => runValidationTasks("youtube_link3", youtube_link3)}
+        errorMessage={errors.youtube_link3?.errorMessage}
+        hasError={errors.youtube_link3?.hasError}
+        {...getOverrideProps(overrides, "youtube_link3")}
+      ></TextField>
+      <TextField
+        label="Linkedin link1"
+        isRequired={false}
+        isReadOnly={false}
+        value={linkedin_link1}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1: value,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.linkedin_link1 ?? value;
+          }
+          if (errors.linkedin_link1?.hasError) {
+            runValidationTasks("linkedin_link1", value);
+          }
+          setLinkedin_link1(value);
+        }}
+        onBlur={() => runValidationTasks("linkedin_link1", linkedin_link1)}
+        errorMessage={errors.linkedin_link1?.errorMessage}
+        hasError={errors.linkedin_link1?.hasError}
+        {...getOverrideProps(overrides, "linkedin_link1")}
+      ></TextField>
+      <TextField
+        label="Linkedin link2"
+        isRequired={false}
+        isReadOnly={false}
+        value={linkedin_link2}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2: value,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.linkedin_link2 ?? value;
+          }
+          if (errors.linkedin_link2?.hasError) {
+            runValidationTasks("linkedin_link2", value);
+          }
+          setLinkedin_link2(value);
+        }}
+        onBlur={() => runValidationTasks("linkedin_link2", linkedin_link2)}
+        errorMessage={errors.linkedin_link2?.errorMessage}
+        hasError={errors.linkedin_link2?.hasError}
+        {...getOverrideProps(overrides, "linkedin_link2")}
+      ></TextField>
+      <TextField
+        label="Linkedin link3"
+        isRequired={false}
+        isReadOnly={false}
+        value={linkedin_link3}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3: value,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.linkedin_link3 ?? value;
+          }
+          if (errors.linkedin_link3?.hasError) {
+            runValidationTasks("linkedin_link3", value);
+          }
+          setLinkedin_link3(value);
+        }}
+        onBlur={() => runValidationTasks("linkedin_link3", linkedin_link3)}
+        errorMessage={errors.linkedin_link3?.errorMessage}
+        hasError={errors.linkedin_link3?.hasError}
+        {...getOverrideProps(overrides, "linkedin_link3")}
+      ></TextField>
+      <TextField
+        label="Twitter link1"
+        isRequired={false}
+        isReadOnly={false}
+        value={twitter_link1}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1: value,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.twitter_link1 ?? value;
+          }
+          if (errors.twitter_link1?.hasError) {
+            runValidationTasks("twitter_link1", value);
+          }
+          setTwitter_link1(value);
+        }}
+        onBlur={() => runValidationTasks("twitter_link1", twitter_link1)}
+        errorMessage={errors.twitter_link1?.errorMessage}
+        hasError={errors.twitter_link1?.hasError}
+        {...getOverrideProps(overrides, "twitter_link1")}
+      ></TextField>
+      <TextField
+        label="Twitter link2"
+        isRequired={false}
+        isReadOnly={false}
+        value={twitter_link2}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2: value,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.twitter_link2 ?? value;
+          }
+          if (errors.twitter_link2?.hasError) {
+            runValidationTasks("twitter_link2", value);
+          }
+          setTwitter_link2(value);
+        }}
+        onBlur={() => runValidationTasks("twitter_link2", twitter_link2)}
+        errorMessage={errors.twitter_link2?.errorMessage}
+        hasError={errors.twitter_link2?.hasError}
+        {...getOverrideProps(overrides, "twitter_link2")}
+      ></TextField>
+      <TextField
+        label="Twitter link3"
+        isRequired={false}
+        isReadOnly={false}
+        value={twitter_link3}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3: value,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.twitter_link3 ?? value;
+          }
+          if (errors.twitter_link3?.hasError) {
+            runValidationTasks("twitter_link3", value);
+          }
+          setTwitter_link3(value);
+        }}
+        onBlur={() => runValidationTasks("twitter_link3", twitter_link3)}
+        errorMessage={errors.twitter_link3?.errorMessage}
+        hasError={errors.twitter_link3?.hasError}
+        {...getOverrideProps(overrides, "twitter_link3")}
+      ></TextField>
+      <TextField
+        label="Facebook link1"
+        isRequired={false}
+        isReadOnly={false}
+        value={facebook_link1}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1: value,
+              facebook_link2,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.facebook_link1 ?? value;
+          }
+          if (errors.facebook_link1?.hasError) {
+            runValidationTasks("facebook_link1", value);
+          }
+          setFacebook_link1(value);
+        }}
+        onBlur={() => runValidationTasks("facebook_link1", facebook_link1)}
+        errorMessage={errors.facebook_link1?.errorMessage}
+        hasError={errors.facebook_link1?.hasError}
+        {...getOverrideProps(overrides, "facebook_link1")}
+      ></TextField>
+      <TextField
+        label="Facebook link2"
+        isRequired={false}
+        isReadOnly={false}
+        value={facebook_link2}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2: value,
+              facebook_link3,
+            };
+            const result = onChange(modelFields);
+            value = result?.facebook_link2 ?? value;
+          }
+          if (errors.facebook_link2?.hasError) {
+            runValidationTasks("facebook_link2", value);
+          }
+          setFacebook_link2(value);
+        }}
+        onBlur={() => runValidationTasks("facebook_link2", facebook_link2)}
+        errorMessage={errors.facebook_link2?.errorMessage}
+        hasError={errors.facebook_link2?.hasError}
+        {...getOverrideProps(overrides, "facebook_link2")}
+      ></TextField>
+      <TextField
+        label="Facebook link3"
+        isRequired={false}
+        isReadOnly={false}
+        value={facebook_link3}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.facebook_link3 ?? value;
+          }
+          if (errors.facebook_link3?.hasError) {
+            runValidationTasks("facebook_link3", value);
+          }
+          setFacebook_link3(value);
+        }}
+        onBlur={() => runValidationTasks("facebook_link3", facebook_link3)}
+        errorMessage={errors.facebook_link3?.errorMessage}
+        hasError={errors.facebook_link3?.hasError}
+        {...getOverrideProps(overrides, "facebook_link3")}
       ></TextField>
       <Flex
         justifyContent="space-between"

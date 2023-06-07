@@ -8,6 +8,7 @@
 import * as React from "react";
 import { Creator } from "../models";
 import {
+  createDataStorePredicate,
   getOverrideProps,
   useDataStoreBinding,
 } from "@aws-amplify/ui-react/internal";
@@ -15,10 +16,17 @@ import ProfileCard from "./ProfileCard";
 import { Collection } from "@aws-amplify/ui-react";
 export default function ProfileCardCollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
+  const itemsFilterObj = {
+    field: "is_test_account",
+    operator: "eq",
+    operand: false,
+  };
+  const itemsFilter = createDataStorePredicate(itemsFilterObj);
   const [items, setItems] = React.useState(undefined);
   const itemsDataStore = useDataStoreBinding({
     type: "collection",
     model: Creator,
+    criteria: itemsFilter,
   }).items;
   React.useEffect(() => {
     if (itemsProp !== undefined) {

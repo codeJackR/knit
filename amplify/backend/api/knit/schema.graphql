@@ -14,6 +14,21 @@ type CreatorDetails @model @auth(rules: [{allow: public}]) {
   instagram_id: String
   youtube_id: String
   Creator: Creator @hasOne
+  linkedin_id: String
+  twitter_id: String
+  facebook_id: String
+  youtube_link1: String
+  youtube_link2: String
+  youtube_link3: String
+  linkedin_link1: String
+  linkedin_link2: String
+  linkedin_link3: String
+  twitter_link1: String
+  twitter_link2: String
+  twitter_link3: String
+  facebook_link1: String
+  facebook_link2: String
+  facebook_link3: String
 }
 
 type Creator @model @auth(rules: [{allow: public}, {allow: private}]) {

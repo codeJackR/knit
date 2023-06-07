@@ -119,6 +119,111 @@ export const schema = {
                         ]
                     }
                 },
+                "linkedin_id": {
+                    "name": "linkedin_id",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "twitter_id": {
+                    "name": "twitter_id",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "facebook_id": {
+                    "name": "facebook_id",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "youtube_link1": {
+                    "name": "youtube_link1",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "youtube_link2": {
+                    "name": "youtube_link2",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "youtube_link3": {
+                    "name": "youtube_link3",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "linkedin_link1": {
+                    "name": "linkedin_link1",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "linkedin_link2": {
+                    "name": "linkedin_link2",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "linkedin_link3": {
+                    "name": "linkedin_link3",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "twitter_link1": {
+                    "name": "twitter_link1",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "twitter_link2": {
+                    "name": "twitter_link2",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "twitter_link3": {
+                    "name": "twitter_link3",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "facebook_link1": {
+                    "name": "facebook_link1",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "facebook_link2": {
+                    "name": "facebook_link2",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "facebook_link3": {
+                    "name": "facebook_link3",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -275,5 +380,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.3",
-    "version": "066a7d89f784525d913efb9e249e27bb"
+    "version": "f4e7d245c28d576dea8e76ddf3a4e964"
 };

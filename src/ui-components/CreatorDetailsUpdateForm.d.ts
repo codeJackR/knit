@@ -27,6 +27,21 @@ export declare type CreatorDetailsUpdateFormInputValues = {
     keyword5?: string;
     instagram_id?: string;
     youtube_id?: string;
+    linkedin_id?: string;
+    twitter_id?: string;
+    facebook_id?: string;
+    youtube_link1?: string;
+    youtube_link2?: string;
+    youtube_link3?: string;
+    linkedin_link1?: string;
+    linkedin_link2?: string;
+    linkedin_link3?: string;
+    twitter_link1?: string;
+    twitter_link2?: string;
+    twitter_link3?: string;
+    facebook_link1?: string;
+    facebook_link2?: string;
+    facebook_link3?: string;
 };
 export declare type CreatorDetailsUpdateFormValidationValues = {
     creator_id?: ValidationFunction<string>;
@@ -42,6 +57,21 @@ export declare type CreatorDetailsUpdateFormValidationValues = {
     keyword5?: ValidationFunction<string>;
     instagram_id?: ValidationFunction<string>;
     youtube_id?: ValidationFunction<string>;
+    linkedin_id?: ValidationFunction<string>;
+    twitter_id?: ValidationFunction<string>;
+    facebook_id?: ValidationFunction<string>;
+    youtube_link1?: ValidationFunction<string>;
+    youtube_link2?: ValidationFunction<string>;
+    youtube_link3?: ValidationFunction<string>;
+    linkedin_link1?: ValidationFunction<string>;
+    linkedin_link2?: ValidationFunction<string>;
+    linkedin_link3?: ValidationFunction<string>;
+    twitter_link1?: ValidationFunction<string>;
+    twitter_link2?: ValidationFunction<string>;
+    twitter_link3?: ValidationFunction<string>;
+    facebook_link1?: ValidationFunction<string>;
+    facebook_link2?: ValidationFunction<string>;
+    facebook_link3?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CreatorDetailsUpdateFormOverridesProps = {
@@ -59,6 +89,21 @@ export declare type CreatorDetailsUpdateFormOverridesProps = {
     keyword5?: PrimitiveOverrideProps<TextFieldProps>;
     instagram_id?: PrimitiveOverrideProps<TextFieldProps>;
     youtube_id?: PrimitiveOverrideProps<TextFieldProps>;
+    linkedin_id?: PrimitiveOverrideProps<TextFieldProps>;
+    twitter_id?: PrimitiveOverrideProps<TextFieldProps>;
+    facebook_id?: PrimitiveOverrideProps<TextFieldProps>;
+    youtube_link1?: PrimitiveOverrideProps<TextFieldProps>;
+    youtube_link2?: PrimitiveOverrideProps<TextFieldProps>;
+    youtube_link3?: PrimitiveOverrideProps<TextFieldProps>;
+    linkedin_link1?: PrimitiveOverrideProps<TextFieldProps>;
+    linkedin_link2?: PrimitiveOverrideProps<TextFieldProps>;
+    linkedin_link3?: PrimitiveOverrideProps<TextFieldProps>;
+    twitter_link1?: PrimitiveOverrideProps<TextFieldProps>;
+    twitter_link2?: PrimitiveOverrideProps<TextFieldProps>;
+    twitter_link3?: PrimitiveOverrideProps<TextFieldProps>;
+    facebook_link1?: PrimitiveOverrideProps<TextFieldProps>;
+    facebook_link2?: PrimitiveOverrideProps<TextFieldProps>;
+    facebook_link3?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CreatorDetailsUpdateFormProps = React.PropsWithChildren<{
     overrides?: CreatorDetailsUpdateFormOverridesProps | undefined | null;

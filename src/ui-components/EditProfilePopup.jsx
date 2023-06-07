@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { CreatorDetails } from "../models";
+import {
+  getOverrideProps,
+  useDataStoreUpdateAction,
+  useStateMutationAction,
+} from "@aws-amplify/ui-react/internal";
+import { schema } from "../models/schema";
 import {
   Button,
   Divider,
@@ -18,6 +24,32 @@ import {
 } from "@aws-amplify/ui-react";
 export default function EditProfilePopup(props) {
   const { creator, creatorDetails, overrides, ...rest } = props;
+  const [identityInputOneValue, setIdentityInputOneValue] =
+    useStateMutationAction(creatorDetails?.identity1);
+  const [identityInputTwoValue, setIdentityInputTwoValue] =
+    useStateMutationAction(creatorDetails?.identity2);
+  const [identityInputThreeValue, setIdentityInputThreeValue] =
+    useStateMutationAction(creatorDetails?.identity3);
+  const [identityInputFourValue, setIdentityInputFourValue] =
+    useStateMutationAction(creatorDetails?.identity4);
+  const [identityInputFiveValue, setIdentityInputFiveValue] =
+    useStateMutationAction(creatorDetails?.identity5);
+  const [youtubeIDInputValue, setYoutubeIDInputValue] = useStateMutationAction(
+    creatorDetails?.youtube_id
+  );
+  const buttonOnClick = useDataStoreUpdateAction({
+    model: CreatorDetails,
+    id: creatorDetails?.id,
+    fields: {
+      identity1: identityInputOneValue,
+      identity2: identityInputTwoValue,
+      identity3: identityInputThreeValue,
+      identity4: identityInputFourValue,
+      identity5: identityInputFiveValue,
+      youtube_id: youtubeIDInputValue,
+    },
+    schema: schema,
+  });
   return (
     <Flex
       gap="10px"
@@ -48,7 +80,7 @@ export default function EditProfilePopup(props) {
           direction="column"
           width="1082px"
           height="unset"
-          justifyContent="flex-start"
+          justifyContent="center"
           alignItems="flex-start"
           position="absolute"
           top="0px"
@@ -155,27 +187,29 @@ export default function EditProfilePopup(props) {
               width="unset"
               height="unset"
               label="First Name"
-              placeholder={creator?.first_name}
+              placeholder="John"
               shrink="0"
               alignSelf="stretch"
               size="default"
-              isDisabled={false}
+              isDisabled={true}
               labelHidden={false}
               variation="default"
-              {...getOverrideProps(overrides, "FirstName")}
+              defaultValue={creator?.first_name}
+              {...getOverrideProps(overrides, "FirstNameInput")}
             ></TextField>
             <TextField
               width="unset"
               height="unset"
               label="Last Name"
-              placeholder={creator?.last_name}
+              placeholder="Smith"
               shrink="0"
               alignSelf="stretch"
               size="default"
-              isDisabled={false}
+              isDisabled={true}
               labelHidden={false}
               variation="default"
-              {...getOverrideProps(overrides, "LastName")}
+              defaultValue={creator?.last_name}
+              {...getOverrideProps(overrides, "LastNameInput")}
             ></TextField>
             <Flex
               gap="0"
@@ -233,13 +267,13 @@ export default function EditProfilePopup(props) {
               direction="column"
               width="unset"
               height="unset"
-              justifyContent="center"
+              justifyContent="flex-start"
               alignItems="flex-start"
               shrink="0"
               alignSelf="stretch"
               position="relative"
               padding="0px 0px 0px 0px"
-              {...getOverrideProps(overrides, "Identity")}
+              {...getOverrideProps(overrides, "IdentityInput")}
             >
               <Text
                 fontFamily="Inter"
@@ -263,283 +297,98 @@ export default function EditProfilePopup(props) {
                 children="What would you call yourself?"
                 {...getOverrideProps(overrides, "label38043016")}
               ></Text>
-              <Flex
-                gap="0"
-                direction="column"
+              <TextField
                 width="unset"
                 height="unset"
-                justifyContent="flex-start"
-                alignItems="flex-start"
+                label="First Name"
+                placeholder="Athlete"
                 shrink="0"
                 alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                {...getOverrideProps(overrides, "Identity138043018")}
-              >
-                <Flex
-                  gap="10px"
-                  direction="column"
-                  width="unset"
-                  height="unset"
-                  justifyContent="center"
-                  alignItems="center"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  border="1px SOLID rgba(174,179,183,1)"
-                  borderRadius="5px"
-                  padding="8px 16px 8px 16px"
-                  {...getOverrideProps(overrides, "Input38043019")}
-                >
-                  <Text
-                    fontFamily="Inter"
-                    fontSize="16px"
-                    fontWeight="400"
-                    color="rgba(128,128,128,1)"
-                    lineHeight="24px"
-                    textAlign="left"
-                    display="block"
-                    direction="column"
-                    justifyContent="unset"
-                    width="unset"
-                    height="unset"
-                    gap="unset"
-                    alignItems="unset"
-                    shrink="0"
-                    alignSelf="stretch"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    whiteSpace="pre-wrap"
-                    placeholder="Athlete"
-                    inputMode={creatorDetails?.identity1}
-                    children="Athlete"
-                    {...getOverrideProps(overrides, "placeholder38043020")}
-                  ></Text>
-                </Flex>
-              </Flex>
-              <Flex
-                gap="0"
-                direction="column"
+                size="default"
+                isDisabled={false}
+                labelHidden={true}
+                variation="default"
+                value={identityInputOneValue}
+                onChange={(event) => {
+                  setIdentityInputOneValue(event.target.value);
+                }}
+                {...getOverrideProps(overrides, "IdentityInput1")}
+              ></TextField>
+              <TextField
                 width="unset"
                 height="unset"
-                justifyContent="flex-start"
-                alignItems="flex-start"
+                label="First Name"
+                placeholder="Fitness Trainer"
                 shrink="0"
                 alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                {...getOverrideProps(overrides, "Identity2")}
-              >
-                <Flex
-                  gap="10px"
-                  direction="column"
-                  width="unset"
-                  height="unset"
-                  justifyContent="center"
-                  alignItems="center"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  border="1px SOLID rgba(174,179,183,1)"
-                  borderRadius="5px"
-                  padding="8px 16px 8px 16px"
-                  {...getOverrideProps(overrides, "Input38043027")}
-                >
-                  <Text
-                    fontFamily="Inter"
-                    fontSize="16px"
-                    fontWeight="400"
-                    color="rgba(128,128,128,1)"
-                    lineHeight="24px"
-                    textAlign="left"
-                    display="block"
-                    direction="column"
-                    justifyContent="unset"
-                    width="unset"
-                    height="unset"
-                    gap="unset"
-                    alignItems="unset"
-                    shrink="0"
-                    alignSelf="stretch"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    whiteSpace="pre-wrap"
-                    placeholder="Fitness Trainer"
-                    inputMode={creatorDetails?.identity2}
-                    children="Fitness Trainer"
-                    {...getOverrideProps(overrides, "placeholder38043028")}
-                  ></Text>
-                </Flex>
-              </Flex>
-              <Flex
-                gap="0"
-                direction="column"
+                size="default"
+                isDisabled={false}
+                labelHidden={true}
+                variation="default"
+                value={identityInputTwoValue}
+                onChange={(event) => {
+                  setIdentityInputTwoValue(event.target.value);
+                }}
+                {...getOverrideProps(overrides, "IdentityInput2")}
+              ></TextField>
+              <TextField
                 width="unset"
                 height="unset"
-                justifyContent="flex-start"
-                alignItems="flex-start"
+                label="First Name"
+                placeholder="Nutritionist"
                 shrink="0"
                 alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                {...getOverrideProps(overrides, "Identity3")}
-              >
-                <Flex
-                  gap="10px"
-                  direction="column"
-                  width="unset"
-                  height="unset"
-                  justifyContent="center"
-                  alignItems="center"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  border="1px SOLID rgba(174,179,183,1)"
-                  borderRadius="5px"
-                  padding="8px 16px 8px 16px"
-                  {...getOverrideProps(overrides, "Input38043023")}
-                >
-                  <Text
-                    fontFamily="Inter"
-                    fontSize="16px"
-                    fontWeight="400"
-                    color="rgba(128,128,128,1)"
-                    lineHeight="24px"
-                    textAlign="left"
-                    display="block"
-                    direction="column"
-                    justifyContent="unset"
-                    width="unset"
-                    height="unset"
-                    gap="unset"
-                    alignItems="unset"
-                    shrink="0"
-                    alignSelf="stretch"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    whiteSpace="pre-wrap"
-                    placeholder="Nutritionist"
-                    inputMode={creatorDetails?.identity3}
-                    children="Nutritionist"
-                    {...getOverrideProps(overrides, "placeholder38043024")}
-                  ></Text>
-                </Flex>
-              </Flex>
-              <Flex
-                gap="0"
-                direction="column"
+                size="default"
+                isDisabled={false}
+                labelHidden={true}
+                variation="default"
+                value={identityInputThreeValue}
+                onChange={(event) => {
+                  setIdentityInputThreeValue(event.target.value);
+                }}
+                {...getOverrideProps(overrides, "IdentityInput3")}
+              ></TextField>
+              <TextField
                 width="unset"
                 height="unset"
-                justifyContent="flex-start"
-                alignItems="flex-start"
+                label="First Name"
+                placeholder="Entrepreneur"
                 shrink="0"
                 alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                {...getOverrideProps(overrides, "Identity4")}
-              >
-                <Flex
-                  gap="10px"
-                  direction="column"
-                  width="unset"
-                  height="unset"
-                  justifyContent="center"
-                  alignItems="center"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  border="1px SOLID rgba(174,179,183,1)"
-                  borderRadius="5px"
-                  padding="8px 16px 8px 16px"
-                  {...getOverrideProps(overrides, "Input38043031")}
-                >
-                  <Text
-                    fontFamily="Inter"
-                    fontSize="16px"
-                    fontWeight="400"
-                    color="rgba(128,128,128,1)"
-                    lineHeight="24px"
-                    textAlign="left"
-                    display="block"
-                    direction="column"
-                    justifyContent="unset"
-                    width="unset"
-                    height="unset"
-                    gap="unset"
-                    alignItems="unset"
-                    shrink="0"
-                    alignSelf="stretch"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    whiteSpace="pre-wrap"
-                    placeholder={creatorDetails?.identity4}
-                    inputMode={creatorDetails?.identity4}
-                    children="Entrepreneur"
-                    {...getOverrideProps(overrides, "placeholder38043032")}
-                  ></Text>
-                </Flex>
-              </Flex>
-              <Flex
-                gap="0"
-                direction="column"
+                size="default"
+                isDisabled={false}
+                labelHidden={true}
+                variation="default"
+                value={identityInputFourValue}
+                onChange={(event) => {
+                  setIdentityInputFourValue(event.target.value);
+                }}
+                {...getOverrideProps(overrides, "IdentityInput4")}
+              ></TextField>
+              <TextField
                 width="unset"
                 height="unset"
-                justifyContent="flex-start"
-                alignItems="flex-start"
+                label="First Name"
+                placeholder="Influencer"
                 shrink="0"
                 alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                {...getOverrideProps(overrides, "Identity5")}
-              >
-                <Flex
-                  gap="10px"
-                  direction="column"
-                  width="unset"
-                  height="unset"
-                  justifyContent="center"
-                  alignItems="center"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  border="1px SOLID rgba(174,179,183,1)"
-                  borderRadius="5px"
-                  padding="8px 16px 8px 16px"
-                  {...getOverrideProps(overrides, "Input38043035")}
-                >
-                  <Text
-                    fontFamily="Inter"
-                    fontSize="16px"
-                    fontWeight="400"
-                    color="rgba(128,128,128,1)"
-                    lineHeight="24px"
-                    textAlign="left"
-                    display="block"
-                    direction="column"
-                    justifyContent="unset"
-                    width="unset"
-                    height="unset"
-                    gap="unset"
-                    alignItems="unset"
-                    shrink="0"
-                    alignSelf="stretch"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    whiteSpace="pre-wrap"
-                    placeholder="Influencer"
-                    inputMode={creatorDetails?.identity5}
-                    children="Influencer"
-                    {...getOverrideProps(overrides, "placeholder38043038")}
-                  ></Text>
-                </Flex>
-              </Flex>
+                size="default"
+                isDisabled={false}
+                labelHidden={true}
+                variation="default"
+                value={identityInputFiveValue}
+                onChange={(event) => {
+                  setIdentityInputFiveValue(event.target.value);
+                }}
+                {...getOverrideProps(overrides, "IdentityInput5")}
+              ></TextField>
             </Flex>
             <Flex
               gap="10px"
               direction="row"
               width="unset"
               height="unset"
-              justifyContent="center"
+              justifyContent="flex-start"
               alignItems="flex-start"
               shrink="0"
               alignSelf="stretch"
@@ -599,98 +448,22 @@ export default function EditProfilePopup(props) {
                   {...getOverrideProps(overrides, "Input38043075")}
                 ></Flex>
               </Flex>
-              <Flex
-                gap="0"
-                direction="column"
+              <TextField
                 width="unset"
                 height="unset"
-                justifyContent="flex-start"
-                alignItems="flex-start"
+                label="How would you describe yourself? (Max. 1000 characters)"
+                placeholder="I'm a fitness enthusiast turned aspiring trainer. I believe that health is wealth and I'm on a mission to help others unlock their full potential through fitness. With 5 years of experience in strength training, cardio, and nutrition, I'm dedicated to creating customized programs tailored to each individual's unique goals. Let's work together to transform your mind and body, one rep at a time. My approach to fitness is centered around building a positive mindset and creating sustainable habits. I understand that making lifestyle changes can be challenging, and I'm here to provide guidance, support, and accountability every step of the way. "
+                overflow="hidden"
                 grow="1"
                 shrink="1"
                 basis="0"
                 alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                {...getOverrideProps(overrides, "Description")}
-              >
-                <Text
-                  fontFamily="Inter"
-                  fontSize="16px"
-                  fontWeight="400"
-                  color="rgba(48,64,80,1)"
-                  lineHeight="24px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children="How would you describe yourself? (Max. 1000 characters)"
-                  {...getOverrideProps(overrides, "label38043040")}
-                ></Text>
-                <Flex
-                  gap="0"
-                  direction="column"
-                  width="unset"
-                  height="unset"
-                  justifyContent="flex-start"
-                  alignItems="flex-start"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  {...getOverrideProps(overrides, "Identity138043042")}
-                >
-                  <Flex
-                    gap="10px"
-                    direction="column"
-                    width="unset"
-                    height="unset"
-                    justifyContent="center"
-                    alignItems="center"
-                    shrink="0"
-                    alignSelf="stretch"
-                    position="relative"
-                    border="1px SOLID rgba(174,179,183,1)"
-                    borderRadius="5px"
-                    padding="8px 16px 8px 16px"
-                    {...getOverrideProps(overrides, "Input38043043")}
-                  >
-                    <Text
-                      fontFamily="Inter"
-                      fontSize="16px"
-                      fontWeight="400"
-                      color="rgba(128,128,128,1)"
-                      lineHeight="24px"
-                      textAlign="left"
-                      display="block"
-                      direction="column"
-                      justifyContent="unset"
-                      width="unset"
-                      height="unset"
-                      gap="unset"
-                      alignItems="unset"
-                      shrink="0"
-                      alignSelf="stretch"
-                      position="relative"
-                      padding="0px 0px 0px 0px"
-                      whiteSpace="pre-wrap"
-                      placeholder="I'm a fitness enthusiast turned aspiring trainer. I believe that health is wealth and I'm on a mission to help others unlock their full potential through fitness. With 5 years of experience in strength training, cardio, and nutrition, I'm dedicated to creating customized programs tailored to each individual's unique goals. Let's work together to transform your mind and body, one rep at a time. My approach to fitness is centered around building a positive mindset and creating sustainable habits. I understand that making lifestyle changes can be challenging, and I'm here to provide guidance, support, and accountability every step of the way."
-                      inputMode={creatorDetails?.keyword1}
-                      children="I'm a fitness enthusiast turned aspiring trainer. I believe that health is wealth and I'm on a mission to help others unlock their full potential through fitness. With 5 years of experience in strength training, cardio, and nutrition, I'm dedicated to creating customized programs tailored to each individual's unique goals. Let's work together to transform your mind and body, one rep at a time. My approach to fitness is centered around building a positive mindset and creating sustainable habits. I understand that making lifestyle changes can be challenging, and I'm here to provide guidance, support, and accountability every step of the way. "
-                      {...getOverrideProps(overrides, "placeholder38043044")}
-                    ></Text>
-                  </Flex>
-                </Flex>
-              </Flex>
+                size="default"
+                isDisabled={false}
+                labelHidden={false}
+                variation="default"
+                {...getOverrideProps(overrides, "CreatorDescriptionInput")}
+              ></TextField>
             </Flex>
             <Flex
               gap="10px"
@@ -766,58 +539,23 @@ export default function EditProfilePopup(props) {
                   padding="0px 0px 0px 0px"
                   {...getOverrideProps(overrides, "Input38043126")}
                 >
-                  <Flex
-                    gap="0"
-                    direction="column"
+                  <TextField
                     width="unset"
                     height="unset"
-                    justifyContent="flex-start"
-                    alignItems="flex-start"
+                    label="First Name"
+                    placeholder="youtube_id"
                     shrink="0"
                     alignSelf="stretch"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    {...getOverrideProps(overrides, "Username38043097")}
-                  >
-                    <Flex
-                      gap="10px"
-                      direction="column"
-                      width="unset"
-                      height="unset"
-                      justifyContent="center"
-                      alignItems="center"
-                      shrink="0"
-                      alignSelf="stretch"
-                      position="relative"
-                      border="1px SOLID rgba(174,179,183,1)"
-                      borderRadius="5px"
-                      padding="8px 16px 8px 16px"
-                      {...getOverrideProps(overrides, "Input38102709")}
-                    >
-                      <Text
-                        fontFamily="Inter"
-                        fontSize="16px"
-                        fontWeight="400"
-                        color="rgba(128,128,128,1)"
-                        lineHeight="24px"
-                        textAlign="left"
-                        display="block"
-                        direction="column"
-                        justifyContent="unset"
-                        width="unset"
-                        height="unset"
-                        gap="unset"
-                        alignItems="unset"
-                        shrink="0"
-                        alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        whiteSpace="pre-wrap"
-                        children="youtube_id"
-                        {...getOverrideProps(overrides, "placeholder38102710")}
-                      ></Text>
-                    </Flex>
-                  </Flex>
+                    size="default"
+                    isDisabled={false}
+                    labelHidden={true}
+                    variation="default"
+                    value={youtubeIDInputValue}
+                    onChange={(event) => {
+                      setYoutubeIDInputValue(event.target.value);
+                    }}
+                    {...getOverrideProps(overrides, "youtubeIDInput")}
+                  ></TextField>
                   <Flex
                     gap="10px"
                     direction="column"
@@ -865,63 +603,24 @@ export default function EditProfilePopup(props) {
                         children="Video Embed Link 1"
                         {...getOverrideProps(overrides, "label38043122")}
                       ></Text>
-                      <Flex
-                        gap="0"
-                        direction="column"
+                      <TextField
                         width="unset"
                         height="unset"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
+                        label="First Name"
+                        placeholder="YouTube Video Embed Link 1"
+                        overflow="hidden"
                         grow="1"
                         shrink="1"
                         basis="0"
                         alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        {...getOverrideProps(overrides, "InputGroup38043123")}
-                      >
-                        <Flex
-                          gap="10px"
-                          direction="column"
-                          width="unset"
-                          height="unset"
-                          justifyContent="center"
-                          alignItems="center"
-                          shrink="0"
-                          alignSelf="stretch"
-                          position="relative"
-                          border="1px SOLID rgba(174,179,183,1)"
-                          borderRadius="5px"
-                          padding="8px 16px 8px 16px"
-                          {...getOverrideProps(overrides, "Input38233039")}
-                        >
-                          <Text
-                            fontFamily="Inter"
-                            fontSize="16px"
-                            fontWeight="400"
-                            color="rgba(128,128,128,1)"
-                            lineHeight="24px"
-                            textAlign="left"
-                            display="block"
-                            direction="column"
-                            justifyContent="unset"
-                            width="unset"
-                            height="unset"
-                            gap="unset"
-                            alignItems="unset"
-                            shrink="0"
-                            alignSelf="stretch"
-                            position="relative"
-                            padding="0px 0px 0px 0px"
-                            whiteSpace="pre-wrap"
-                            children="YouTube Video Embed Link 1"
-                            {...getOverrideProps(
-                              overrides,
-                              "placeholder38233040"
-                            )}
-                          ></Text>
-                        </Flex>
-                      </Flex>
+                        backgroundColor="rgba(255,255,255,1)"
+                        size="default"
+                        isDisabled={false}
+                        labelHidden={true}
+                        variation="default"
+                        defaultValue={creatorDetails?.youtube_link1}
+                        {...getOverrideProps(overrides, "EmbedLink38344061")}
+                      ></TextField>
                     </Flex>
                     <Flex
                       gap="10px"
@@ -934,7 +633,7 @@ export default function EditProfilePopup(props) {
                       alignSelf="stretch"
                       position="relative"
                       padding="10px 10px 10px 10px"
-                      {...getOverrideProps(overrides, "Embed Link 238043127")}
+                      {...getOverrideProps(overrides, "Embed Link 238344124")}
                     >
                       <Text
                         fontFamily="Inter"
@@ -955,65 +654,25 @@ export default function EditProfilePopup(props) {
                         padding="0px 0px 0px 0px"
                         whiteSpace="pre-wrap"
                         children="Video Embed Link 2"
-                        {...getOverrideProps(overrides, "label38043128")}
+                        {...getOverrideProps(overrides, "label38344125")}
                       ></Text>
-                      <Flex
-                        gap="0"
-                        direction="column"
+                      <TextField
                         width="unset"
                         height="unset"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
+                        label="First Name"
+                        placeholder="YouTube Video Embed Link 2"
+                        overflow="hidden"
                         grow="1"
                         shrink="1"
                         basis="0"
                         alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        {...getOverrideProps(overrides, "InputGroup38043129")}
-                      >
-                        <Flex
-                          gap="10px"
-                          direction="column"
-                          width="unset"
-                          height="unset"
-                          justifyContent="center"
-                          alignItems="center"
-                          shrink="0"
-                          alignSelf="stretch"
-                          position="relative"
-                          border="1px SOLID rgba(174,179,183,1)"
-                          borderRadius="5px"
-                          padding="8px 16px 8px 16px"
-                          {...getOverrideProps(overrides, "Input38233052")}
-                        >
-                          <Text
-                            fontFamily="Inter"
-                            fontSize="16px"
-                            fontWeight="400"
-                            color="rgba(128,128,128,1)"
-                            lineHeight="24px"
-                            textAlign="left"
-                            display="block"
-                            direction="column"
-                            justifyContent="unset"
-                            width="unset"
-                            height="unset"
-                            gap="unset"
-                            alignItems="unset"
-                            shrink="0"
-                            alignSelf="stretch"
-                            position="relative"
-                            padding="0px 0px 0px 0px"
-                            whiteSpace="pre-wrap"
-                            children="YouTube Video Embed Link 2"
-                            {...getOverrideProps(
-                              overrides,
-                              "placeholder38233053"
-                            )}
-                          ></Text>
-                        </Flex>
-                      </Flex>
+                        size="default"
+                        isDisabled={false}
+                        labelHidden={true}
+                        variation="default"
+                        defaultValue={creatorDetails?.youtube_link2}
+                        {...getOverrideProps(overrides, "EmbedLink38344126")}
+                      ></TextField>
                     </Flex>
                     <Flex
                       gap="10px"
@@ -1026,7 +685,7 @@ export default function EditProfilePopup(props) {
                       alignSelf="stretch"
                       position="relative"
                       padding="10px 10px 10px 10px"
-                      {...getOverrideProps(overrides, "Embed Link 338043132")}
+                      {...getOverrideProps(overrides, "Embed Link 338344273")}
                     >
                       <Text
                         fontFamily="Inter"
@@ -1047,65 +706,25 @@ export default function EditProfilePopup(props) {
                         padding="0px 0px 0px 0px"
                         whiteSpace="pre-wrap"
                         children="Video Embed Link 3"
-                        {...getOverrideProps(overrides, "label38043133")}
+                        {...getOverrideProps(overrides, "label38344274")}
                       ></Text>
-                      <Flex
-                        gap="0"
-                        direction="column"
+                      <TextField
                         width="unset"
                         height="unset"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
+                        label="First Name"
+                        placeholder="YouTube Video Embed Link 3"
+                        overflow="hidden"
                         grow="1"
                         shrink="1"
                         basis="0"
                         alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        {...getOverrideProps(overrides, "InputGroup38043134")}
-                      >
-                        <Flex
-                          gap="10px"
-                          direction="column"
-                          width="unset"
-                          height="unset"
-                          justifyContent="center"
-                          alignItems="center"
-                          shrink="0"
-                          alignSelf="stretch"
-                          position="relative"
-                          border="1px SOLID rgba(174,179,183,1)"
-                          borderRadius="5px"
-                          padding="8px 16px 8px 16px"
-                          {...getOverrideProps(overrides, "Input38233064")}
-                        >
-                          <Text
-                            fontFamily="Inter"
-                            fontSize="16px"
-                            fontWeight="400"
-                            color="rgba(128,128,128,1)"
-                            lineHeight="24px"
-                            textAlign="left"
-                            display="block"
-                            direction="column"
-                            justifyContent="unset"
-                            width="unset"
-                            height="unset"
-                            gap="unset"
-                            alignItems="unset"
-                            shrink="0"
-                            alignSelf="stretch"
-                            position="relative"
-                            padding="0px 0px 0px 0px"
-                            whiteSpace="pre-wrap"
-                            children="YouTube Video Embed Link 3"
-                            {...getOverrideProps(
-                              overrides,
-                              "placeholder38233065"
-                            )}
-                          ></Text>
-                        </Flex>
-                      </Flex>
+                        size="default"
+                        isDisabled={false}
+                        labelHidden={true}
+                        variation="default"
+                        defaultValue={creatorDetails?.youtube_link3}
+                        {...getOverrideProps(overrides, "EmbedLink38344275")}
+                      ></TextField>
                     </Flex>
                   </Flex>
                 </Flex>
@@ -1171,70 +790,35 @@ export default function EditProfilePopup(props) {
                   padding="0px 0px 0px 0px"
                   {...getOverrideProps(overrides, "Input38043142")}
                 >
-                  <Flex
-                    gap="0"
-                    direction="column"
+                  <TextField
                     width="unset"
                     height="unset"
-                    justifyContent="flex-start"
-                    alignItems="flex-start"
+                    label="First Name"
+                    placeholder="linkedin_id"
                     shrink="0"
                     alignSelf="stretch"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    {...getOverrideProps(overrides, "Username38043143")}
-                  >
-                    <Flex
-                      gap="10px"
-                      direction="column"
-                      width="unset"
-                      height="unset"
-                      justifyContent="center"
-                      alignItems="center"
-                      shrink="0"
-                      alignSelf="stretch"
-                      position="relative"
-                      border="1px SOLID rgba(174,179,183,1)"
-                      borderRadius="5px"
-                      padding="8px 16px 8px 16px"
-                      {...getOverrideProps(overrides, "Input38102711")}
-                    >
-                      <Text
-                        fontFamily="Inter"
-                        fontSize="16px"
-                        fontWeight="400"
-                        color="rgba(128,128,128,1)"
-                        lineHeight="24px"
-                        textAlign="left"
-                        display="block"
-                        direction="column"
-                        justifyContent="unset"
-                        width="unset"
-                        height="unset"
-                        gap="unset"
-                        alignItems="unset"
-                        shrink="0"
-                        alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        whiteSpace="pre-wrap"
-                        children="linkedin_id"
-                        {...getOverrideProps(overrides, "placeholder38102712")}
-                      ></Text>
-                    </Flex>
-                  </Flex>
+                    size="default"
+                    isDisabled={false}
+                    labelHidden={true}
+                    variation="default"
+                    defaultValue={creatorDetails?.linkedin_id}
+                    {...getOverrideProps(overrides, "linkedinIDInput")}
+                  ></TextField>
                   <Flex
                     gap="10px"
                     direction="column"
                     width="unset"
                     height="unset"
-                    justifyContent="flex-start"
+                    justifyContent="center"
                     alignItems="flex-start"
                     shrink="0"
                     alignSelf="stretch"
                     position="relative"
                     padding="0px 0px 0px 0px"
-                    {...getOverrideProps(overrides, "Post Embed Links")}
+                    {...getOverrideProps(
+                      overrides,
+                      "Linkedin Post Embed Links"
+                    )}
                   >
                     <Flex
                       gap="10px"
@@ -1247,7 +831,7 @@ export default function EditProfilePopup(props) {
                       alignSelf="stretch"
                       position="relative"
                       padding="10px 10px 10px 10px"
-                      {...getOverrideProps(overrides, "Embed Link 138043147")}
+                      {...getOverrideProps(overrides, "Embed Link 138344346")}
                     >
                       <Text
                         fontFamily="Inter"
@@ -1268,65 +852,29 @@ export default function EditProfilePopup(props) {
                         padding="0px 0px 0px 0px"
                         whiteSpace="pre-wrap"
                         children="Post Embed Link 1"
-                        {...getOverrideProps(overrides, "label38043148")}
+                        {...getOverrideProps(overrides, "label38344347")}
                       ></Text>
-                      <Flex
-                        gap="0"
-                        direction="column"
+                      <TextField
                         width="unset"
                         height="unset"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
+                        label="First Name"
+                        placeholder="LinkedIn Post Embed Link 1"
+                        overflow="hidden"
                         grow="1"
                         shrink="1"
                         basis="0"
                         alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        {...getOverrideProps(overrides, "InputGroup38043149")}
-                      >
-                        <Flex
-                          gap="10px"
-                          direction="column"
-                          width="unset"
-                          height="unset"
-                          justifyContent="center"
-                          alignItems="center"
-                          shrink="0"
-                          alignSelf="stretch"
-                          position="relative"
-                          border="1px SOLID rgba(174,179,183,1)"
-                          borderRadius="5px"
-                          padding="8px 16px 8px 16px"
-                          {...getOverrideProps(overrides, "Input38233081")}
-                        >
-                          <Text
-                            fontFamily="Inter"
-                            fontSize="16px"
-                            fontWeight="400"
-                            color="rgba(128,128,128,1)"
-                            lineHeight="24px"
-                            textAlign="left"
-                            display="block"
-                            direction="column"
-                            justifyContent="unset"
-                            width="unset"
-                            height="unset"
-                            gap="unset"
-                            alignItems="unset"
-                            shrink="0"
-                            alignSelf="stretch"
-                            position="relative"
-                            padding="0px 0px 0px 0px"
-                            whiteSpace="pre-wrap"
-                            children="LinkedIn Post Embed Link 1"
-                            {...getOverrideProps(
-                              overrides,
-                              "placeholder38233082"
-                            )}
-                          ></Text>
-                        </Flex>
-                      </Flex>
+                        backgroundColor="rgba(255,255,255,1)"
+                        size="default"
+                        isDisabled={false}
+                        labelHidden={true}
+                        variation="default"
+                        defaultValue={creatorDetails?.linkedin_link1}
+                        {...getOverrideProps(
+                          overrides,
+                          "LinkedinPostEmbedLink1"
+                        )}
+                      ></TextField>
                     </Flex>
                     <Flex
                       gap="10px"
@@ -1339,7 +887,7 @@ export default function EditProfilePopup(props) {
                       alignSelf="stretch"
                       position="relative"
                       padding="10px 10px 10px 10px"
-                      {...getOverrideProps(overrides, "Embed Link 238043152")}
+                      {...getOverrideProps(overrides, "Embed Link 238344349")}
                     >
                       <Text
                         fontFamily="Inter"
@@ -1360,65 +908,28 @@ export default function EditProfilePopup(props) {
                         padding="0px 0px 0px 0px"
                         whiteSpace="pre-wrap"
                         children="Post Embed Link 2"
-                        {...getOverrideProps(overrides, "label38043153")}
+                        {...getOverrideProps(overrides, "label38344350")}
                       ></Text>
-                      <Flex
-                        gap="0"
-                        direction="column"
+                      <TextField
                         width="unset"
                         height="unset"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
+                        label="First Name"
+                        placeholder="LinkedIn Post Embed Link 2"
+                        overflow="hidden"
                         grow="1"
                         shrink="1"
                         basis="0"
                         alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        {...getOverrideProps(overrides, "InputGroup38043154")}
-                      >
-                        <Flex
-                          gap="10px"
-                          direction="column"
-                          width="unset"
-                          height="unset"
-                          justifyContent="center"
-                          alignItems="center"
-                          shrink="0"
-                          alignSelf="stretch"
-                          position="relative"
-                          border="1px SOLID rgba(174,179,183,1)"
-                          borderRadius="5px"
-                          padding="8px 16px 8px 16px"
-                          {...getOverrideProps(overrides, "Input38233094")}
-                        >
-                          <Text
-                            fontFamily="Inter"
-                            fontSize="16px"
-                            fontWeight="400"
-                            color="rgba(128,128,128,1)"
-                            lineHeight="24px"
-                            textAlign="left"
-                            display="block"
-                            direction="column"
-                            justifyContent="unset"
-                            width="unset"
-                            height="unset"
-                            gap="unset"
-                            alignItems="unset"
-                            shrink="0"
-                            alignSelf="stretch"
-                            position="relative"
-                            padding="0px 0px 0px 0px"
-                            whiteSpace="pre-wrap"
-                            children="LinkedIn Post Embed Link 2"
-                            {...getOverrideProps(
-                              overrides,
-                              "placeholder38233095"
-                            )}
-                          ></Text>
-                        </Flex>
-                      </Flex>
+                        size="default"
+                        isDisabled={false}
+                        labelHidden={true}
+                        variation="default"
+                        defaultValue={creatorDetails?.linkedin_link2}
+                        {...getOverrideProps(
+                          overrides,
+                          "LinkedinPostEmbedLink2"
+                        )}
+                      ></TextField>
                     </Flex>
                     <Flex
                       gap="10px"
@@ -1431,7 +942,7 @@ export default function EditProfilePopup(props) {
                       alignSelf="stretch"
                       position="relative"
                       padding="10px 10px 10px 10px"
-                      {...getOverrideProps(overrides, "Embed Link 338043157")}
+                      {...getOverrideProps(overrides, "Embed Link 338344352")}
                     >
                       <Text
                         fontFamily="Inter"
@@ -1452,65 +963,28 @@ export default function EditProfilePopup(props) {
                         padding="0px 0px 0px 0px"
                         whiteSpace="pre-wrap"
                         children="Post Embed Link 3"
-                        {...getOverrideProps(overrides, "label38043158")}
+                        {...getOverrideProps(overrides, "label38344353")}
                       ></Text>
-                      <Flex
-                        gap="0"
-                        direction="column"
+                      <TextField
                         width="unset"
                         height="unset"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
+                        label="First Name"
+                        placeholder="LinkedIn Post Embed Link 3"
+                        overflow="hidden"
                         grow="1"
                         shrink="1"
                         basis="0"
                         alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        {...getOverrideProps(overrides, "InputGroup38043159")}
-                      >
-                        <Flex
-                          gap="10px"
-                          direction="column"
-                          width="unset"
-                          height="unset"
-                          justifyContent="center"
-                          alignItems="center"
-                          shrink="0"
-                          alignSelf="stretch"
-                          position="relative"
-                          border="1px SOLID rgba(174,179,183,1)"
-                          borderRadius="5px"
-                          padding="8px 16px 8px 16px"
-                          {...getOverrideProps(overrides, "Input38233106")}
-                        >
-                          <Text
-                            fontFamily="Inter"
-                            fontSize="16px"
-                            fontWeight="400"
-                            color="rgba(128,128,128,1)"
-                            lineHeight="24px"
-                            textAlign="left"
-                            display="block"
-                            direction="column"
-                            justifyContent="unset"
-                            width="unset"
-                            height="unset"
-                            gap="unset"
-                            alignItems="unset"
-                            shrink="0"
-                            alignSelf="stretch"
-                            position="relative"
-                            padding="0px 0px 0px 0px"
-                            whiteSpace="pre-wrap"
-                            children="LinkedIn Post Embed Link 3"
-                            {...getOverrideProps(
-                              overrides,
-                              "placeholder38233107"
-                            )}
-                          ></Text>
-                        </Flex>
-                      </Flex>
+                        size="default"
+                        isDisabled={false}
+                        labelHidden={true}
+                        variation="default"
+                        defaultValue={creatorDetails?.linkedin_link3}
+                        {...getOverrideProps(
+                          overrides,
+                          "LinkedinPostEmbedLink3"
+                        )}
+                      ></TextField>
                     </Flex>
                   </Flex>
                 </Flex>
@@ -1576,58 +1050,20 @@ export default function EditProfilePopup(props) {
                   padding="0px 0px 0px 0px"
                   {...getOverrideProps(overrides, "Input38043165")}
                 >
-                  <Flex
-                    gap="0"
-                    direction="column"
+                  <TextField
                     width="unset"
                     height="unset"
-                    justifyContent="flex-start"
-                    alignItems="flex-start"
+                    label="First Name"
+                    placeholder="twitter_id"
                     shrink="0"
                     alignSelf="stretch"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    {...getOverrideProps(overrides, "Username38043166")}
-                  >
-                    <Flex
-                      gap="10px"
-                      direction="column"
-                      width="unset"
-                      height="unset"
-                      justifyContent="center"
-                      alignItems="center"
-                      shrink="0"
-                      alignSelf="stretch"
-                      position="relative"
-                      border="1px SOLID rgba(174,179,183,1)"
-                      borderRadius="5px"
-                      padding="8px 16px 8px 16px"
-                      {...getOverrideProps(overrides, "Input38102713")}
-                    >
-                      <Text
-                        fontFamily="Inter"
-                        fontSize="16px"
-                        fontWeight="400"
-                        color="rgba(128,128,128,1)"
-                        lineHeight="24px"
-                        textAlign="left"
-                        display="block"
-                        direction="column"
-                        justifyContent="unset"
-                        width="unset"
-                        height="unset"
-                        gap="unset"
-                        alignItems="unset"
-                        shrink="0"
-                        alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        whiteSpace="pre-wrap"
-                        children="twitter_id"
-                        {...getOverrideProps(overrides, "placeholder38102714")}
-                      ></Text>
-                    </Flex>
-                  </Flex>
+                    size="default"
+                    isDisabled={false}
+                    labelHidden={true}
+                    variation="default"
+                    defaultValue={creatorDetails?.twitter_id}
+                    {...getOverrideProps(overrides, "twitterIDInput")}
+                  ></TextField>
                   <Flex
                     gap="10px"
                     direction="column"
@@ -1639,7 +1075,7 @@ export default function EditProfilePopup(props) {
                     alignSelf="stretch"
                     position="relative"
                     padding="0px 0px 0px 0px"
-                    {...getOverrideProps(overrides, "Embed Links38043169")}
+                    {...getOverrideProps(overrides, "Tweet Embed Links")}
                   >
                     <Flex
                       gap="10px"
@@ -1652,7 +1088,7 @@ export default function EditProfilePopup(props) {
                       alignSelf="stretch"
                       position="relative"
                       padding="10px 10px 10px 10px"
-                      {...getOverrideProps(overrides, "Embed Link 138043170")}
+                      {...getOverrideProps(overrides, "Embed Link 138344641")}
                     >
                       <Text
                         fontFamily="Inter"
@@ -1673,65 +1109,26 @@ export default function EditProfilePopup(props) {
                         padding="0px 0px 0px 0px"
                         whiteSpace="pre-wrap"
                         children="Tweet Embed Link 1"
-                        {...getOverrideProps(overrides, "label38043171")}
+                        {...getOverrideProps(overrides, "label38344642")}
                       ></Text>
-                      <Flex
-                        gap="0"
-                        direction="column"
+                      <TextField
                         width="unset"
                         height="unset"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
+                        label="First Name"
+                        placeholder="Tweet Embed Link 1"
+                        overflow="hidden"
                         grow="1"
                         shrink="1"
                         basis="0"
                         alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        {...getOverrideProps(overrides, "InputGroup38043172")}
-                      >
-                        <Flex
-                          gap="10px"
-                          direction="column"
-                          width="unset"
-                          height="unset"
-                          justifyContent="center"
-                          alignItems="center"
-                          shrink="0"
-                          alignSelf="stretch"
-                          position="relative"
-                          border="1px SOLID rgba(174,179,183,1)"
-                          borderRadius="5px"
-                          padding="8px 16px 8px 16px"
-                          {...getOverrideProps(overrides, "Input38233118")}
-                        >
-                          <Text
-                            fontFamily="Inter"
-                            fontSize="16px"
-                            fontWeight="400"
-                            color="rgba(128,128,128,1)"
-                            lineHeight="24px"
-                            textAlign="left"
-                            display="block"
-                            direction="column"
-                            justifyContent="unset"
-                            width="unset"
-                            height="unset"
-                            gap="unset"
-                            alignItems="unset"
-                            shrink="0"
-                            alignSelf="stretch"
-                            position="relative"
-                            padding="0px 0px 0px 0px"
-                            whiteSpace="pre-wrap"
-                            children="Tweet Embed Link 1"
-                            {...getOverrideProps(
-                              overrides,
-                              "placeholder38233119"
-                            )}
-                          ></Text>
-                        </Flex>
-                      </Flex>
+                        backgroundColor="rgba(255,255,255,1)"
+                        size="default"
+                        isDisabled={false}
+                        labelHidden={true}
+                        variation="default"
+                        defaultValue={creatorDetails?.twitter_link1}
+                        {...getOverrideProps(overrides, "TweetEmbedLink1")}
+                      ></TextField>
                     </Flex>
                     <Flex
                       gap="10px"
@@ -1744,7 +1141,7 @@ export default function EditProfilePopup(props) {
                       alignSelf="stretch"
                       position="relative"
                       padding="10px 10px 10px 10px"
-                      {...getOverrideProps(overrides, "Embed Link 238043175")}
+                      {...getOverrideProps(overrides, "Embed Link 238344644")}
                     >
                       <Text
                         fontFamily="Inter"
@@ -1765,65 +1162,25 @@ export default function EditProfilePopup(props) {
                         padding="0px 0px 0px 0px"
                         whiteSpace="pre-wrap"
                         children="Tweet Embed Link 2"
-                        {...getOverrideProps(overrides, "label38043176")}
+                        {...getOverrideProps(overrides, "label38344645")}
                       ></Text>
-                      <Flex
-                        gap="0"
-                        direction="column"
+                      <TextField
                         width="unset"
                         height="unset"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
+                        label="First Name"
+                        placeholder="Tweet Embed Link 2"
+                        overflow="hidden"
                         grow="1"
                         shrink="1"
                         basis="0"
                         alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        {...getOverrideProps(overrides, "InputGroup38043177")}
-                      >
-                        <Flex
-                          gap="10px"
-                          direction="column"
-                          width="unset"
-                          height="unset"
-                          justifyContent="center"
-                          alignItems="center"
-                          shrink="0"
-                          alignSelf="stretch"
-                          position="relative"
-                          border="1px SOLID rgba(174,179,183,1)"
-                          borderRadius="5px"
-                          padding="8px 16px 8px 16px"
-                          {...getOverrideProps(overrides, "Input38233131")}
-                        >
-                          <Text
-                            fontFamily="Inter"
-                            fontSize="16px"
-                            fontWeight="400"
-                            color="rgba(128,128,128,1)"
-                            lineHeight="24px"
-                            textAlign="left"
-                            display="block"
-                            direction="column"
-                            justifyContent="unset"
-                            width="unset"
-                            height="unset"
-                            gap="unset"
-                            alignItems="unset"
-                            shrink="0"
-                            alignSelf="stretch"
-                            position="relative"
-                            padding="0px 0px 0px 0px"
-                            whiteSpace="pre-wrap"
-                            children="Tweet Embed Link 2"
-                            {...getOverrideProps(
-                              overrides,
-                              "placeholder38233132"
-                            )}
-                          ></Text>
-                        </Flex>
-                      </Flex>
+                        size="default"
+                        isDisabled={false}
+                        labelHidden={true}
+                        variation="default"
+                        defaultValue={creatorDetails?.twitter_link2}
+                        {...getOverrideProps(overrides, "TweetEmbedLink2")}
+                      ></TextField>
                     </Flex>
                     <Flex
                       gap="10px"
@@ -1836,7 +1193,7 @@ export default function EditProfilePopup(props) {
                       alignSelf="stretch"
                       position="relative"
                       padding="10px 10px 10px 10px"
-                      {...getOverrideProps(overrides, "Embed Link 338043180")}
+                      {...getOverrideProps(overrides, "Embed Link 338344647")}
                     >
                       <Text
                         fontFamily="Inter"
@@ -1857,65 +1214,25 @@ export default function EditProfilePopup(props) {
                         padding="0px 0px 0px 0px"
                         whiteSpace="pre-wrap"
                         children="Tweet Embed Link 3"
-                        {...getOverrideProps(overrides, "label38043181")}
+                        {...getOverrideProps(overrides, "label38344648")}
                       ></Text>
-                      <Flex
-                        gap="0"
-                        direction="column"
+                      <TextField
                         width="unset"
                         height="unset"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
+                        label="First Name"
+                        placeholder="Tweet Embed Link 3"
+                        overflow="hidden"
                         grow="1"
                         shrink="1"
                         basis="0"
                         alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        {...getOverrideProps(overrides, "InputGroup38043182")}
-                      >
-                        <Flex
-                          gap="10px"
-                          direction="column"
-                          width="unset"
-                          height="unset"
-                          justifyContent="center"
-                          alignItems="center"
-                          shrink="0"
-                          alignSelf="stretch"
-                          position="relative"
-                          border="1px SOLID rgba(174,179,183,1)"
-                          borderRadius="5px"
-                          padding="8px 16px 8px 16px"
-                          {...getOverrideProps(overrides, "Input38233144")}
-                        >
-                          <Text
-                            fontFamily="Inter"
-                            fontSize="16px"
-                            fontWeight="400"
-                            color="rgba(128,128,128,1)"
-                            lineHeight="24px"
-                            textAlign="left"
-                            display="block"
-                            direction="column"
-                            justifyContent="unset"
-                            width="unset"
-                            height="unset"
-                            gap="unset"
-                            alignItems="unset"
-                            shrink="0"
-                            alignSelf="stretch"
-                            position="relative"
-                            padding="0px 0px 0px 0px"
-                            whiteSpace="pre-wrap"
-                            children="Tweet Embed Link 3"
-                            {...getOverrideProps(
-                              overrides,
-                              "placeholder38233145"
-                            )}
-                          ></Text>
-                        </Flex>
-                      </Flex>
+                        size="default"
+                        isDisabled={false}
+                        labelHidden={true}
+                        variation="default"
+                        defaultValue={creatorDetails?.twitter_link3}
+                        {...getOverrideProps(overrides, "TweetEmbedLink3")}
+                      ></TextField>
                     </Flex>
                   </Flex>
                 </Flex>
@@ -1981,58 +1298,20 @@ export default function EditProfilePopup(props) {
                   padding="0px 0px 0px 0px"
                   {...getOverrideProps(overrides, "Input38043188")}
                 >
-                  <Flex
-                    gap="0"
-                    direction="column"
+                  <TextField
                     width="unset"
                     height="unset"
-                    justifyContent="flex-start"
-                    alignItems="flex-start"
+                    label="First Name"
+                    placeholder="facebook_id"
                     shrink="0"
                     alignSelf="stretch"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    {...getOverrideProps(overrides, "Username38043189")}
-                  >
-                    <Flex
-                      gap="10px"
-                      direction="column"
-                      width="unset"
-                      height="unset"
-                      justifyContent="center"
-                      alignItems="center"
-                      shrink="0"
-                      alignSelf="stretch"
-                      position="relative"
-                      border="1px SOLID rgba(174,179,183,1)"
-                      borderRadius="5px"
-                      padding="8px 16px 8px 16px"
-                      {...getOverrideProps(overrides, "Input38102715")}
-                    >
-                      <Text
-                        fontFamily="Inter"
-                        fontSize="16px"
-                        fontWeight="400"
-                        color="rgba(128,128,128,1)"
-                        lineHeight="24px"
-                        textAlign="left"
-                        display="block"
-                        direction="column"
-                        justifyContent="unset"
-                        width="unset"
-                        height="unset"
-                        gap="unset"
-                        alignItems="unset"
-                        shrink="0"
-                        alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        whiteSpace="pre-wrap"
-                        children="facebook_id"
-                        {...getOverrideProps(overrides, "placeholder38102716")}
-                      ></Text>
-                    </Flex>
-                  </Flex>
+                    size="default"
+                    isDisabled={false}
+                    labelHidden={true}
+                    variation="default"
+                    defaultValue={creatorDetails?.facebook_id}
+                    {...getOverrideProps(overrides, "facebookIDInput")}
+                  ></TextField>
                   <Flex
                     gap="10px"
                     direction="column"
@@ -2044,7 +1323,10 @@ export default function EditProfilePopup(props) {
                     alignSelf="stretch"
                     position="relative"
                     padding="0px 0px 0px 0px"
-                    {...getOverrideProps(overrides, "Embed Links38043192")}
+                    {...getOverrideProps(
+                      overrides,
+                      "Facebook Post Embed Links"
+                    )}
                   >
                     <Flex
                       gap="10px"
@@ -2057,7 +1339,7 @@ export default function EditProfilePopup(props) {
                       alignSelf="stretch"
                       position="relative"
                       padding="10px 10px 10px 10px"
-                      {...getOverrideProps(overrides, "Embed Link 138043193")}
+                      {...getOverrideProps(overrides, "Embed Link 138344851")}
                     >
                       <Text
                         fontFamily="Inter"
@@ -2078,65 +1360,29 @@ export default function EditProfilePopup(props) {
                         padding="0px 0px 0px 0px"
                         whiteSpace="pre-wrap"
                         children="Post Embed Link 1"
-                        {...getOverrideProps(overrides, "label38043194")}
+                        {...getOverrideProps(overrides, "label38344852")}
                       ></Text>
-                      <Flex
-                        gap="0"
-                        direction="column"
+                      <TextField
                         width="unset"
                         height="unset"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
+                        label="First Name"
+                        placeholder="Facebook Post Embed Link 1"
+                        overflow="hidden"
                         grow="1"
                         shrink="1"
                         basis="0"
                         alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        {...getOverrideProps(overrides, "InputGroup38043195")}
-                      >
-                        <Flex
-                          gap="10px"
-                          direction="column"
-                          width="unset"
-                          height="unset"
-                          justifyContent="center"
-                          alignItems="center"
-                          shrink="0"
-                          alignSelf="stretch"
-                          position="relative"
-                          border="1px SOLID rgba(174,179,183,1)"
-                          borderRadius="5px"
-                          padding="8px 16px 8px 16px"
-                          {...getOverrideProps(overrides, "Input38233156")}
-                        >
-                          <Text
-                            fontFamily="Inter"
-                            fontSize="16px"
-                            fontWeight="400"
-                            color="rgba(128,128,128,1)"
-                            lineHeight="24px"
-                            textAlign="left"
-                            display="block"
-                            direction="column"
-                            justifyContent="unset"
-                            width="unset"
-                            height="unset"
-                            gap="unset"
-                            alignItems="unset"
-                            shrink="0"
-                            alignSelf="stretch"
-                            position="relative"
-                            padding="0px 0px 0px 0px"
-                            whiteSpace="pre-wrap"
-                            children="Facebook Post Embed Link 1"
-                            {...getOverrideProps(
-                              overrides,
-                              "placeholder38233157"
-                            )}
-                          ></Text>
-                        </Flex>
-                      </Flex>
+                        backgroundColor="rgba(255,255,255,1)"
+                        size="default"
+                        isDisabled={false}
+                        labelHidden={true}
+                        variation="default"
+                        defaultValue={creatorDetails?.facebook_link1}
+                        {...getOverrideProps(
+                          overrides,
+                          "FacebookPostEmbedLink1"
+                        )}
+                      ></TextField>
                     </Flex>
                     <Flex
                       gap="10px"
@@ -2149,7 +1395,7 @@ export default function EditProfilePopup(props) {
                       alignSelf="stretch"
                       position="relative"
                       padding="10px 10px 10px 10px"
-                      {...getOverrideProps(overrides, "Embed Link 238043198")}
+                      {...getOverrideProps(overrides, "Embed Link 238344854")}
                     >
                       <Text
                         fontFamily="Inter"
@@ -2170,65 +1416,28 @@ export default function EditProfilePopup(props) {
                         padding="0px 0px 0px 0px"
                         whiteSpace="pre-wrap"
                         children="Post Embed Link 2"
-                        {...getOverrideProps(overrides, "label38043199")}
+                        {...getOverrideProps(overrides, "label38344855")}
                       ></Text>
-                      <Flex
-                        gap="0"
-                        direction="column"
+                      <TextField
                         width="unset"
                         height="unset"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
+                        label="First Name"
+                        placeholder="Facebook Post Embed Link 2"
+                        overflow="hidden"
                         grow="1"
                         shrink="1"
                         basis="0"
                         alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        {...getOverrideProps(overrides, "InputGroup38043200")}
-                      >
-                        <Flex
-                          gap="10px"
-                          direction="column"
-                          width="unset"
-                          height="unset"
-                          justifyContent="center"
-                          alignItems="center"
-                          shrink="0"
-                          alignSelf="stretch"
-                          position="relative"
-                          border="1px SOLID rgba(174,179,183,1)"
-                          borderRadius="5px"
-                          padding="8px 16px 8px 16px"
-                          {...getOverrideProps(overrides, "Input38233168")}
-                        >
-                          <Text
-                            fontFamily="Inter"
-                            fontSize="16px"
-                            fontWeight="400"
-                            color="rgba(128,128,128,1)"
-                            lineHeight="24px"
-                            textAlign="left"
-                            display="block"
-                            direction="column"
-                            justifyContent="unset"
-                            width="unset"
-                            height="unset"
-                            gap="unset"
-                            alignItems="unset"
-                            shrink="0"
-                            alignSelf="stretch"
-                            position="relative"
-                            padding="0px 0px 0px 0px"
-                            whiteSpace="pre-wrap"
-                            children="Facebook Post Embed Link 2"
-                            {...getOverrideProps(
-                              overrides,
-                              "placeholder38233169"
-                            )}
-                          ></Text>
-                        </Flex>
-                      </Flex>
+                        size="default"
+                        isDisabled={false}
+                        labelHidden={true}
+                        variation="default"
+                        defaultValue={creatorDetails?.facebook_link2}
+                        {...getOverrideProps(
+                          overrides,
+                          "FacebookPostEmbedLink2"
+                        )}
+                      ></TextField>
                     </Flex>
                     <Flex
                       gap="10px"
@@ -2241,7 +1450,7 @@ export default function EditProfilePopup(props) {
                       alignSelf="stretch"
                       position="relative"
                       padding="10px 10px 10px 10px"
-                      {...getOverrideProps(overrides, "Embed Link 338043203")}
+                      {...getOverrideProps(overrides, "Embed Link 338344857")}
                     >
                       <Text
                         fontFamily="Inter"
@@ -2262,65 +1471,28 @@ export default function EditProfilePopup(props) {
                         padding="0px 0px 0px 0px"
                         whiteSpace="pre-wrap"
                         children="Post Embed Link 3"
-                        {...getOverrideProps(overrides, "label38043204")}
+                        {...getOverrideProps(overrides, "label38344858")}
                       ></Text>
-                      <Flex
-                        gap="0"
-                        direction="column"
+                      <TextField
                         width="unset"
                         height="unset"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
+                        label="First Name"
+                        placeholder="Facebook Post Embed Link 3"
+                        overflow="hidden"
                         grow="1"
                         shrink="1"
                         basis="0"
                         alignSelf="stretch"
-                        position="relative"
-                        padding="0px 0px 0px 0px"
-                        {...getOverrideProps(overrides, "InputGroup38043205")}
-                      >
-                        <Flex
-                          gap="10px"
-                          direction="column"
-                          width="unset"
-                          height="unset"
-                          justifyContent="center"
-                          alignItems="center"
-                          shrink="0"
-                          alignSelf="stretch"
-                          position="relative"
-                          border="1px SOLID rgba(174,179,183,1)"
-                          borderRadius="5px"
-                          padding="8px 16px 8px 16px"
-                          {...getOverrideProps(overrides, "Input38233181")}
-                        >
-                          <Text
-                            fontFamily="Inter"
-                            fontSize="16px"
-                            fontWeight="400"
-                            color="rgba(128,128,128,1)"
-                            lineHeight="24px"
-                            textAlign="left"
-                            display="block"
-                            direction="column"
-                            justifyContent="unset"
-                            width="unset"
-                            height="unset"
-                            gap="unset"
-                            alignItems="unset"
-                            shrink="0"
-                            alignSelf="stretch"
-                            position="relative"
-                            padding="0px 0px 0px 0px"
-                            whiteSpace="pre-wrap"
-                            children="Facebook Post Embed Link 3"
-                            {...getOverrideProps(
-                              overrides,
-                              "placeholder38233182"
-                            )}
-                          ></Text>
-                        </Flex>
-                      </Flex>
+                        size="default"
+                        isDisabled={false}
+                        labelHidden={true}
+                        variation="default"
+                        defaultValue={creatorDetails?.facebook_link3}
+                        {...getOverrideProps(
+                          overrides,
+                          "FacebookPostEmbedLink3"
+                        )}
+                      ></TextField>
                     </Flex>
                   </Flex>
                 </Flex>
@@ -2359,6 +1531,9 @@ export default function EditProfilePopup(props) {
               isDisabled={false}
               variation="primary"
               children="Save"
+              onClick={() => {
+                buttonOnClick();
+              }}
               {...getOverrideProps(overrides, "Button")}
             ></Button>
           </Flex>

@@ -21,6 +21,9 @@ export function EditProfileOverlay({ creator, creatorDetails, toggle }) {
                 },
                 onClick: toggle,
             },
+            "Button": {
+                onClick: toggle,
+            },
             "Input38043080": {
                 children: <StorageManager accessLevel='public' acceptedFileTypes={["image/*", "image/x-canon-cr2"]} variation="drop"></StorageManager>
             },
@@ -42,10 +45,12 @@ export function EditProfileOverlay({ creator, creatorDetails, toggle }) {
             backgroundColor: 'rgba(0,0,0,0.7)',
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            alignItems: 'flex-start',
+            justifyContent: 'flex-start',
+            textAlign: 'left',
             zIndex: 9999, // ensure the popup appears on top of all other content
         }}>
-            <EditProfilePopup width='100vw' overrides={editProfilePopupOverrides()} />
+            <EditProfilePopup width='100vw' creator={creator} creatorDetails={creatorDetails} overrides={editProfilePopupOverrides()} />
         </div>
     );
 }
