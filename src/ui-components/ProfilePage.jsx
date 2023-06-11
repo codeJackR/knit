@@ -218,7 +218,7 @@ export default function ProfilePage(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               objectFit="contain"
-              {...getOverrideProps(overrides, "YoutubeIcon")}
+              {...getOverrideProps(overrides, "YoutubeIcon36102787")}
             ></Image>
             <Text
               fontFamily="Open Sans"
@@ -240,6 +240,147 @@ export default function ProfilePage(props) {
               whiteSpace="pre-wrap"
               children={creatorDetails?.youtube_id}
               {...getOverrideProps(overrides, "youtube_id")}
+            ></Text>
+          </Flex>
+          <Flex
+            gap="10px"
+            direction="column"
+            width="unset"
+            height="110px"
+            justifyContent="flex-end"
+            alignItems="center"
+            shrink="0"
+            position="relative"
+            padding="10px 0px 10px 0px"
+            {...getOverrideProps(overrides, "Linkedin Tab")}
+          >
+            <Image
+              width="56px"
+              height="38px"
+              display="block"
+              gap="unset"
+              alignItems="unset"
+              justifyContent="unset"
+              shrink="0"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              objectFit="contain"
+              {...getOverrideProps(overrides, "YoutubeIcon38485274")}
+            ></Image>
+            <Text
+              fontFamily="Open Sans"
+              fontSize="24px"
+              fontWeight="400"
+              color="rgba(251,251,251,1)"
+              lineHeight="32.68359375px"
+              textAlign="center"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children="linkedin_id"
+              {...getOverrideProps(overrides, "linkedin_id")}
+            ></Text>
+          </Flex>
+          <Flex
+            gap="10px"
+            direction="column"
+            width="unset"
+            height="110px"
+            justifyContent="flex-end"
+            alignItems="center"
+            shrink="0"
+            position="relative"
+            padding="10px 0px 10px 0px"
+            {...getOverrideProps(overrides, "Twitter Tab")}
+          >
+            <Image
+              width="56px"
+              height="38px"
+              display="block"
+              gap="unset"
+              alignItems="unset"
+              justifyContent="unset"
+              shrink="0"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              objectFit="contain"
+              {...getOverrideProps(overrides, "YoutubeIcon38485277")}
+            ></Image>
+            <Text
+              fontFamily="Open Sans"
+              fontSize="24px"
+              fontWeight="400"
+              color="rgba(251,251,251,1)"
+              lineHeight="32.68359375px"
+              textAlign="center"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children="twitter_id"
+              {...getOverrideProps(overrides, "twitter_id")}
+            ></Text>
+          </Flex>
+          <Flex
+            gap="10px"
+            direction="column"
+            width="unset"
+            height="110px"
+            justifyContent="flex-end"
+            alignItems="center"
+            shrink="0"
+            position="relative"
+            padding="10px 0px 10px 0px"
+            {...getOverrideProps(overrides, "Facebook Tab")}
+          >
+            <Image
+              width="56px"
+              height="38px"
+              display="block"
+              gap="unset"
+              alignItems="unset"
+              justifyContent="unset"
+              shrink="0"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              objectFit="contain"
+              {...getOverrideProps(overrides, "YoutubeIcon38485280")}
+            ></Image>
+            <Text
+              fontFamily="Open Sans"
+              fontSize="24px"
+              fontWeight="400"
+              color="rgba(251,251,251,1)"
+              lineHeight="32.68359375px"
+              textAlign="center"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children="facebook_id"
+              {...getOverrideProps(overrides, "facebook_id")}
             ></Text>
           </Flex>
         </Flex>

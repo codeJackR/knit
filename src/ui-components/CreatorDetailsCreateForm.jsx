@@ -51,6 +51,7 @@ export default function CreatorDetailsCreateForm(props) {
     facebook_link1: "",
     facebook_link2: "",
     facebook_link3: "",
+    description: "",
   };
   const [creator_id, setCreator_id] = React.useState(initialValues.creator_id);
   const [identity1, setIdentity1] = React.useState(initialValues.identity1);
@@ -110,6 +111,9 @@ export default function CreatorDetailsCreateForm(props) {
   const [facebook_link3, setFacebook_link3] = React.useState(
     initialValues.facebook_link3
   );
+  const [description, setDescription] = React.useState(
+    initialValues.description
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setCreator_id(initialValues.creator_id);
@@ -140,6 +144,7 @@ export default function CreatorDetailsCreateForm(props) {
     setFacebook_link1(initialValues.facebook_link1);
     setFacebook_link2(initialValues.facebook_link2);
     setFacebook_link3(initialValues.facebook_link3);
+    setDescription(initialValues.description);
     setErrors({});
   };
   const validations = {
@@ -171,6 +176,7 @@ export default function CreatorDetailsCreateForm(props) {
     facebook_link1: [],
     facebook_link2: [],
     facebook_link3: [],
+    description: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -226,6 +232,7 @@ export default function CreatorDetailsCreateForm(props) {
           facebook_link1,
           facebook_link2,
           facebook_link3,
+          description,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -308,6 +315,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.creator_id ?? value;
@@ -359,6 +367,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.identity1 ?? value;
@@ -410,6 +419,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.identity2 ?? value;
@@ -461,6 +471,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.identity3 ?? value;
@@ -512,6 +523,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.identity4 ?? value;
@@ -563,6 +575,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.identity5 ?? value;
@@ -614,6 +627,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.keyword1 ?? value;
@@ -665,6 +679,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.keyword2 ?? value;
@@ -716,6 +731,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.keyword3 ?? value;
@@ -767,6 +783,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.keyword4 ?? value;
@@ -818,6 +835,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.keyword5 ?? value;
@@ -869,6 +887,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.instagram_id ?? value;
@@ -920,6 +939,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.youtube_id ?? value;
@@ -971,6 +991,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.linkedin_id ?? value;
@@ -1022,6 +1043,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.twitter_id ?? value;
@@ -1073,6 +1095,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.facebook_id ?? value;
@@ -1124,6 +1147,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.youtube_link1 ?? value;
@@ -1175,6 +1199,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.youtube_link2 ?? value;
@@ -1226,6 +1251,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.youtube_link3 ?? value;
@@ -1277,6 +1303,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.linkedin_link1 ?? value;
@@ -1328,6 +1355,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.linkedin_link2 ?? value;
@@ -1379,6 +1407,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.linkedin_link3 ?? value;
@@ -1430,6 +1459,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.twitter_link1 ?? value;
@@ -1481,6 +1511,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.twitter_link2 ?? value;
@@ -1532,6 +1563,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.twitter_link3 ?? value;
@@ -1583,6 +1615,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1: value,
               facebook_link2,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.facebook_link1 ?? value;
@@ -1634,6 +1667,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2: value,
               facebook_link3,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.facebook_link2 ?? value;
@@ -1685,6 +1719,7 @@ export default function CreatorDetailsCreateForm(props) {
               facebook_link1,
               facebook_link2,
               facebook_link3: value,
+              description,
             };
             const result = onChange(modelFields);
             value = result?.facebook_link3 ?? value;
@@ -1698,6 +1733,58 @@ export default function CreatorDetailsCreateForm(props) {
         errorMessage={errors.facebook_link3?.errorMessage}
         hasError={errors.facebook_link3?.hasError}
         {...getOverrideProps(overrides, "facebook_link3")}
+      ></TextField>
+      <TextField
+        label="Description"
+        isRequired={false}
+        isReadOnly={false}
+        value={description}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              creator_id,
+              identity1,
+              identity2,
+              identity3,
+              identity4,
+              identity5,
+              keyword1,
+              keyword2,
+              keyword3,
+              keyword4,
+              keyword5,
+              instagram_id,
+              youtube_id,
+              linkedin_id,
+              twitter_id,
+              facebook_id,
+              youtube_link1,
+              youtube_link2,
+              youtube_link3,
+              linkedin_link1,
+              linkedin_link2,
+              linkedin_link3,
+              twitter_link1,
+              twitter_link2,
+              twitter_link3,
+              facebook_link1,
+              facebook_link2,
+              facebook_link3,
+              description: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.description ?? value;
+          }
+          if (errors.description?.hasError) {
+            runValidationTasks("description", value);
+          }
+          setDescription(value);
+        }}
+        onBlur={() => runValidationTasks("description", description)}
+        errorMessage={errors.description?.errorMessage}
+        hasError={errors.description?.hasError}
+        {...getOverrideProps(overrides, "description")}
       ></TextField>
       <Flex
         justifyContent="space-between"

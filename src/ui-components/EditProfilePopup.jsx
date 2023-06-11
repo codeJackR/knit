@@ -453,15 +453,14 @@ export default function EditProfilePopup(props) {
                 height="unset"
                 label="How would you describe yourself? (Max. 1000 characters)"
                 placeholder="I'm a fitness enthusiast turned aspiring trainer. I believe that health is wealth and I'm on a mission to help others unlock their full potential through fitness. With 5 years of experience in strength training, cardio, and nutrition, I'm dedicated to creating customized programs tailored to each individual's unique goals. Let's work together to transform your mind and body, one rep at a time. My approach to fitness is centered around building a positive mindset and creating sustainable habits. I understand that making lifestyle changes can be challenging, and I'm here to provide guidance, support, and accountability every step of the way. "
-                overflow="hidden"
                 grow="1"
                 shrink="1"
                 basis="0"
-                alignSelf="stretch"
                 size="default"
                 isDisabled={false}
                 labelHidden={false}
                 variation="default"
+                defaultValue={creatorDetails?.description}
                 {...getOverrideProps(overrides, "CreatorDescriptionInput")}
               ></TextField>
             </Flex>

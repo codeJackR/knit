@@ -83,9 +83,11 @@ function GetCreatorDetailsByID(hooks, id) {
     useEffect(() => {
         async function fetchData() {
             try {
-                const result = await getCreatorDetailsByID(id);
-                hooks.setCreatorDetails(result[0]);
-                hooks.setLoading(false);
+                if (id) {
+                    const result = await getCreatorDetailsByID(id);
+                    hooks.setCreatorDetails(result[0]);
+                    hooks.setLoading(false);
+                }
             } catch (err) {
                 hooks.setError(err);
                 hooks.setLoading(false);
@@ -109,9 +111,11 @@ function GetCreatorMediaByID(hooks, id) {
     useEffect(() => {
         async function fetchData() {
             try {
-                const result = await getCreatorMediaByID(id);
-                hooks.setCreatorMedia(result);
-                hooks.setLoading(false);
+                if (id) {
+                    const result = await getCreatorMediaByID(id);
+                    hooks.setCreatorMedia(result);
+                    hooks.setLoading(false);
+                }
             } catch (err) {
                 hooks.setError(err);
                 hooks.setLoading(false);

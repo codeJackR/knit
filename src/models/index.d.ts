@@ -41,6 +41,7 @@ type EagerCreatorDetails = {
   readonly facebook_link1?: string | null;
   readonly facebook_link2?: string | null;
   readonly facebook_link3?: string | null;
+  readonly description?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly creatorDetailsCreatorId?: string | null;
@@ -81,6 +82,7 @@ type LazyCreatorDetails = {
   readonly facebook_link1?: string | null;
   readonly facebook_link2?: string | null;
   readonly facebook_link3?: string | null;
+  readonly description?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly creatorDetailsCreatorId?: string | null;

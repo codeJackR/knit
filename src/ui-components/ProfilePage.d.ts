@@ -23,8 +23,17 @@ export declare type ProfilePageOverridesProps = {
     InstagramIcon?: PrimitiveOverrideProps<ImageProps>;
     insta_id?: PrimitiveOverrideProps<TextProps>;
     "Youtube Tab"?: PrimitiveOverrideProps<FlexProps>;
-    YoutubeIcon?: PrimitiveOverrideProps<ImageProps>;
+    YoutubeIcon36102787?: PrimitiveOverrideProps<ImageProps>;
     youtube_id?: PrimitiveOverrideProps<TextProps>;
+    "Linkedin Tab"?: PrimitiveOverrideProps<FlexProps>;
+    YoutubeIcon38485274?: PrimitiveOverrideProps<ImageProps>;
+    linkedin_id?: PrimitiveOverrideProps<TextProps>;
+    "Twitter Tab"?: PrimitiveOverrideProps<FlexProps>;
+    YoutubeIcon38485277?: PrimitiveOverrideProps<ImageProps>;
+    twitter_id?: PrimitiveOverrideProps<TextProps>;
+    "Facebook Tab"?: PrimitiveOverrideProps<FlexProps>;
+    YoutubeIcon38485280?: PrimitiveOverrideProps<ImageProps>;
+    facebook_id?: PrimitiveOverrideProps<TextProps>;
     Identities?: PrimitiveOverrideProps<FlexProps>;
     "Identity 1"?: PrimitiveOverrideProps<TextProps>;
     "Identity 2"?: PrimitiveOverrideProps<TextProps>;

@@ -29,6 +29,7 @@ type CreatorDetails @model @auth(rules: [{allow: public}]) {
   facebook_link1: String
   facebook_link2: String
   facebook_link3: String
+  description: String
 }
 
 type Creator @model @auth(rules: [{allow: public}, {allow: private}]) {

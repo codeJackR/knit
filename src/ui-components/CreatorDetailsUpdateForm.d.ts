@@ -42,6 +42,7 @@ export declare type CreatorDetailsUpdateFormInputValues = {
     facebook_link1?: string;
     facebook_link2?: string;
     facebook_link3?: string;
+    description?: string;
 };
 export declare type CreatorDetailsUpdateFormValidationValues = {
     creator_id?: ValidationFunction<string>;
@@ -72,6 +73,7 @@ export declare type CreatorDetailsUpdateFormValidationValues = {
     facebook_link1?: ValidationFunction<string>;
     facebook_link2?: ValidationFunction<string>;
     facebook_link3?: ValidationFunction<string>;
+    description?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CreatorDetailsUpdateFormOverridesProps = {
@@ -104,6 +106,7 @@ export declare type CreatorDetailsUpdateFormOverridesProps = {
     facebook_link1?: PrimitiveOverrideProps<TextFieldProps>;
     facebook_link2?: PrimitiveOverrideProps<TextFieldProps>;
     facebook_link3?: PrimitiveOverrideProps<TextFieldProps>;
+    description?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CreatorDetailsUpdateFormProps = React.PropsWithChildren<{
     overrides?: CreatorDetailsUpdateFormOverridesProps | undefined | null;

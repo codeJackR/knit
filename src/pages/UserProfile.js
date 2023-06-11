@@ -164,8 +164,15 @@ export const UserProfile = React.memo((props) => {
         setShowEditProfile(!showEditProfile);
     }
 
-    const profilePageOverrides = (creatorMedia) => {
+    const profilePageOverrides = (creatorMedia, creatorDetails) => {
+        let identityOverride = new Map()
+        for (let i = 1; (Object.keys(creatorDetails).length !== 0) && i <= 5; i++) {
+            if (creatorDetails[`identity${i}`] === null) {
+                identityOverride.set(`Identity ${i}`, { display: "none" });
+            }
+        }
         var result = {
+            ...identityOverride,
             "Creator Backgroud Image": {
                 src: creatorMedia.BackgroundImage
             },
@@ -188,6 +195,7 @@ export const UserProfile = React.memo((props) => {
                 src: iconURL
             }
         }
+
         return result
     }
 
@@ -266,12 +274,12 @@ export const UserProfile = React.memo((props) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', width: '100vw', overflowX: 'auto' }}>
             <div style={{ height: 'calc(100vh)', overflowY: 'visible' }}>
-                <ProfilePage width="100%" height="100%" creator={creatorProfile} creatorDetails={creatorDetails} overrides={profilePageOverrides(creatorMedia)}></ProfilePage>
+                <ProfilePage width="100%" height="100%" creator={creatorProfile} creatorDetails={creatorDetails} overrides={profilePageOverrides(creatorMedia, creatorDetails)}></ProfilePage>
             </div>
             {showEditProfile && <EditProfileOverlay creator={creatorProfile} creatorDetails={creatorDetails} toggle={toggleEditProfilePopup} />}
 
             <div ref={meetCreatorRef}>
-                <MeetCreator width="100%"></MeetCreator>
+                <MeetCreator width="100%" creator={creatorProfile} creatorDetails={creatorDetails}></MeetCreator>
             </div>
             <div>
                 <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script> 
