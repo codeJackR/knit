@@ -37,6 +37,45 @@ export default function EditProfilePopup(props) {
   const [youtubeIDInputValue, setYoutubeIDInputValue] = useStateMutationAction(
     creatorDetails?.youtube_id
   );
+  const [linkedinIDInputValue, setLinkedinIDInputValue] =
+    useStateMutationAction(creatorDetails?.linkedin_id);
+  const [twitterIDInputValue, setTwitterIDInputValue] = useStateMutationAction(
+    creatorDetails?.twitter_id
+  );
+  const [facebookIDInputValue, setFacebookIDInputValue] =
+    useStateMutationAction(creatorDetails?.facebook_id);
+  const [
+    embedLinkThreeEightThreeFourFourZeroSixOneValue,
+    setEmbedLinkThreeEightThreeFourFourZeroSixOneValue,
+  ] = useStateMutationAction(creatorDetails?.youtube_link1);
+  const [
+    embedLinkThreeEightThreeFourFourOneTwoSixValue,
+    setEmbedLinkThreeEightThreeFourFourOneTwoSixValue,
+  ] = useStateMutationAction(creatorDetails?.youtube_link2);
+  const [
+    embedLinkThreeEightThreeFourFourTwoSevenFiveValue,
+    setEmbedLinkThreeEightThreeFourFourTwoSevenFiveValue,
+  ] = useStateMutationAction(creatorDetails?.youtube_link3);
+  const [linkedinPostEmbedLinkOneValue, setLinkedinPostEmbedLinkOneValue] =
+    useStateMutationAction(creatorDetails?.linkedin_link1);
+  const [linkedinPostEmbedLinkTwoValue, setLinkedinPostEmbedLinkTwoValue] =
+    useStateMutationAction(creatorDetails?.linkedin_link2);
+  const [linkedinPostEmbedLinkThreeValue, setLinkedinPostEmbedLinkThreeValue] =
+    useStateMutationAction(creatorDetails?.linkedin_link3);
+  const [tweetEmbedLinkOneValue, setTweetEmbedLinkOneValue] =
+    useStateMutationAction(creatorDetails?.twitter_link1);
+  const [tweetEmbedLinkTwoValue, setTweetEmbedLinkTwoValue] =
+    useStateMutationAction(creatorDetails?.twitter_link2);
+  const [tweetEmbedLinkThreeValue, setTweetEmbedLinkThreeValue] =
+    useStateMutationAction(creatorDetails?.twitter_link3);
+  const [facebookPostEmbedLinkOneValue, setFacebookPostEmbedLinkOneValue] =
+    useStateMutationAction(creatorDetails?.facebook_link1);
+  const [facebookPostEmbedLinkTwoValue, setFacebookPostEmbedLinkTwoValue] =
+    useStateMutationAction(creatorDetails?.facebook_link2);
+  const [facebookPostEmbedLinkThreeValue, setFacebookPostEmbedLinkThreeValue] =
+    useStateMutationAction(creatorDetails?.facebook_link3);
+  const [creatorDescriptionInputValue, setCreatorDescriptionInputValue] =
+    useStateMutationAction(creatorDetails?.description);
   const buttonOnClick = useDataStoreUpdateAction({
     model: CreatorDetails,
     id: creatorDetails?.id,
@@ -47,6 +86,22 @@ export default function EditProfilePopup(props) {
       identity4: identityInputFourValue,
       identity5: identityInputFiveValue,
       youtube_id: youtubeIDInputValue,
+      linkedin_id: linkedinIDInputValue,
+      twitter_id: twitterIDInputValue,
+      facebook_id: facebookIDInputValue,
+      youtube_link1: embedLinkThreeEightThreeFourFourZeroSixOneValue,
+      youtube_link2: embedLinkThreeEightThreeFourFourOneTwoSixValue,
+      youtube_link3: embedLinkThreeEightThreeFourFourTwoSevenFiveValue,
+      linkedin_link1: linkedinPostEmbedLinkOneValue,
+      linkedin_link2: linkedinPostEmbedLinkTwoValue,
+      linkedin_link3: linkedinPostEmbedLinkThreeValue,
+      twitter_link1: tweetEmbedLinkOneValue,
+      twitter_link2: tweetEmbedLinkTwoValue,
+      twitter_link3: tweetEmbedLinkThreeValue,
+      facebook_link1: facebookPostEmbedLinkOneValue,
+      facebook_link2: facebookPostEmbedLinkTwoValue,
+      facebook_link3: facebookPostEmbedLinkThreeValue,
+      description: creatorDescriptionInputValue,
     },
     schema: schema,
   });
@@ -460,7 +515,10 @@ export default function EditProfilePopup(props) {
                 isDisabled={false}
                 labelHidden={false}
                 variation="default"
-                defaultValue={creatorDetails?.description}
+                value={creatorDescriptionInputValue}
+                onChange={(event) => {
+                  setCreatorDescriptionInputValue(event.target.value);
+                }}
                 {...getOverrideProps(overrides, "CreatorDescriptionInput")}
               ></TextField>
             </Flex>
@@ -617,7 +675,12 @@ export default function EditProfilePopup(props) {
                         isDisabled={false}
                         labelHidden={true}
                         variation="default"
-                        defaultValue={creatorDetails?.youtube_link1}
+                        value={embedLinkThreeEightThreeFourFourZeroSixOneValue}
+                        onChange={(event) => {
+                          setEmbedLinkThreeEightThreeFourFourZeroSixOneValue(
+                            event.target.value
+                          );
+                        }}
                         {...getOverrideProps(overrides, "EmbedLink38344061")}
                       ></TextField>
                     </Flex>
@@ -669,7 +732,12 @@ export default function EditProfilePopup(props) {
                         isDisabled={false}
                         labelHidden={true}
                         variation="default"
-                        defaultValue={creatorDetails?.youtube_link2}
+                        value={embedLinkThreeEightThreeFourFourOneTwoSixValue}
+                        onChange={(event) => {
+                          setEmbedLinkThreeEightThreeFourFourOneTwoSixValue(
+                            event.target.value
+                          );
+                        }}
                         {...getOverrideProps(overrides, "EmbedLink38344126")}
                       ></TextField>
                     </Flex>
@@ -721,7 +789,14 @@ export default function EditProfilePopup(props) {
                         isDisabled={false}
                         labelHidden={true}
                         variation="default"
-                        defaultValue={creatorDetails?.youtube_link3}
+                        value={
+                          embedLinkThreeEightThreeFourFourTwoSevenFiveValue
+                        }
+                        onChange={(event) => {
+                          setEmbedLinkThreeEightThreeFourFourTwoSevenFiveValue(
+                            event.target.value
+                          );
+                        }}
                         {...getOverrideProps(overrides, "EmbedLink38344275")}
                       ></TextField>
                     </Flex>
@@ -800,7 +875,10 @@ export default function EditProfilePopup(props) {
                     isDisabled={false}
                     labelHidden={true}
                     variation="default"
-                    defaultValue={creatorDetails?.linkedin_id}
+                    value={linkedinIDInputValue}
+                    onChange={(event) => {
+                      setLinkedinIDInputValue(event.target.value);
+                    }}
                     {...getOverrideProps(overrides, "linkedinIDInput")}
                   ></TextField>
                   <Flex
@@ -868,7 +946,10 @@ export default function EditProfilePopup(props) {
                         isDisabled={false}
                         labelHidden={true}
                         variation="default"
-                        defaultValue={creatorDetails?.linkedin_link1}
+                        value={linkedinPostEmbedLinkOneValue}
+                        onChange={(event) => {
+                          setLinkedinPostEmbedLinkOneValue(event.target.value);
+                        }}
                         {...getOverrideProps(
                           overrides,
                           "LinkedinPostEmbedLink1"
@@ -923,7 +1004,10 @@ export default function EditProfilePopup(props) {
                         isDisabled={false}
                         labelHidden={true}
                         variation="default"
-                        defaultValue={creatorDetails?.linkedin_link2}
+                        value={linkedinPostEmbedLinkTwoValue}
+                        onChange={(event) => {
+                          setLinkedinPostEmbedLinkTwoValue(event.target.value);
+                        }}
                         {...getOverrideProps(
                           overrides,
                           "LinkedinPostEmbedLink2"
@@ -978,7 +1062,12 @@ export default function EditProfilePopup(props) {
                         isDisabled={false}
                         labelHidden={true}
                         variation="default"
-                        defaultValue={creatorDetails?.linkedin_link3}
+                        value={linkedinPostEmbedLinkThreeValue}
+                        onChange={(event) => {
+                          setLinkedinPostEmbedLinkThreeValue(
+                            event.target.value
+                          );
+                        }}
                         {...getOverrideProps(
                           overrides,
                           "LinkedinPostEmbedLink3"
@@ -1060,7 +1149,10 @@ export default function EditProfilePopup(props) {
                     isDisabled={false}
                     labelHidden={true}
                     variation="default"
-                    defaultValue={creatorDetails?.twitter_id}
+                    value={twitterIDInputValue}
+                    onChange={(event) => {
+                      setTwitterIDInputValue(event.target.value);
+                    }}
                     {...getOverrideProps(overrides, "twitterIDInput")}
                   ></TextField>
                   <Flex
@@ -1125,7 +1217,10 @@ export default function EditProfilePopup(props) {
                         isDisabled={false}
                         labelHidden={true}
                         variation="default"
-                        defaultValue={creatorDetails?.twitter_link1}
+                        value={tweetEmbedLinkOneValue}
+                        onChange={(event) => {
+                          setTweetEmbedLinkOneValue(event.target.value);
+                        }}
                         {...getOverrideProps(overrides, "TweetEmbedLink1")}
                       ></TextField>
                     </Flex>
@@ -1177,7 +1272,10 @@ export default function EditProfilePopup(props) {
                         isDisabled={false}
                         labelHidden={true}
                         variation="default"
-                        defaultValue={creatorDetails?.twitter_link2}
+                        value={tweetEmbedLinkTwoValue}
+                        onChange={(event) => {
+                          setTweetEmbedLinkTwoValue(event.target.value);
+                        }}
                         {...getOverrideProps(overrides, "TweetEmbedLink2")}
                       ></TextField>
                     </Flex>
@@ -1229,7 +1327,10 @@ export default function EditProfilePopup(props) {
                         isDisabled={false}
                         labelHidden={true}
                         variation="default"
-                        defaultValue={creatorDetails?.twitter_link3}
+                        value={tweetEmbedLinkThreeValue}
+                        onChange={(event) => {
+                          setTweetEmbedLinkThreeValue(event.target.value);
+                        }}
                         {...getOverrideProps(overrides, "TweetEmbedLink3")}
                       ></TextField>
                     </Flex>
@@ -1308,7 +1409,10 @@ export default function EditProfilePopup(props) {
                     isDisabled={false}
                     labelHidden={true}
                     variation="default"
-                    defaultValue={creatorDetails?.facebook_id}
+                    value={facebookIDInputValue}
+                    onChange={(event) => {
+                      setFacebookIDInputValue(event.target.value);
+                    }}
                     {...getOverrideProps(overrides, "facebookIDInput")}
                   ></TextField>
                   <Flex
@@ -1376,7 +1480,10 @@ export default function EditProfilePopup(props) {
                         isDisabled={false}
                         labelHidden={true}
                         variation="default"
-                        defaultValue={creatorDetails?.facebook_link1}
+                        value={facebookPostEmbedLinkOneValue}
+                        onChange={(event) => {
+                          setFacebookPostEmbedLinkOneValue(event.target.value);
+                        }}
                         {...getOverrideProps(
                           overrides,
                           "FacebookPostEmbedLink1"
@@ -1431,7 +1538,10 @@ export default function EditProfilePopup(props) {
                         isDisabled={false}
                         labelHidden={true}
                         variation="default"
-                        defaultValue={creatorDetails?.facebook_link2}
+                        value={facebookPostEmbedLinkTwoValue}
+                        onChange={(event) => {
+                          setFacebookPostEmbedLinkTwoValue(event.target.value);
+                        }}
                         {...getOverrideProps(
                           overrides,
                           "FacebookPostEmbedLink2"
@@ -1486,7 +1596,12 @@ export default function EditProfilePopup(props) {
                         isDisabled={false}
                         labelHidden={true}
                         variation="default"
-                        defaultValue={creatorDetails?.facebook_link3}
+                        value={facebookPostEmbedLinkThreeValue}
+                        onChange={(event) => {
+                          setFacebookPostEmbedLinkThreeValue(
+                            event.target.value
+                          );
+                        }}
                         {...getOverrideProps(
                           overrides,
                           "FacebookPostEmbedLink3"

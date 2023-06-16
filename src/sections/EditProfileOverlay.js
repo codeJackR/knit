@@ -22,7 +22,10 @@ export function EditProfileOverlay({ creator, creatorDetails, toggle }) {
                 onClick: toggle,
             },
             "Button": {
-                onClick: toggle,
+                onClick: (toggle) => {
+                    
+                    toggle()
+                },
             },
             "Input38043080": {
                 children: <StorageManager accessLevel='public' acceptedFileTypes={["image/*", "image/x-canon-cr2"]} variation="drop"></StorageManager>
