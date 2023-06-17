@@ -387,7 +387,7 @@ export default function ProfilePage(props) {
         <Flex
           gap="30px"
           direction="column"
-          width="130px"
+          width="unset"
           height="unset"
           justifyContent="center"
           alignItems="flex-end"
@@ -399,10 +399,10 @@ export default function ProfilePage(props) {
         >
           <Text
             fontFamily="Open Sans"
-            fontSize="25px"
+            fontSize="36px"
             fontWeight="400"
             color="rgba(251,251,251,1)"
-            lineHeight="34.04541015625px"
+            lineHeight="49.025390625px"
             textAlign="right"
             display="block"
             direction="column"
@@ -420,10 +420,10 @@ export default function ProfilePage(props) {
           ></Text>
           <Text
             fontFamily="Open Sans"
-            fontSize="25px"
+            fontSize="36px"
             fontWeight="400"
             color="rgba(251,251,251,1)"
-            lineHeight="34.04541015625px"
+            lineHeight="49.025390625px"
             textAlign="right"
             display="block"
             direction="column"
@@ -441,10 +441,10 @@ export default function ProfilePage(props) {
           ></Text>
           <Text
             fontFamily="Open Sans"
-            fontSize="25px"
+            fontSize="36px"
             fontWeight="400"
             color="rgba(251,251,251,1)"
-            lineHeight="34.04541015625px"
+            lineHeight="49.025390625px"
             textAlign="right"
             display="block"
             direction="column"
@@ -462,10 +462,10 @@ export default function ProfilePage(props) {
           ></Text>
           <Text
             fontFamily="Open Sans"
-            fontSize="25px"
+            fontSize="36px"
             fontWeight="400"
             color="rgba(251,251,251,1)"
-            lineHeight="34.04541015625px"
+            lineHeight="49.025390625px"
             textAlign="right"
             display="block"
             direction="column"
@@ -483,10 +483,10 @@ export default function ProfilePage(props) {
           ></Text>
           <Text
             fontFamily="Open Sans"
-            fontSize="25px"
+            fontSize="36px"
             fontWeight="400"
             color="rgba(251,251,251,1)"
-            lineHeight="34.04541015625px"
+            lineHeight="49.025390625px"
             textAlign="right"
             display="block"
             direction="column"

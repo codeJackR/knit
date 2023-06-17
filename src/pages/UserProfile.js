@@ -167,12 +167,12 @@ export const UserProfile = React.memo((props) => {
     const profilePageOverrides = (creatorMedia, creatorDetails) => {
         let identityOverride = new Map()
         for (let i = 1; (Object.keys(creatorDetails).length !== 0) && i <= 5; i++) {
-            if (creatorDetails[`identity${i}`] === null) {
+            if (creatorDetails[`identity${i}`] === null || creatorDetails[`identity${i}`] === "") {
                 identityOverride.set(`Identity ${i}`, { display: "none" });
             }
         }
         var result = {
-            ...identityOverride,
+            ...Object.fromEntries(identityOverride),
             "Creator Backgroud Image": {
                 src: creatorMedia.BackgroundImage
             },
