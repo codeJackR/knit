@@ -5,9 +5,10 @@
  **************************************************************************/
 
 import * as React from "react";
-import { Creator, CreatorDetails } from "../models";
+import { CreatorDetails, Creator } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { ButtonProps, DividerProps, FlexProps, IconProps, TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { SyntheticEvent } from "react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type EditProfilePopupOverridesProps = {
     EditProfilePopup?: PrimitiveOverrideProps<FlexProps>;
@@ -102,8 +103,9 @@ export declare type EditProfilePopupOverridesProps = {
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type EditProfilePopupProps = React.PropsWithChildren<Partial<FlexProps> & {
-    creator?: Creator;
     creatorDetails?: CreatorDetails;
+    creator?: Creator;
+    toggle?: (event: SyntheticEvent) => void;
 } & {
     overrides?: EditProfilePopupOverridesProps | undefined | null;
 }>;
