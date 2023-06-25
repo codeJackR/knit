@@ -14,6 +14,7 @@ export { default as NavBar } from "./NavBar";
 export { default as ProfilePageMobile } from "./ProfilePageMobile";
 export { default as ProfileCardCollection } from "./ProfileCardCollection";
 export { default as EditProfilePopup } from "./EditProfilePopup";
+export { default as EditProfilePopup2 } from "./EditProfilePopup2";
 export { default as TopPosts } from "./TopPosts";
 export { default as TallCard } from "./TallCard";
 export { default as FormCheckout } from "./FormCheckout";

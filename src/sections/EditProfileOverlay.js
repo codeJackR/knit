@@ -1,7 +1,10 @@
-import { EditProfilePopup } from '../ui-components';
+import { useState } from 'react';
+import { EditProfilePopup2 } from '../ui-components';
 import { StorageManager } from '@aws-amplify/ui-react-storage';
 
 export function EditProfileOverlay({ creator, creatorDetails, toggle }) {
+    const [coverPhoto, setCoverPhoto] = useState(null);
+    const [profilePhoto, setProfilePhoto] = useState(null);
 
     const editProfilePopupOverrides = () => {
         var result = {
@@ -25,10 +28,14 @@ export function EditProfileOverlay({ creator, creatorDetails, toggle }) {
             //     onClick: toggle,
             // },
             "Input38043080": {
-                children: <StorageManager accessLevel='public' acceptedFileTypes={["image/*", "image/x-canon-cr2"]} variation="drop"></StorageManager>
+                children: <StorageManager accessLevel='public' acceptedFileTypes={["image/*", "image/x-canon-cr2"]} variation="drop" maxFileCount="1" onUploadSuccess={(file) => {
+                    setCoverPhoto(file);
+                }}></StorageManager>
             },
             "Input38043075": {
-                children: <StorageManager accessLevel='public' acceptedFileTypes={["image/*", "image/x-canon-cr2"]} variation="drop"></StorageManager>
+                children: <StorageManager accessLevel='public' acceptedFileTypes={["image/*", "image/x-canon-cr2"]} variation="drop" maxFileCount="1" onUploadSuccess={(file) => {
+                    setProfilePhoto(file);
+                }}></StorageManager>
             },
         }
         return result
@@ -50,7 +57,7 @@ export function EditProfileOverlay({ creator, creatorDetails, toggle }) {
             textAlign: 'left',
             zIndex: 9999, // ensure the popup appears on top of all other content
         }}>
-            <EditProfilePopup width='100vw' creator={creator} creatorDetails={creatorDetails} overrides={editProfilePopupOverrides()} />
+            <EditProfilePopup2 width='100vw' creator={creator} creatorDetails={creatorDetails} toggle={toggle} coverPhoto={coverPhoto} profilePhoto={profilePhoto} overrides={editProfilePopupOverrides()} />
         </div>
     );
 }
