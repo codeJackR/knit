@@ -28,13 +28,15 @@ export function EditProfileOverlay({ creator, creatorDetails, toggle }) {
             //     onClick: toggle,
             // },
             "Input38043080": {
-                children: <StorageManager accessLevel='public' acceptedFileTypes={["image/*", "image/x-canon-cr2"]} variation="drop" maxFileCount="1" onUploadSuccess={(file) => {
-                    setCoverPhoto(file);
+                children: <StorageManager accessLevel='public' acceptedFileTypes={["image/*", "image/x-canon-cr2"]} variation="drop" maxFileCount="1" processFile={(file) => {
+                    setCoverPhoto(file.file);
+                    return file;
                 }}></StorageManager>
             },
             "Input38043075": {
-                children: <StorageManager accessLevel='public' acceptedFileTypes={["image/*", "image/x-canon-cr2"]} variation="drop" maxFileCount="1" onUploadSuccess={(file) => {
-                    setProfilePhoto(file);
+                children: <StorageManager accessLevel='public' acceptedFileTypes={["image/*", "image/x-canon-cr2"]} variation="drop" maxFileCount="1" processFile={(file) => {
+                    setProfilePhoto(file.file);
+                    return file;
                 }}></StorageManager>
             },
         }

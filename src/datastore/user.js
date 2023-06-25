@@ -98,12 +98,17 @@ function GetCreatorDetailsByID(hooks, id) {
 }
 
 async function getCreatorMediaByID(id) {
-    const backgroundImage = await Storage.get('CreatorMedia/' + id + '/backgroundImage', {
+    const coverPhoto = await Storage.get('CreatorMedia/' + id + '/CoverPhoto', {
+        level: 'public',
+        expires: 60
+    });
+    const profilePhoto = await Storage.get('CreatorMedia/' + id + '/ProfilePhoto', {
         level: 'public',
         expires: 60
     });
     return {
-        BackgroundImage: backgroundImage,
+        CoverPhoto: coverPhoto,
+        ProfilePhoto: profilePhoto,
     };
 }
 

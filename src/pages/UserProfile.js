@@ -174,7 +174,7 @@ export const UserProfile = React.memo((props) => {
         var result = {
             ...Object.fromEntries(identityOverride),
             "Creator Backgroud Image": {
-                src: creatorMedia.BackgroundImage
+                src: creatorMedia.CoverPhoto
             },
             "Meet Tab": {
                 onClick: handleMeetCreatorClick,
@@ -196,6 +196,15 @@ export const UserProfile = React.memo((props) => {
             }
         }
 
+        return result
+    }
+
+    const meetCreatorOverrides = (creatorMedia) => {
+        var result = {
+            "photo-1548690312-e3b507d8c110 1": {
+                src: creatorMedia.ProfilePhoto
+            },
+        }
         return result
     }
 
@@ -279,7 +288,7 @@ export const UserProfile = React.memo((props) => {
             {showEditProfile && <EditProfileOverlay creator={creatorProfile} creatorDetails={creatorDetails} toggle={toggleEditProfilePopup} />}
 
             <div ref={meetCreatorRef}>
-                <MeetCreator width="100%" creator={creatorProfile} creatorDetails={creatorDetails}></MeetCreator>
+                <MeetCreator width="100%" creator={creatorProfile} creatorDetails={creatorDetails} overrides={meetCreatorOverrides(creatorMedia)}></MeetCreator>
             </div>
             <div>
                 <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script> 
