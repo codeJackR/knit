@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Storage } from 'aws-amplify';
 import { CreatorDetails } from "../models";
 import {
   getOverrideProps,
@@ -19,7 +20,7 @@ import {
 const saveImage = async (creatorId, image, fileName) => {
   if (image) {
       try {
-          const result = await Storage.put("CreatorMedia"+creatorId+fileName, image, {
+          const result = await Storage.put("CreatorMedia/"+creatorId+"/"+fileName, image, {
               level: 'public',
               contentType: image.type
           });
